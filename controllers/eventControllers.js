@@ -1,29 +1,29 @@
-const Product = require('../models/product');
+const Event = require('../models/event');
 
-const productControllers = {
-    getProducts: async (req,res) => {
-        let products;
+const eventControllers = {
+    getEvents: async (req,res) => {
+        let events;
         let error = null;
         try {
-            products = await Product.find();
+            events = await Event.find();
         }catch (err){
             error = err;
         }
 
         res.json(
             {
-                response: error ? 'Error requesting products data' : {products},
+                response: error ? 'Error requesting events data' : {events},
                 success: error ? false : true,
                 error: error
             }
         )
     },
-    getProductById: async (req,res) => {
+    getEventById: async (req,res) => {
         const id = req.params.id;
-        let product;
+        let event;
         let error = null;
         try {
-            product = await Product.findOne({_id:id});
+            event = await Event.findOne({_id:id});
         }catch (err){
             error = err;
             console.log(error);
@@ -31,27 +31,31 @@ const productControllers = {
 
         res.json(
             {
-                response: error ? 'Error requesting product data' : {product},
+                response: error ? 'Error requesting event data' : {event},
                 success: error ? false : true,
                 error: error
             }
         )
     },
-    addProduct: async (req,res) => {
-        const {name, description, images, price, stock, date, categories, variations}=req.body
+    addEvent: async (req,res) => {
+        const {name, description, authors, images, price, limit, date, categories, tags, attendance, likes, comments }=req.body
         // console.log(req.body)
-        let product;
+        let event;
         let error = null;
         try {
-            product = await new Product({
+            event = await new Event({
                 name: name,
                 description: description,
+                authors: authors,
                 categories: categories,
                 images: images,
                 price: price,
-                stock: stock,
+                limit: limit,
                 date: date,
-                variations: variations
+                tags: tags,
+                attendance: attendance,
+                likes: likes,
+                comments: comments
             }).save();
         }catch (err){
             error = err;
@@ -60,21 +64,21 @@ const productControllers = {
 
         res.json(
             {
-                response: error ? 'Error creating product' : product,
+                response: error ? 'Error creating event' : event,
                 success: error ? false : true,
                 error: error
             }
         )
     },
-    modifyProduct: async (req,res) => {
+    modifyEvent: async (req,res) => {
         const id = req.params.id;
         // console.log(id);
-        let productReq = req.body;
-        // console.log(productReq);
-        let productDB;
+        let eventReq = req.body;
+        // console.log(eventReq);
+        let eventDB;
         let error = null;
         try {
-            productDB = await Product.findOneAndUpdate({ _id:id }, productReq, {new:true});
+            eventDB = await Event.findOneAndUpdate({ _id:id }, eventReq, {new:true});
         }catch (err){
             error = err;
             console.log(error);
@@ -82,18 +86,18 @@ const productControllers = {
 
         res.json(
             {
-                response: error ? 'Error updating product' : productDB,
+                response: error ? 'Error updating event' : eventDB,
                 success: error ? false : true,
                 error: error
             }
         )
     },
-    deleteProduct: async (req,res) => {
+    deleteEvent: async (req,res) => {
         const id = req.params.id;
-        let product;
+        let event;
         let error = null;
         try {
-            product = await Product.findOneAndDelete({_id:id});
+            event = await Event.findOneAndDelete({_id:id});
         }catch (err){
             error = err;
             console.log(error);
@@ -101,7 +105,7 @@ const productControllers = {
 
         res.json(
             {
-                response: error ? 'Error removing product' : product,
+                response: error ? 'Error removing event' : event,
                 success: error ? false : true,
                 error: error
             }
@@ -109,4 +113,4 @@ const productControllers = {
     }
 }
 
-module.exports = productControllers;
+module.exports = eventControllers;
