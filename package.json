@@ -4,5 +4,22 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongoose": "^6.4.5"
-  }
+  },
+  "scripts": {
+    "start": "nodemon /server.js"
+  },
+  "name": "cody",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estebanpisani/cody-eCommerce.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/estebanpisani/cody-eCommerce/issues"
+  },
+  "homepage": "https://github.com/estebanpisani/cody-eCommerce#readme",
+  "description": ""
 }
