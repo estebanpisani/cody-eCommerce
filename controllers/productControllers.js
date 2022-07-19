@@ -39,7 +39,7 @@ const productControllers = {
     },
     addProduct: async (req,res) => {
         const {name, description, images, price, stock, date, category, variations}=req.body
-        console.log(req.body)
+        // console.log(req.body)
         let product;
         let error = null;
         try {
@@ -68,9 +68,9 @@ const productControllers = {
     },
     modifyProduct: async (req,res) => {
         const id = req.params.id;
-        console.log(id);
+        // console.log(id);
         let productReq = req.body;
-        console.log(productReq);
+        // console.log(productReq);
         let productDB;
         let error = null;
         try {
