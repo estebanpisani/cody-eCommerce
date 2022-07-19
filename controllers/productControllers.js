@@ -38,14 +38,20 @@ const productControllers = {
         )
     },
     addProduct: async (req,res) => {
-        const {name, description, images, price, stock, date}=req.body
+        const {name, description, images, price, stock, date, category, variations}=req.body
         console.log(req.body)
         let product;
         let error = null;
         try {
             product = await new Product({
                 name: name,
-                description: description
+                description: description,
+                category: category,
+                images: images,
+                price: price,
+                stock: stock,
+                date: date,
+                variations: variations
             }).save();
         }catch (err){
             error = err;

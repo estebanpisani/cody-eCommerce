@@ -7,7 +7,9 @@ const productSchema = new mongoose.Schema(
         images: [{type:String, require:false}],
         price: {type:Number, require:true, default: 0},
         stock: {type:Number, require: true, default: 0},
-        date: {type:Date, default: Date(), require: true}
+        date: {type:Date, default: Date(), require: true},
+        category: {type:String, require:true},
+        variations: [{type: String, require: false}]
     }
 )
 const Product = mongoose.model('products', productSchema);
