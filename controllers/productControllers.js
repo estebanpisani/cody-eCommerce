@@ -1,44 +1,44 @@
 const Product = require('../models/product');
 
 const productControllers = {
-    getProducts: async (req,res) => {
+    getProducts: async (req, res) => {
         let products;
         let error = null;
         try {
             products = await Product.find();
-        }catch (err){
+        } catch (err) {
             error = err;
         }
 
         res.json(
             {
-                response: error ? 'Error requesting products data' : {products},
+                response: error ? 'Error requesting products data' : { products },
                 success: error ? false : true,
                 error: error
             }
         )
     },
-    getProductById: async (req,res) => {
+    getProductById: async (req, res) => {
         const id = req.params.id;
         let product;
         let error = null;
         try {
-            product = await Product.findOne({_id:id});
-        }catch (err){
+            product = await Product.findOne({ _id: id });
+        } catch (err) {
             error = err;
             console.log(error);
         }
 
         res.json(
             {
-                response: error ? 'Error requesting product data' : {product},
+                response: error ? 'Error requesting product data' : { product },
                 success: error ? false : true,
                 error: error
             }
         )
     },
-    addProduct: async (req,res) => {
-        const {name, description, images, price, stock, date, categories, variations}=req.body
+    addProduct: async (req, res) => {
+        const { name, description, images, price, stock, date, categories, variations } = req.body
         // console.log(req.body)
         let product;
         let error = null;
@@ -53,7 +53,7 @@ const productControllers = {
                 date: date,
                 variations: variations
             }).save();
-        }catch (err){
+        } catch (err) {
             error = err;
             console.log(error);
         }
@@ -66,7 +66,7 @@ const productControllers = {
             }
         )
     },
-    modifyProduct: async (req,res) => {
+    modifyProduct: async (req, res) => {
         const id = req.params.id;
         // console.log(id);
         let productReq = req.body;
@@ -74,8 +74,8 @@ const productControllers = {
         let productDB;
         let error = null;
         try {
-            productDB = await Product.findOneAndUpdate({ _id:id }, productReq, {new:true});
-        }catch (err){
+            productDB = await Product.findOneAndUpdate({ _id: id }, productReq, { new: true });
+        } catch (err) {
             error = err;
             console.log(error);
         }
@@ -88,13 +88,13 @@ const productControllers = {
             }
         )
     },
-    deleteProduct: async (req,res) => {
+    deleteProduct: async (req, res) => {
         const id = req.params.id;
         let product;
         let error = null;
         try {
-            product = await Product.findOneAndDelete({_id:id});
-        }catch (err){
+            product = await Product.findOneAndDelete({ _id: id });
+        } catch (err) {
             error = err;
             console.log(error);
         }
@@ -106,6 +106,9 @@ const productControllers = {
                 error: error
             }
         )
+    },
+    buyProduct: async (req, res) => {
+
     }
 }
 
