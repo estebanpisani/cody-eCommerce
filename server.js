@@ -4,8 +4,9 @@ require("./config/database")
 const cors = require("cors")
 const express = require("express")
 const Router = require("./routes")
+const ck = require('ckey');
 
-const PORT = 4000
+const PORT = ck.PORT
 const server = express();
 
 //middlewares
