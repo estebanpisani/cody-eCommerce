@@ -124,7 +124,7 @@ export default function BasicModal({data}) {
           <img
              
              className='image-modal'
-            src={data.imageSrc}
+            src={data.image}
             alt="product"
           
           />
@@ -136,7 +136,7 @@ export default function BasicModal({data}) {
           </Typography>    
           </div>
        
-          <div className='select-detail'>
+
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
       <InputLabel id="demo-select-small">Sabores</InputLabel>
       <Select
@@ -160,7 +160,6 @@ export default function BasicModal({data}) {
     
          
           </div>
-          </div>
           <div className='description-modal'> <Typography id="modal-modal-description" sx={{ mt: 5, mb:5, width:400 }}>
            {data.description} 
           </Typography>  </div>
@@ -175,6 +174,6 @@ export default function BasicModal({data}) {
     </div>
   );
 }
-
+//condicional si hay variaciones.
 
 
