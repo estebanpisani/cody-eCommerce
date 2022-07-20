@@ -11,7 +11,6 @@ const userSchema = new mongoose.Schema({
     image:{type:String, required:true},
     uniqueString: {type:String, required:true},
     verification: {type:Boolean, required:true} 
-    
 })
 
 const User = mongoose.model("users", userSchema)
