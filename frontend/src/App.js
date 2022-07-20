@@ -1,16 +1,20 @@
 import './App.css';
 import Hero from '../src/components/Hero'
 import Navbar from './components/Navbar';
-// import PruebaHero from './components/PruebaHero';
+import ActivitiesHero from './components/ActivitiesHero';
+import { Footer } from './components/Footer';
+import AboutUs from './components/AboutUs';
+
 
 function App() {
   return (
     <div >
 
       <Navbar />
-      {/* <PruebaHero /> */}
       <Hero />
-
+      <AboutUs />
+      <ActivitiesHero />
+      <Footer />
     </div>
   );
 }

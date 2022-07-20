@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 .hero-container {
   background-color: #f9f2ed;
 }
@@ -6,8 +8,10 @@
   background-image: url('/src/media/banner-hero3.jpg');
   background-size: cover;
   background-color: #F9B384;
-
 }
+
+
+
 
 .text-container {
   background-color: #f9b3844f;
@@ -18,17 +22,39 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-
 }
 
 .hero-container {
   width: 100%;
   object-fit: contain;
-  /* box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5); */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #fff;
+}
 
+@media (max-width: 1024px) {
+  .wrap-text {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrap-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrap-text {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .wrap-text {
+    font-size: 8px;
+
+  }
 }
