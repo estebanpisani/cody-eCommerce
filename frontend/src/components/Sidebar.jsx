@@ -2,11 +2,30 @@ import React from "react";
 import Products from './Products'
 import '../styles/sidebar.css'
 import Logo from '../media/logo.png'
+// import {useDispatch, useSelector} from 'react-redux'
+// import { useEffect } from 'react';
+// import productActions from "../redux/actions/productActions";
+// import userActions from "../redux/actions/userActions";
 
 
 function Sidebar() {
+    // const [category, setCategory] = React.useState("")
+    // const [reload, setReload] = React.useState(false)
+
+    //const currentStore = useSelector(store => store.productReducer.filter)
+
+    // const selectCategory =  async (event) => {
+    //     event.preventDefault();
+    //     const categoryclicked = {
+    //         category: category
+    //     }
+    //     const res = await dispatch(productActions.getProductsbyCategory(categoryclicked))
+    //     setReload(!reload)
+    //     }
+
+
     return (
-        <div className="flex flex-no-wrap">
+        <div className="flex flex-no-wrap mt-16">
             {/* Sidebar starts */}
             {/* Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] */}
             <div className="sidebar w-64 absolute sm:relative sidecolor shadow md:h-full flex-col justify-between hidden sm:flex">
@@ -17,8 +36,9 @@ function Sidebar() {
                         </img>
                     </div>
                     <ul>
-                        <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center py-3 px-8">
-                            <div className="flex items-center">
+                        {/* sumar value{recomendado} y 2 onlicks con seteo setCategory y funcion selectcategory */}
+                        <li  className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center py-3 px-8">
+                            <div  className="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <rect x={4} y={4} width={6} height={6} rx={1} />
@@ -166,9 +186,9 @@ function Sidebar() {
             {/* Sidebar ends */}
             {/* Remove class [ h-64 ] when adding a card block */}
             <div className="container mx-auto h-64 md:w-4/5 w-11/12 px-6">
-                {/* Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border */}
+                
                 <div className="w-full h-full rounded store-conteiner"><Products/></div>
-            </div>
+    </div>
         </div>
     );
 }
