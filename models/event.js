@@ -12,7 +12,7 @@ const eventSchema = new mongoose.Schema(
         date: {
             type: Date, min: Date(), default: Date(), require: true
         },
-        categories: { type: String, require: false },
+        category: { type: String, require: false },
         tags: [{ type: String, require: false }],
         likes: [{ type: mongoose.Types.ObjectId, ref: 'users', require: false }],
         comments: [{
