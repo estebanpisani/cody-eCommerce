@@ -1,7 +1,7 @@
 const Router = require('express').Router();
 const productControllers = require('./controllers/productControllers');
 const eventControllers = require('./controllers/eventControllers');
-const {getProducts, addProduct, getProductById, modifyProduct, deleteProduct} = productControllers;
+const {getProducts, addProduct, getProductById, modifyProduct, deleteProduct, buyProducts} = productControllers;
 const {getEvents, getEventById, addEvent, modifyEvent, deleteEvent} = eventControllers;
 
 // Products Routes
@@ -23,5 +23,10 @@ Router.route('/events/:id')
 .get(getEventById)
 .put(modifyEvent)
 .delete(deleteEvent);
+
+Router.route('/products/buy')
+.post(buyProducts);
+
+
 
 module.exports = Router;
