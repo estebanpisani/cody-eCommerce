@@ -1,11 +1,15 @@
 import './App.css';
-// import Hero from '../src/components/Hero'
+import Hero from '../src/components/Hero'
 import Navbar from './components/Navbar';
+// import PruebaHero from './components/PruebaHero';
+
 function App() {
   return (
     <div >
+
       <Navbar />
-      {/* <Hero /> */}
+      {/* <PruebaHero /> */}
+      <Hero />
 
     </div>
   );

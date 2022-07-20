@@ -1,8 +1,34 @@
 .hero-container {
-  padding: 4rem;
   background-color: #f9f2ed;
 }
 
-/* .section-hero {
-  background-color: #f9b384;
-} */
+.first-container {
+  background-image: url('/src/media/banner-hero3.jpg');
+  background-size: cover;
+  background-color: #F9B384;
+
+}
+
+.text-container {
+  background-color: #f9b3844f;
+  margin-right: 5rem;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+}
+
+.hero-container {
+  width: 100%;
+  object-fit: contain;
+  /* box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+
+}
