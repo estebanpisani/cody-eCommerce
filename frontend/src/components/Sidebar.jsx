@@ -16,14 +16,17 @@ function Sidebar() {
     
     
     const selectCategory =  async (event) => {
+        setCategory(event.target.id)
+        // setCategory(event.target.value)
         event.preventDefault();
-        const categoryclicked = {
-            category: category
-        }
+        const categoryclicked = category
         const res = await dispatch(productActions.getProductsbyCategory(categoryclicked))
         setReload(!reload)
+        console.log(category)
         }
-
+    
+        const currentStore = useSelector(store => store.productReducer.filter)
+        console.log(currentStore)
 
     return (
         <div className="flex flex-no-wrap mt-16">
@@ -38,8 +41,8 @@ function Sidebar() {
                     </div>
                     <ul>
                         {/* sumar value{recomendado} y 2 onlicks con seteo setCategory y funcion selectcategory */}
-                        <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center py-3 px-8">
-                            <div  className="flex items-center">
+                        <li   className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center py-3 px-8">
+                            <div className="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <rect x={4} y={4} width={6} height={6} rx={1} />
@@ -47,7 +50,7 @@ function Sidebar() {
                                     <rect x={4} y={14} width={6} height={6} rx={1} />
                                     <rect x={14} y={14} width={6} height={6} rx={1} />
                                 </svg>
-                                <span className="text-sm  ml-2">Recomendados</span>
+                                <span id="Recomendado" value="recomendado" onClick={selectCategory} className="text-sm  ml-2">Recomendados</span>
                             </div>
                         </li>
                         <li className="flex w-full justify-between text-gray-600 hover:text-gray-300 list-hover cursor-pointer items-center px-8 py-3">
@@ -77,7 +80,7 @@ function Sidebar() {
                                     <polyline points="17 8 21 12 17 16" />
                                     <line x1={14} y1={4} x2={10} y2={20} />
                                 </svg>
-                                <span className="text-sm  ml-2">Postres</span>
+                                <span id="Postre" value="Postre" onClick={selectCategory} className="text-sm  ml-2">Postres</span>
                             </div>
                         </li>
                         <li className="flex w-full justify-between text-gray-600 hover:text-gray-300 list-hover cursor-pointer items-center  px-8 py-3">

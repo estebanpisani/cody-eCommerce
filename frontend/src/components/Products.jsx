@@ -23,9 +23,9 @@ import productActions from "../redux/actions/productActions";
         <div className="bg-cardcontainer max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
           
           <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Tienda</h2>
-          <Input className='searchinput' placeholder='Buscar . . .' 
+          <Input onKeyUp={(e) => {setInput(e.target.value)}} className='searchinput' placeholder='Buscar . . .' 
           ></Input>
-          {/* onChange={(e) => {setInput(e.target.value)}} ESTO VA EN EL INPUT */}
+          
           <div className="mt-6 flex flex-wrap grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
           
             {currentStore.map((product) => (

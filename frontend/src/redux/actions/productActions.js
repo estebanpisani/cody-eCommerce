@@ -24,7 +24,11 @@ const productActions = {
     getProductsbyCategory: (category) =>{
         return async (dispatch, getState) => {
             // const res = await axios.get('', {category})
-            dispatch({type: 'GETPRODUCTSBYCATEGORY', payload:category})
+            
+            const res = dispatch({type: 'GETPRODUCTSBYCATEGORY', payload:category}
+            )
+            console.log(res)
+            
         }
     }
 }
