@@ -33,7 +33,7 @@ const productReducer = (state = initialState, action)=> {
             }
 
             case 'GETPRODUCTSBYCATEGORY':
-                let productByCategory = state.products.filter(item => item.categories.includes(category))
+                let productByCategory = state.products.filter(item => item.categories.includes(action.payload))
             return {
                 ...state,
                 // productsbycategory: productByCategory,

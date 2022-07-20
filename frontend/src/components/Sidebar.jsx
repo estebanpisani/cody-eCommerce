@@ -2,26 +2,27 @@ import React from "react";
 import Products from './Products'
 import '../styles/sidebar.css'
 import Logo from '../media/logo.png'
-// import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 // import { useEffect } from 'react';
-// import productActions from "../redux/actions/productActions";
-// import userActions from "../redux/actions/userActions";
+import productActions from "../redux/actions/productActions";
+import userActions from "../redux/actions/userActions";
 
 
 function Sidebar() {
-    // const [category, setCategory] = React.useState("")
-    // const [reload, setReload] = React.useState(false)
+    const [category, setCategory] = React.useState("")
+    const [reload, setReload] = React.useState(false)
+    const dispatch = useDispatch()
 
-    //const currentStore = useSelector(store => store.productReducer.filter)
-
-    // const selectCategory =  async (event) => {
-    //     event.preventDefault();
-    //     const categoryclicked = {
-    //         category: category
-    //     }
-    //     const res = await dispatch(productActions.getProductsbyCategory(categoryclicked))
-    //     setReload(!reload)
-    //     }
+    
+    
+    const selectCategory =  async (event) => {
+        event.preventDefault();
+        const categoryclicked = {
+            category: category
+        }
+        const res = await dispatch(productActions.getProductsbyCategory(categoryclicked))
+        setReload(!reload)
+        }
 
 
     return (
@@ -37,7 +38,7 @@ function Sidebar() {
                     </div>
                     <ul>
                         {/* sumar value{recomendado} y 2 onlicks con seteo setCategory y funcion selectcategory */}
-                        <li  className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center py-3 px-8">
+                        <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center py-3 px-8">
                             <div  className="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />

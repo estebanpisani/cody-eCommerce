@@ -4,8 +4,8 @@ import axios from 'axios';
 const productActions = {
     getProducts: () => {
         return async (dispatch, getState) => {
-            const res = await axios.get('')
-            dispatch({type: "GETPRODUCTS", payload:res.data.response.product})
+            const res = await axios.get('http://localhost:4000/api/products')
+            dispatch({type: "GETPRODUCTS", payload:res.data.response.products})
         }
     },
     getOneProduct: (id) => {
@@ -21,7 +21,7 @@ const productActions = {
         }
     },
 
-    getProductsbyCategory: (caterogy) =>{
+    getProductsbyCategory: (category) =>{
         return async (dispatch, getState) => {
             // const res = await axios.get('', {category})
             dispatch({type: 'GETPRODUCTSBYCATEGORY', payload:category})
