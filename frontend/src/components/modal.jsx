@@ -119,7 +119,9 @@ export default function BasicModal({data}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <img
+            <div className='all-info'>
+            <div className='image-name'>   
+          <img
              
              className='image-modal'
             src={data.imageSrc}
@@ -128,11 +130,13 @@ export default function BasicModal({data}) {
           />
   
     
-            <Typography  id="modal-modal-title" variant="h6" component="h2">
+            <Typography className='fontfamily'  id="modal-modal-title" variant="h6" component="h2">
             {data.name}
            
-          </Typography>      
-          <div>
+          </Typography>    
+          </div>
+       
+          <div className='select-detail'>
           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
       <InputLabel id="demo-select-small">Sabores</InputLabel>
       <Select
@@ -146,29 +150,26 @@ export default function BasicModal({data}) {
         <MenuItem value={20}>{data.variations[1]}</MenuItem>
         <MenuItem value={30}>{data.variations[2]}</MenuItem>
       </Select>
-    </FormControl>    
-    <p>{data.price}</p> 
-     <p>{data.stock}</p>
-         
-          </div>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-           {data.description}
-       
-          
-       
-          </Typography>    
-      
-          <p> {data.categories[0]}</p> 
-          <p>{data.categories[1]}</p>
-       
+    </FormControl>   
+    <div> 
+      <p>precio: {data.price}</p> 
+      <p>stock: {data.stock}</p>  
+      <p> {data.categories[0]}</p> 
+      <p>{data.categories[1]}</p>
+     </div> 
     
-          <div>
-            <Button class="button hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-500 hover:border-blue-500 rounded">Agregar al carrito</Button>
-          </div>
-       
-   
-
          
+          </div>
+          </div>
+          <div className='description-modal'> <Typography id="modal-modal-description" sx={{ mt: 5, mb:5, width:400 }}>
+           {data.description} 
+          </Typography>  </div>
+           
+    
+          <div className='add-cart'>
+            <Button class="button hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-500 hover:border-blue-500 rounded  ">Agregar al carrito</Button>
+          </div>
+     
         </Box>
       </Modal>
     </div>

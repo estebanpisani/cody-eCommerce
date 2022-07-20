@@ -109,7 +109,7 @@ const products = [
                   
                   </h3>
                   <div className='product-info'>
-                        <p className="text-sm text-white">{product.color}</p>
+                   
                         <p className="price text-sm font-medium text-white">{product.price}</p>
                   </div>
                 

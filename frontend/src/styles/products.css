@@ -96,3 +96,19 @@
 .image-modal{
     width: 100px;
 }
+
+.all-info{
+    display: flex;
+    justify-content: space-around;
+}
+
+.add-cart{
+    display: flex;
+    justify-content: center;
+
+}
+
+.description-modal{
+    display: flex;
+    justify-content: center;
+}
