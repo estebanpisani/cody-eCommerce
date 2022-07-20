@@ -109,6 +109,62 @@ const productControllers = {
     },
     buyProduct: async (req, res) => {
 
+
+        // Desde front debería llegar un array de objetos que tengan id de producto y cantidad
+        const productsReq = req.body.products;
+
+        if (req.user) {
+            //Si el usuario está logeado, recibo sus datos desde passport:
+            const user = {
+                id: req.user.id,
+                mail: req.user.mail,
+                firstName: req.user.firstName,
+                lastName: req.user.lastName
+            }
+
+            let productDB;
+            let error = null;
+            productsReq, map((product, i) => {
+                try {
+                    productDB = await Product.findOne({ _id: id });
+                    if (productDB) {
+                        if (productDB.stock > 0) {
+                            productDB.stock = productDB.stock - 1;
+                            await productDB.save()
+                        } else {
+                            res.json({
+                                success: false,
+                                response: { productDB },
+                                message: `Ya no quedan unidades de ${productDB.name}`
+                            })
+                        }
+                    }
+                } catch (err) {
+                    error = err;
+                    console.log(error);
+                }
+            })
+            try {
+                productDB = await Product.findOne({ _id: id });
+            } catch (err) {
+                error = err;
+                console.log(error);
+            }
+
+        }
+
+        if (!req.err) {
+            res.json({
+                success: true,
+                response: { user },
+                message: "Bienvenido " + req.user.nameUser
+            })
+        } else {
+            res.json({
+                success: false,
+                message: "Inicie sesión"
+            })
+        }
     }
 }
 

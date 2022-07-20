@@ -19,7 +19,7 @@ Router.route('/events')
 .get(getEvents)
 .post(addEvent);
 
-Router.route('/products/:id')
+Router.route('/events/:id')
 .get(getEventById)
 .put(modifyEvent)
 .delete(deleteEvent);
