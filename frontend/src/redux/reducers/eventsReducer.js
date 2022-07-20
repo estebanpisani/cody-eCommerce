@@ -26,7 +26,7 @@ const eventsReducer = (state = initialState, action) => {
                 return{
                     ...state,
                     events: action.payload,
-                    auxiliar: [...events]
+                    auxiliar: [...event]
                 }
     
                 case 'CREATE_EVENT':
@@ -40,6 +40,8 @@ const eventsReducer = (state = initialState, action) => {
                     ...state,
                     eventRemove: action.payload
                 }
+                default:
+                    return state
     }
     
 

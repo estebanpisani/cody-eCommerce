@@ -1,9 +1,9 @@
 import './App.css';
-import Events from '../src//pages/Events'
+import Events from '../src//pages/Events';
 // import Hero from '../src/components/Hero'
 import Navbar from './components/Navbar';
 import ModalEvent from './components/ModalEvent';
-
+import Store from './pages/Store';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Navbar />
       <Events />
       {/* <Hero /> */}
-
+      {/* <Store></Store> */}
     </div>
   );
 }
