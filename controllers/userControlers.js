@@ -1,7 +1,7 @@
 const User = require('../models/User')
 const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
-const sendVerification = require('./sendVerification')
+const mailSender = require('../config/mailSender')
 const jwt = require('jsonwebtoken')
 const ck = require('ckey');
 
@@ -25,7 +25,7 @@ const userControllers = {
                 })
                 if (from === "signUpForm") {
                     await newUser.save()
-                    await sendVerification(mail, uniqueString)
+                    await mailSender(mail, uniqueString)
                     res.json({
                         success: true,
                         from: from,
