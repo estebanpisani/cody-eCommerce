@@ -25,7 +25,7 @@ const productReducer = (state = initialState, action)=> {
             }
 
             case "FILTERPRODUCTS":
-                let productFilter = state.products.filter(item => item.name.toLowerCase().startsWith(action.payload.trim().toLowerCase()))
+                let productFilter = state.filter.filter(item => item.name.toLowerCase().startsWith(action.payload.trim().toLowerCase()))
             return { 
                 ...state, //tomo el estadio inicial
                 filter: productFilter //le cargo este nuevo estado del filtro

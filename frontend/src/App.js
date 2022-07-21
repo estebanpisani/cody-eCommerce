@@ -1,14 +1,26 @@
 import './App.css';
+
 // import Hero from '../src/components/Hero'
 import Navbar from './components/Navbar';
-import Store from './pages/Store';
+import ShoppingCart from './components/ShoppingCart';
+
+// import {Routes,Route} from 'react-router-dom';
+
 
 function App() {
   return (
     <div >
       <Navbar />
+      <ShoppingCart/>
+    
       {/* <Hero /> */}
-      <Store></Store>
+      {/* <Routes>
+               <Route path="/" element={<Store/>} />
+               <Route path="/Cart" element={<Cart />} />
+           
+      </Routes> */}
+   
+     
     </div>
   );
 }
