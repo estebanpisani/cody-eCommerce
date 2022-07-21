@@ -107,64 +107,31 @@ const productControllers = {
             }
         )
     },
-    buyProduct: async (req, res) => {
-
-
+    buyProducts: async (req, res) => {
         // Desde front debería llegar un array de objetos que tengan id de producto y cantidad
-        const productsReq = req.body.products;
+        const productsReq = req.body;
 
-        if (req.user) {
-            //Si el usuario está logeado, recibo sus datos desde passport:
-            const user = {
-                id: req.user.id,
-                mail: req.user.mail,
-                firstName: req.user.firstName,
-                lastName: req.user.lastName
-            }
+        // if (req.user) {
+        //Si el usuario está logeado, recibo sus datos desde passport:
 
-            let productDB;
-            let error = null;
-            productsReq, map((product, i) => {
-                try {
-                    productDB = await Product.findOne({ _id: id });
-                    if (productDB) {
-                        if (productDB.stock > 0) {
-                            productDB.stock = productDB.stock - 1;
-                            await productDB.save()
-                        } else {
-                            res.json({
-                                success: false,
-                                response: { productDB },
-                                message: `Ya no quedan unidades de ${productDB.name}`
-                            })
-                        }
-                    }
-                } catch (err) {
-                    error = err;
-                    console.log(error);
-                }
-            })
+        let productDB;
+        let error = null;
+        await productsReq.forEach(async (product, i) => {
             try {
-                productDB = await Product.findOne({ _id: id });
+                productDB = await Product.findOne({ _id: product.id });
+                if (productDB) {
+                    if (productDB.stock > 0 && productDB.stock >= product.units) {
+                        productDB.stock = productDB.stock - product.units;
+                        await productDB.save();
+                    } else {
+                        console.log('Error al comprar ' + productDB.name);
+                    }
+                }
             } catch (err) {
                 error = err;
                 console.log(error);
             }
-
-        }
-
-        if (!req.err) {
-            res.json({
-                success: true,
-                response: { user },
-                message: "Bienvenido " + req.user.nameUser
-            })
-        } else {
-            res.json({
-                success: false,
-                message: "Inicie sesión"
-            })
-        }
+        })
     }
 }
 
