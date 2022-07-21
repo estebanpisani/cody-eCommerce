@@ -4,7 +4,8 @@ import Carousel, { Item } from "react-grid-carousel";
 
 
 
-export default function Gallery({ allEvents }) {
+export default function Gallery({ allEvents , setChangeReload }) {
+
   
     
 return (
@@ -59,7 +60,7 @@ return (
             <img className="img-carousel" width="100%" src={everyEvent.images} alt={everyEvent.categories} />
             <div className="cont-text-carousel">
               {/* <p className="text-carousel"> */}
-                <ModalEvent everyEvent={everyEvent} />
+                <ModalEvent everyEvent={everyEvent} setChangeReload={setChangeReload} />
                 {/* </p> */}
             </div>
           </div>

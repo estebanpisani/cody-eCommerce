@@ -1,8 +1,10 @@
 const Router = require('express').Router();
 const productControllers = require('./controllers/productControllers');
 const eventControllers = require('./controllers/eventControllers');
+const commentsControllers = require('/controllers/commentsControllers')
 const {getProducts, addProduct, getProductById, modifyProduct, deleteProduct} = productControllers;
-const {getEvents, getEventById, addEvent, modifyEvent, deleteEvent} = eventControllers;
+const {getEvents, getEventById, addEvent, modifyEvent, deleteEvent, likeDislike} = eventControllers;
+const {addComment, modifiComment, deleteComment } = commentsControllers;
 
 // Products Routes
 Router.route('/products')
@@ -23,5 +25,19 @@ Router.route('/events/:id')
 .get(getEventById)
 .put(modifyEvent)
 .delete(deleteEvent);
+
+// LIKE-DISLIKE ROUTES
+
+Router.route("/comments/like/:id")
+.put(passport.authenticate("jwt", {session: false}),likeDislike)
+
+//COMMENTS ROUTES
+Router.route('/events/comment')
+.post(passport.authenticate('jwt',{ session: false }),addComment)
+
+
+Router.route('/events/comment/:id')
+.post(passport.authenticate('jwt',{ session: false }),deleteComment)
+.put(passport.authenticate('jwt',{ session: false }),modifiComment)
 
 module.exports = Router;

@@ -4,8 +4,9 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CommentsIn from '../components/CommentsIn';
 
-export default function Comments() {
+export default function Comments(everyEvent) {
   return (
     <div className='background-accordion-comments'>
       <Accordion>
@@ -23,7 +24,7 @@ export default function Comments() {
           <Typography>
             {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget. */}
-            Aca ademtro va la funcion de los comentarios pero si la pongo se me rompe todo.
+            <CommentsIn eventId={everyEvent._id} comments={everyEvent.comments}/>
             
           </Typography>
         </AccordionDetails>

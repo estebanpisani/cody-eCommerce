@@ -35,7 +35,7 @@ const ExpandMore = styled((props) => {
   }));
 
 
-export default function ModalEvent({ everyEvent }) {
+export default function ModalEvent({ everyEvent, setChangeReload }) {
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
@@ -46,6 +46,14 @@ export default function ModalEvent({ everyEvent }) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  async function likesOrDislikes() {
+    const res = await dispatch(
+      eventsActions.likeDislike(everyEvent._id)
+    );
+    setChangeReload();
+    console.log(everyEvent.likes);
+  }
 
 
 
@@ -87,7 +95,7 @@ console.log(everyEvent)
                             <div className="xl:pr-16 w-full xl:w-2/3">
                                 <div className="text-center xl:text-left mb-3 xl:mb-0 flex flex-col xl:flex-row items-center justify-between xl:justify-start">
                                     <h2 className="mb-3 xl:mb-0 xl:mr-4 text-2xl text-gray-800 dark:text-gray-100 font-medium tracking-normal">{everyEvent.authors}</h2>
-                                    <div className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full">DAR LIKE</div>
+                                    <button className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full">LIKE</button>
                                 </div>
                                 <p className="text-center xl:text-left mt-2 text-sm tracking-normal text-gray-600 dark:text-gray-400 leading-5">{everyEvent.description}</p>
                             </div>
@@ -107,14 +115,15 @@ console.log(everyEvent)
                             </div>
                             <div className="w-full xl:w-2/3 flex-col md:flex-row justify-center xl:justify-end flex md:pl-6">
                                 <div className="flex items-center justify-center xl:justify-start mt-1 md:mt-0 mb-5 md:mb-0">
-                                    <div className="rounded-full bg-gray-200 text-gray-600 dark:text-gray-400 text-sm px-6 py-2 flex justify-center items-center">Reservas</div>
+                                    <button className="rounded-full bg-gray-200 text-gray-600 dark:text-gray-400 text-sm px-6 py-2 flex justify-center items-center">RESERVAS</button>
+
                                     {/* <div className="ml-5 rounded-full bg-green-200 text-green-500 text-sm px-6 py-2 flex justify-center items-center">Reservas</div> */}
                                 </div>
                                 <button className="focus:outline-none ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm">SignIn</button>
                             </div>
                         </div>
                     </div>
-                    <Comments />
+                    <Comments everyEvent={everyEvent}/>
                 </div>
                 {/* Card code block end */}
                 
