@@ -3,7 +3,7 @@ const { google } = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 const ck = require('ckey');
 
-const mailSender = async (email, name, uniqueString) => {
+const mailSender = async (mail, firstName, uniqueString) => {
 
     const myOAuth2Client = new OAuth2(
         ck.CLIENT_ID,
@@ -33,8 +33,8 @@ const mailSender = async (email, name, uniqueString) => {
     });
 
     let mailOptions = {
-        from: `MyTinerary <${ck.USER}>`,
-        to: email,
+        from: `Cody-eCommerce <${ck.USER}>`,
+        to: mail,
         subject: 'Verify account',
         html: `
                 <table
@@ -134,7 +134,7 @@ const mailSender = async (email, name, uniqueString) => {
                                                 style="color: #132f40; line-height: 100%; text-align: left; word-wrap: break-word;">
                                                 <p style="font-size: 14px; line-height: 100%;"><span
                                                     style="font-family: Rubik, sans-serif; font-size: 14px; line-height: 14px;">Hello
-                                                    <strong>${name}</strong>,</span></p>
+                                                    <strong>${firstName}</strong>,</span></p>
                                                 </div>
                                             </td>
                                             </tr>
@@ -250,7 +250,7 @@ const mailSender = async (email, name, uniqueString) => {
         if (error) {
             console.log(error);
         } else {
-            console.log('Email sended to ' + email);
+            console.log('Email sended to ' + mail);
         }
     })
 }
