@@ -1,0 +1,22 @@
+.logo-navbar {
+  height: 10rem;
+  width: 10rem;
+  position: absolute;
+}
+
+
+
+.navbar {
+  background-color: #f9f2ed;
+
+
+}
+
+@media (max-width: 768px) {
+  .logo-navbar {
+    height: 7rem;
+    width: 7rem;
+    position: absolute;
+  }
+
+}

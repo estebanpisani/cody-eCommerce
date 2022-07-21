@@ -1,10 +1,17 @@
 const Router = require('express').Router();
 const productControllers = require('./controllers/productControllers');
 const eventControllers = require('./controllers/eventControllers');
+<<<<<<< HEAD
 const userControllers = require('./controllers/userControllers')
 const {getProducts, addProduct, getProductById, modifyProduct, deleteProduct, buyProducts} = productControllers;
 const {getEvents, getEventById, addEvent, modifyEvent, deleteEvent} = eventControllers;
 const {signUp, signIn, verifyMail, getUsers, getUserById, modifyUser, deleteUser} = userControllers;
+=======
+const userControllers = require('./controllers/userControlers')
+const {getProducts, addProduct, getProductById, modifyProduct, deleteProduct} = productControllers;
+const {getEvents, getEventById, addEvent, modifyEvent, deleteEvent} = eventControllers;
+const {signIn, signUp} = userControllers
+>>>>>>> fb783a0bb02b2c8830f3b94fcd5024c415858c5f
 
 // Products Routes
 Router.route('/products')
@@ -18,6 +25,8 @@ Router.route('/products/:id')
 
 Router.route('/products/buy')
 .post(buyProducts);
+
+// Router.route("/addDeleteProduct/:id").put(passport.authenticate("jwt", {session:false}), addDeleteProduct);
 
 // Events Routes
 Router.route('/events')
