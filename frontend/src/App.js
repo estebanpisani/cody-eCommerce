@@ -8,6 +8,8 @@ import Store from './pages/Store';
 function App() {
   return (
     <div >
+      <Navbar/>
+      <Login/>
     </div>
   );
 }

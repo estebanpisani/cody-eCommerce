@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import {connect} from 'react-redux'
 import userActions from "../redux/actions/userActions";
+import "../styles/Login.css"
 
 function Login(props) {
     const [showpass, setShowPass] = useState(false)
@@ -12,14 +13,14 @@ function Login(props) {
         const logedUser = {
             email: email,
             password: password,
-            from: "form-Signin",
+            from: "signUpForm",
         }
         await props.signInUser(logedUser)
     }
 
     return (
         <>
-            <form onSubmit={handleSubmit} className="bg-indigo-50">
+            <form onSubmit={handleSubmit} className="form-container">
                 <div className="xl:px-20 md:px-10 sm:px-6 px-4 md:py-12 py-9 2xl:mx-auto 2xl:container md:flex items-center justify-center">
                     <div className=" md:hidden sm:mb-8 mb-6">
                         <svg width={191} height={34} viewBox="0 0 191 34" fill="none" xmlns="http://www.w3.org/2000/svg">

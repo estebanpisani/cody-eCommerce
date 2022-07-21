@@ -9,7 +9,7 @@ const ck = require('ckey');
 const userControllers = {
 
     signUp: async (req, res) => {
-        const { firstName, lastName, mail, image, password, role, from } = req.body
+        const { firstName, lastName, mail, image, password, role, from } = req.body.userData
         try {
             const user = await User.findOne({ mail })
             const hashWord = bcryptjs.hashSync(password, 10)

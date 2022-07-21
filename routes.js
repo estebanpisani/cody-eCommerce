@@ -1,10 +1,11 @@
 const Router = require('express').Router();
 const productControllers = require('./controllers/productControllers');
 const eventControllers = require('./controllers/eventControllers');
-const userControllers = require('./controllers/userControlers')
+const userControllers = require('./controllers/userControlers');
 const {getProducts, addProduct, getProductById, modifyProduct, deleteProduct} = productControllers;
 const {getEvents, getEventById, addEvent, modifyEvent, deleteEvent} = eventControllers;
 const {signIn, signUp} = userControllers
+// const validator = require('./validators/userValidator')
 
 // Products Routes
 Router.route('/products')
