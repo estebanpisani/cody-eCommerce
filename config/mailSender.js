@@ -3,7 +3,7 @@ const { google } = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 const ck = require('ckey');
 
-const mailSender = async (email, name, uniqueString) => {
+const mailSender = async (email, uniqueString, firstName) => {
 
     const myOAuth2Client = new OAuth2(
         ck.CLIENT_ID,
@@ -33,9 +33,9 @@ const mailSender = async (email, name, uniqueString) => {
     });
 
     let mailOptions = {
-        from: `MyTinerary <${ck.USER}>`,
+        from: `Cody Support Team <${ck.USER}>`,
         to: email,
-        subject: 'Verify account',
+        subject: 'Verifica tu cuenta',
         html: `
                 <table
                     style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 320px;Margin: 0 auto;background-color: #b8cce2;width:100%"
@@ -134,7 +134,7 @@ const mailSender = async (email, name, uniqueString) => {
                                                 style="color: #132f40; line-height: 100%; text-align: left; word-wrap: break-word;">
                                                 <p style="font-size: 14px; line-height: 100%;"><span
                                                     style="font-family: Rubik, sans-serif; font-size: 14px; line-height: 14px;">Hello
-                                                    <strong>${name}</strong>,</span></p>
+                                                    <strong>${firstName}</strong>,</span></p>
                                                 </div>
                                             </td>
                                             </tr>

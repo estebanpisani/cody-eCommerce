@@ -38,17 +38,17 @@ const userValidator = (req, res, next) => {
             .messages({
                 'string.empty': 'The Registration method can\'t be empty.'
             }),
+        image: joi.string()
+            .allow(''),
         country: joi.string()
             .required(),
-        userPhoto: joi.string()
-            .allow(''),
         verified: joi.boolean()
     });
 
     const validation = schema.validate(req.body.userData, { abortEarly: false })  //abortEarly - when true, stops validation on the first error, otherwise returns all the errors found. Defaults to true.
 
     if (validation.error) {
-        let messages = validation.error.details.map(error=> error.message);
+        let messages = validation.error.details.map(error => error.message);
         return res.json({
             success: false,
             from: 'User Validator',

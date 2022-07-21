@@ -1,4 +1,4 @@
-const User = require('../models/User')
+const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
 const mailSender = require('../config/mailSender')
@@ -9,23 +9,23 @@ const ck = require('ckey');
 const userControllers = {
 
     signUp: async (req, res) => {
-        const { firstName, lastName, mail, image, password, role, from } = req.body.userData
+        const { firstName, lastName, email, country, image, password, from } = req.body
         try {
-            const user = await User.findOne({ mail })
+            const user = await User.findOne({ email })
             const hashWord = bcryptjs.hashSync(password, 10)
             const verification = false;
             const role = 'user'
             const uniqueString = crypto.randomBytes(15).toString('hex')
             if (!user) {
                 const newUser = await new User({
-                    firstName, lastName, image, mail, role, verification,
+                    firstName, lastName, image, country, email, role, verification,
                     uniqueString: uniqueString,
                     password: [hashWord],
                     from: [from]
                 })
                 if (from === "signUpForm") {
                     await newUser.save()
-                    await mailSender(mail, uniqueString)
+                    await mailSender(email, uniqueString, firstName)
                     res.json({
                         success: true,
                         from: from,
@@ -45,7 +45,7 @@ const userControllers = {
                     res.json({
                         success: false,
                         from: from,
-                        message: `${mail} ya se encuentra registrado, por favor inicie sesion!`
+                        message: `${email} ya se encuentra registrado, por favor inicie sesion!`
                     })
                 } else {
                     user.password.push(hashWord)
@@ -68,13 +68,12 @@ const userControllers = {
             })
         }
     },
-
     signIn: async (req, res) => {
 
         console.log(req.body)
-        const { mail, password, from } = req.body
+        const { email, password, from } = req.body
         try {
-            const loginUser = await User.findOne({ mail })
+            const loginUser = await User.findOne({ email })
 
             if (!loginUser) {
                 res.json({
@@ -90,7 +89,7 @@ const userControllers = {
                         if (checkedWord.length >= 0) {
                             const user = {
                                 id: loginUser._id,
-                                mail: loginUser.mail,
+                                email: loginUser.email,
                                 firstName: loginUser.firstName,
                                 lastName: loginUser.lastName,
                                 image: loginUser.image,
@@ -124,7 +123,7 @@ const userControllers = {
                     if (checkedWord.length >= 0) {
                         const user = {
                             id: loginUser._id,
-                            mail: loginUser.mail,
+                            email: loginUser.email,
                             firstName: loginUser.firstName,
                             image: loginUser.image,
                             // role: loginUser.role,
@@ -157,7 +156,6 @@ const userControllers = {
             })
         }
     },
-
     verifyMail: async (req, res) => {
         const { string } = req.params
         const user = await User.findOne({ uniqueString: string })
@@ -174,19 +172,10 @@ const userControllers = {
             })
         }
     },
-    // signOut: async (req, res) => {
-    //     const mail = req.body.mail
-    //     const user = await User.findOne({ mail })
-    //     await user.save()
-    //     res.json({
-    //         success: true,
-    //         message: mail + ' Desconectado!'
-    //     })
-    // },
     verifyToken: (req, res) => {
         const user = {
             id: req.user.id,
-            mail: req.user.mail,
+            email: req.user.email,
             firstName: req.user.firstName,
             image: req.user.image,
             // role: req.user.role,
@@ -205,6 +194,23 @@ const userControllers = {
             })
         }
     },
+    unsubscribeUser: async(req, res) => {
+        let user = {}
+        let error = null
+        let { id } = req.params
+        const unsuscribe = { verification: false };
+        try {
+            user = await User.findOneAndUpdate({ _id: id }, unsuscribe, { new: true })
+        } catch (errorDeCatcheo) {
+            error = errorDeCatcheo
+            console.log(error)
+        }
+        res.json({
+            response: error ? 'ERROR' : 'Tu usuario ha sido eliminado de la base de datos.',
+            success: error ? false : true,
+            error: error
+        })
+    },
     getUsers: async (req, res) => {
         let users = []
         let error = null
@@ -221,7 +227,7 @@ const userControllers = {
             error: error
         })
     },
-    getOneUser: async (req, res) => {
+    getUserById: async (req, res) => {
         let oneUser = {}
         let error = null
         let { id } = req.params
@@ -237,7 +243,7 @@ const userControllers = {
             error: error
         })
     },
-    putUser: async (req, res) => {
+    modifyUser: async (req, res) => {
         let putUser = {}
         let error = null
         let { id } = req.params

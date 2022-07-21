@@ -14,11 +14,6 @@ import Home from './pages/Home';
 
 function App() {
   return (
-<<<<<<< HEAD
-    <div >
-      <Navbar/>
-      <Login/>
-=======
     <div className='page-container'>
       <Navbar />
       <div className='content-wrap'>
@@ -35,7 +30,6 @@ function App() {
         </Routes>
       </div>
       <Footer />
->>>>>>> fb783a0bb02b2c8830f3b94fcd5024c415858c5f
     </div>
 
 
