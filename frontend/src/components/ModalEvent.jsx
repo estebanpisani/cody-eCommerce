@@ -6,6 +6,10 @@ import IconButton from '@mui/material/IconButton';
 import { Box } from '@mui/material';
 import '../styles/ModalEvent.css'
 import Comments from './Comments';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect} from "react";
+import eventsActions from '../redux/actions/eventsActions'
+
 
 const style = {
   position: 'absolute',
@@ -31,7 +35,9 @@ const ExpandMore = styled((props) => {
   }));
 
 
-export default function ModalEvent() {
+export default function ModalEvent({ everyEvent }) {
+  const dispatch = useDispatch();
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -41,9 +47,20 @@ export default function ModalEvent() {
     setExpanded(!expanded);
   };
 
+
+
+//   useEffect( () => {
+//     dispatch(eventsActions.getEventById(id));
+//  },[id])
+
+//  const everyEvent = useSelector(store=> store.eventsReducer.eventById)
+//  console.log(everyEvent)
+
+console.log(everyEvent)
+
   return (
     <div>
-      <Button onClick={handleOpen}>  <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white">Titulo Evento</h3></Button>
+      <Button onClick={handleOpen}>  <h3 className="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white">{everyEvent.name}</h3></Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -57,7 +74,7 @@ export default function ModalEvent() {
                 {/* Card code block start */}
                 <div className="bg-white dark:bg-gray-800 shadow rounded background-modal">
                     <div className="relative">
-                        <img className="h-56 shadow rounded-t w-full object-cover object-center" src="https://tuk-cdn.s3.amazonaws.com/assets/components/grid_cards/gc_29.png" alt />
+                        <img className="h-56 shadow rounded-t w-full object-cover object-center" src="https://technwzs.com/wp-content/uploads/2022/06/webstorm-vs-vscode-780x470.jpeg" alt />
                         <div className="inset-0 m-auto w-24 h-24 absolute bottom-0 -mb-12 xl:ml-10 rounded border-2 shadow border-white">
                             <img className="w-full h-full overflow-hidden object-cover rounded" src="https://image.freepik.com/free-photo/indoor-picture-cheerful-handsome-young-man-having-folded-hands-looking-directly-smiling-sincerely-wearing-casual-clothes_176532-10257.jpg" alt />
                         </div>
@@ -69,22 +86,22 @@ export default function ModalEvent() {
                         <div className="pt-3 xl:pt-5 flex flex-col xl:flex-row items-start xl:items-center justify-between">
                             <div className="xl:pr-16 w-full xl:w-2/3">
                                 <div className="text-center xl:text-left mb-3 xl:mb-0 flex flex-col xl:flex-row items-center justify-between xl:justify-start">
-                                    <h2 className="mb-3 xl:mb-0 xl:mr-4 text-2xl text-gray-800 dark:text-gray-100 font-medium tracking-normal">Marshall Mathers</h2>
+                                    <h2 className="mb-3 xl:mb-0 xl:mr-4 text-2xl text-gray-800 dark:text-gray-100 font-medium tracking-normal">{everyEvent.authors}</h2>
                                     <div className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full">DAR LIKE</div>
                                 </div>
-                                <p className="text-center xl:text-left mt-2 text-sm tracking-normal text-gray-600 dark:text-gray-400 leading-5">Descripcion del curso.</p>
+                                <p className="text-center xl:text-left mt-2 text-sm tracking-normal text-gray-600 dark:text-gray-400 leading-5">{everyEvent.description}</p>
                             </div>
                             <div className="xl:px-10 xl:border-l xl:border-r w-full py-5 flex items-start justify-center xl:w-1/3">
                                 <div className="mr-6 xl:mr-10">
-                                    <h2 className="text-gray-600 dark:text-gray-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">82</h2>
+                                    <h2 className="text-gray-600 dark:text-gray-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center"> {`${everyEvent.likes?.length}`}</h2>
                                     <p className="text-gray-800 dark:text-gray-100 text-sm xl:text-xl leading-5">Likes</p>
                                 </div>
                                 <div className="mr-6 xl:mr-10">
-                                    <h2 className="text-gray-600 dark:text-gray-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">28</h2>
+                                    <h2 className="text-gray-600 dark:text-gray-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">{everyEvent.limit}</h2>
                                     <p className="text-gray-800 dark:text-gray-100 text-sm xl:text-xl leading-5">Capacidad</p>
                                 </div>
                                 <div>
-                                    <h2 className="text-gray-600 dark:text-gray-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">42</h2>
+                                    <h2 className="text-gray-600 dark:text-gray-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">{everyEvent.limit-everyEvent.attendance}</h2>
                                     <p className="text-gray-800 dark:text-gray-100 text-sm xl:text-xl leading-5">Vacantes</p>
                                 </div>
                             </div>
