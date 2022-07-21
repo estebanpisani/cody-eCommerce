@@ -29,7 +29,7 @@ function Sidebar() {
         console.log(currentStore)
 
     return (
-        <div className="flex flex-no-wrap mt-16">
+        <div className="flex flex-no-wrap mt-16 sidebar-container">
             {/* Sidebar starts */}
             {/* Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] */}
             <div className="sidebar w-64 absolute sm:relative sidecolor shadow md:h-full flex-col justify-between hidden sm:flex">
@@ -59,7 +59,7 @@ function Sidebar() {
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1" />
                                 </svg>
-                                <span className="text-sm  ml-2">Desayuno/Merienda</span>
+                                <span id="Desayuno" value="Desayuno" onClick={selectCategory} className="text-sm  ml-2">Desayuno/Merienda</span>
                             </div>
                         </li>
                         <li className="flex w-full justify-between text-gray-600 hover:text-gray-300 list-hover cursor-pointer items-center px-8 py-3">
@@ -191,7 +191,7 @@ function Sidebar() {
             {/* Remove class [ h-64 ] when adding a card block */}
             <div className="container mx-auto h-64 md:w-4/5 w-11/12 px-6">
                 
-                <div className="w-full h-full rounded store-conteiner"><Products/></div>
+                <div className="w-full h-full rounded store-conteiner"><Products filterStore={currentStore}></Products></div>
     </div>
         </div>
     );

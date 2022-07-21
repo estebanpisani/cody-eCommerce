@@ -1,6 +1,7 @@
 .bg-cardcontainer{
     background-color: #f9f2ed;
     border: none!important;
+    height: 100vh;
 }
 
 .card-container {
@@ -88,3 +89,27 @@
     height: 70vh;
 }
 /* mejorar shadow */
+.detail-modal{
+    position: relative;
+    left: 150px;
+    bottom: 90px;
+}
+.image-modal{
+    width: 100px;
+}
+
+.all-info{
+    display: flex;
+    justify-content: space-around;
+}
+
+.add-cart{
+    display: flex;
+    justify-content: center;
+
+}
+
+.description-modal{
+    display: flex;
+    justify-content: center;
+}

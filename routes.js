@@ -17,6 +17,8 @@ Router.route('/products/:id')
 .put(modifyProduct)
 .delete(deleteProduct);
 
+// Router.route("/addDeleteProduct/:id").put(passport.authenticate("jwt", {session:false}), addDeleteProduct);
+
 // Events Routes
 Router.route('/events')
 .get(getEvents)
