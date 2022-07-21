@@ -17,10 +17,11 @@ function App() {
     <div className='page-container'>
       <Navbar />
       <div className='content-wrap'>
-        
-        <ShoppingCart />
+
+        {/* <ShoppingCart /> */}
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/home' element={<Home />} />
           <Route path="/store" element={<Store />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />

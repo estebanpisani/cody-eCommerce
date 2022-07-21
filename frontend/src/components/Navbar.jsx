@@ -2,9 +2,11 @@ import React from 'react'
 import { useState } from "react";
 import Logo from '../media/logo.png'
 import '../styles/navbar.css'
+import { Link as LinkRouter } from 'react-router-dom'
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
+
   return (
 
 
@@ -26,15 +28,28 @@ const Navbar = () => {
                 </button>
                 <ul className="flex text-3xl md:text-base items-center py-8 md:flex flex-col md:flex-row justify-center fixed md:relative top-0 bottom-0 left-0 right-0 bg-white md:bg-transparent  z-20">
                   <li className="text-gray-600 text-lg hover:text-gray-800 cursor-pointer md:ml-10 pt-10 md:pt-0">
-                    <a href="javascript:void(0)">Company</a>
+                    <LinkRouter to='/home'>Inicio</LinkRouter>
+
                   </li>
                   <li className="text-gray-600 text-lg hover:text-gray-800 cursor-pointer md:ml-10 pt-10 md:pt-0">
-                    <a href="javascript:void(0)">Features</a>
+                    <LinkRouter to='/store'>Tienda</LinkRouter>
+
                   </li>
                   <li className="text-gray-600 text-lg hover:text-gray-800 cursor-pointer md:ml-10 pt-10 md:pt-0">
-                    <a href="javascript:void(0)">Contact</a>
+                    <LinkRouter to='/home'>Eventos</LinkRouter>
                   </li>
+
+                  <div class="border w-fit rounded-xl m-5 shadow-sm ">
+                    <LinkRouter to='/login'>
+                      <button className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:bg-neutral-50 transition">Iniciar Sesion</button>
+                    </LinkRouter>
+                    <LinkRouter to='signup'>
+                      <button className="px-4 py-2 rounded-r-xl bg-neutral-50 hover:bg-neutral-100 transition">Registrarse</button>
+                    </LinkRouter>
+                  </div>
+
                 </ul>
+
               </div>
             </div>
           </div>
