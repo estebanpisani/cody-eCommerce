@@ -7,16 +7,18 @@ import productActions from "../redux/actions/productActions";
 // import userActions from "../redux/actions/userActions";
 
   
-  export default function Products() {
-
+  export default function Products(props) {
+    const filterStore = props.filterStore
     const [input, setInput] = React.useState('')
-    const dispatch = useDispatch()
-    React.useEffect(() => {
-      dispatch(productActions.filterProduct(input))
-       // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[input])
+    
+  //   const dispatch = useDispatch()
+  //   React.useEffect(() => {
+  //     dispatch(productActions.filterProduct(input))
+  //      // eslint-disable-next-line react-hooks/exhaustive-deps
+  // },[input])
 
-  const currentStore = useSelector(store => store.productReducer.filter)
+    const FilteredStore = filterStore.filter(item => item.name.toLowerCase().startsWith(input.trim().toLowerCase()))
+    console.log(FilteredStore)
     return (
       <div className="bg-white">
         
@@ -28,7 +30,7 @@ import productActions from "../redux/actions/productActions";
           
           <div className="mt-6 flex flex-wrap grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
           
-            {currentStore.map((product) => (
+            {FilteredStore.map((product) => (
               <div key={product._id} className="group relative group-cards">
                 <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none card-container">
                   <div className='imgcontainer'>

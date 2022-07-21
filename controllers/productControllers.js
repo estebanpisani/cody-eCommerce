@@ -38,7 +38,7 @@ const productControllers = {
         )
     },
     addProduct: async (req, res) => {
-        const { name, description, images, price, stock, date, categories, variations } = req.body
+        const { name, description, image, price, stock, date, categories, variations } = req.body
         // console.log(req.body)
         let product;
         let error = null;
@@ -47,7 +47,7 @@ const productControllers = {
                 name: name,
                 description: description,
                 categories: categories,
-                images: images,
+                image: image,
                 price: price,
                 stock: stock,
                 date: date,
