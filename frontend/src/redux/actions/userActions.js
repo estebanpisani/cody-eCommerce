@@ -7,8 +7,8 @@ const userActions = {
         
         return async (dispatch, getState) => { //propiedades de despacho y estado
         try{
-            const res = await axios.post('', {userData})
-           
+            const res = await axios.post('http://localhost:4000/api/signUp', {userData})
+            console.log(res)
             
             dispatch({
                 type: 'MESSAGE', 
@@ -30,8 +30,8 @@ const userActions = {
         
         return async (dispatch, getState) => {
             
-            const res = await axios.post('', {logedUser}) //aca tenia get y es .post
-           
+            const res = await axios.post('http://localhost:4000/api/signIn', {logedUser}) //aca tenia get y es .post
+            console.log(res)
             if(res.data.success) {
                 localStorage.setItem('token', res.data.response.token)
                 dispatch({

@@ -1,8 +1,10 @@
 const Router = require('express').Router();
 const productControllers = require('./controllers/productControllers');
 const eventControllers = require('./controllers/eventControllers');
-const {getProducts, addProduct, getProductById, modifyProduct, deleteProduct, } = productControllers;// addDeleteProduct
+const userControllers = require('./controllers/userControlers')
+const {getProducts, addProduct, getProductById, modifyProduct, deleteProduct} = productControllers;
 const {getEvents, getEventById, addEvent, modifyEvent, deleteEvent} = eventControllers;
+const {signIn, signUp} = userControllers
 
 // Products Routes
 Router.route('/products')
@@ -26,4 +28,10 @@ Router.route('/products/:id')
 .put(modifyEvent)
 .delete(deleteEvent);
 
+//User Routes
+Router.route('/signUp')
+.post(signUp)
+
+Router.route('/signIn')
+.post(signIn)
 module.exports = Router;

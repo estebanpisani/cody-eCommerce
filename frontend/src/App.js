@@ -1,5 +1,6 @@
 import './App.css';
-
+import Login from './pages/Login'
+import SignUp from './pages/SignUp';
 // import Hero from '../src/components/Hero'
 import Store from './pages/Store'
 import Navbar from './components/Navbar';
@@ -14,22 +15,25 @@ import Home from './pages/Home';
 function App() {
   return (
     <div className='page-container'>
-      <div className='content-wrap'>
       <Navbar />
-      <ShoppingCart />
-      <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path="/store" element={<Store />} />
-        {/* <Route path="/Cart" element={<Cart />} /> */}
+      <div className='content-wrap'>
         
-      </Routes>
+        <ShoppingCart />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path="/store" element={<Store />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+
+          {/* <Route path="/Cart" element={<Cart />} /> */}
+
+        </Routes>
       </div>
       <Footer />
-
-
-
-
     </div>
+
+
+
   );
 }
 
