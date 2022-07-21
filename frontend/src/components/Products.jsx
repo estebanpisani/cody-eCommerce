@@ -4,6 +4,7 @@ import { Input } from "@material-tailwind/react";
 import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react';
 import productActions from "../redux/actions/productActions";
+import BasicModal from './modal';
 // import userActions from "../redux/actions/userActions";
 
   
@@ -50,11 +51,10 @@ import productActions from "../redux/actions/productActions";
                   <div className='product-info'>
                         <p className="price text-sm font-medium text-white">{product.price}</p>
                   </div>
+                
                   <div>
-                  <button class="button hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-500 hover:border-blue-500 rounded">
-                        Ver más
-                  </button>
-                        
+                
+               
                   </div>
                   </div>
                 </div>
@@ -65,11 +65,16 @@ import productActions from "../redux/actions/productActions";
                   </div>
                   
                 </div>
+                <div className='detail-modal'> <BasicModal data={product}></BasicModal></div>
+               
               </div>
             ))}
           </div>
-        </div>
-      </div>
+        </div>   
+    
+      </div>     
+      
+   
     )
   }
   

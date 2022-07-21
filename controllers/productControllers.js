@@ -51,7 +51,7 @@ const productControllers = {
                 price: price,
                 stock: stock,
                 date: date,
-                variations: variations
+                variations: variations,
             }).save();
         } catch (err) {
             error = err;
@@ -107,9 +107,41 @@ const productControllers = {
             }
         )
     },
-    buyProduct: async (req, res) => {
-
-    }
+    // addDeleteProduct: async (req,res) => {
+    //     //console.log(req)
+    //     let id = req.params.id //id del producto, donde queremos añadir o sacar la compra. llega por parametro desde axios
+    //     console.log(id)
+    //     let user = req.user.id //id del usuario q sale de la respuesta por passport 
+    //     console.log(user)
+    //     try { 
+    //          let product = await Product.findOne({_id:id}) //buscamos un producto en donde el object id sea igual al id q pasamos por parametro
+           
+      
+    //         if (product.addToCart.includes(user)) { //de este producto encontrado buscamos la propiedad addToCart y si esa propiedad incluye el usuario
+    //           //si encontramos el producto lo actualizamos.
+    //            Product.findOneAndUpdate({_id:id}, {$pull:{addToCart:user}}, {new:true}) //extraemos de addToCart el usuario y devolvemos el nuevo dato
+    //                 .then(response => res.json({
+    //                     response: response.addToCart, 
+    //                     success: true,
+    //                     message: "qcyo jsjajaj compranos xfi"
+    //                 }))
+    //                 .catch(error => console.log(error))
+    //         } else { //en el caso en q no este el id del usuario dentro del array de addToCart hace lo mismo pero utilizando push (agrega el usuario)
+    //             Product.findOneAndUpdate({_id:id}, {$push:{addToCart:user}}, {new:true})
+    //                 .then(response => res.json({
+    //                     response: response.addToCart, 
+    //                     success: true,
+    //                     message: "Añadido al carrito!"
+    //                 }))
+    //                 .catch(error => console.log(error))
+    //         }
+    //     } catch (error) {
+    //         res.json({
+    //             response: error,
+    //             success: false
+    //         })
+    //     } 
+    //   },
 }
 
 module.exports = productControllers;

@@ -22,3 +22,9 @@
     background-color: #3ab0ff!important;
     
 }
+.box{
+    padding: 1rem;
+    margin:1rem;
+    min-width: 280px;
+    min-height: 100%;
+}
