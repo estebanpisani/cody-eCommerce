@@ -9,7 +9,7 @@ const ck = require('ckey');
 const userControllers = {
 
     signUp: async (req, res) => {
-        const { firstName, lastName, mail, image, password, role, from } = req.body
+        const { firstName, lastName, mail, image, password, from } = req.body
         try {
             const user = await User.findOne({ mail })
             const hashWord = bcryptjs.hashSync(password, 10)
@@ -68,7 +68,6 @@ const userControllers = {
             })
         }
     },
-
     signIn: async (req, res) => {
 
         console.log(req.body)
@@ -157,7 +156,6 @@ const userControllers = {
             })
         }
     },
-
     verifyMail: async (req, res) => {
         const { string } = req.params
         const user = await User.findOne({ uniqueString: string })
@@ -205,6 +203,23 @@ const userControllers = {
             })
         }
     },
+    unsubscribeUser: (req, res) => {
+        let user = {}
+        let error = null
+        let { id } = req.params
+        const unsuscribe = { verification: false };
+        try {
+            user = await User.findOneAndUpdate({ _id: id }, unsuscribe, { new: true })
+        } catch (errorDeCatcheo) {
+            error = errorDeCatcheo
+            console.log(error)
+        }
+        res.json({
+            response: error ? 'ERROR' : 'Tu usuario ha sido eliminado de la base de datos.',
+            success: error ? false : true,
+            error: error
+        })
+    },
     getUsers: async (req, res) => {
         let users = []
         let error = null
@@ -221,7 +236,7 @@ const userControllers = {
             error: error
         })
     },
-    getOneUser: async (req, res) => {
+    getUserById: async (req, res) => {
         let oneUser = {}
         let error = null
         let { id } = req.params
@@ -237,7 +252,7 @@ const userControllers = {
             error: error
         })
     },
-    putUser: async (req, res) => {
+    modifyUser: async (req, res) => {
         let putUser = {}
         let error = null
         let { id } = req.params
