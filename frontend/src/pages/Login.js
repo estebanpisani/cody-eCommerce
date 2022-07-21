@@ -10,6 +10,8 @@ function Login(props) {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        console.log(email);
+        console.log(password);
         const logedUser = {
             email: email,
             password: password,
@@ -60,19 +62,17 @@ function Login(props) {
                             <hr className="w-full bg-gray-400" />
                         </div>
                         <div>
-                            <label htmlFor="email" className="text-sm font-medium leading-none text-gray-800" value={email} onChange={e=>setEmail(e.target.value)} required>
-                                {" "}
-                                Email{" "}
+                            <label htmlFor="email" className="text-sm font-medium leading-none text-gray-800" >
+                                Email
                             </label>
-                            <input id="email" aria-labelledby="email" type="email" className="bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-800 text-gray-800 py-3 w-full pl-3 mt-2" placeholder="e.g: john@gmail.com " />
+                            <input value={email} onChange={e=>setEmail(e.target.value)} required id="email" aria-labelledby="email" type="email" className="bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-800 text-gray-800 py-3 w-full pl-3 mt-2" placeholder="e.g: john@gmail.com " />
                         </div>
                         <div className="mt-6 w-full">
-                            <label htmlFor="myInput" className="text-sm font-medium leading-none text-gray-800" value={password} onChange={e=>setPassword(e.target.value)} required>
-                                {" "}
-                                Password{" "}
+                            <label htmlFor="myInput" className="text-sm font-medium leading-none text-gray-800" >
+                                Password
                             </label>
                             <div className="relative flex items-center justify-center">
-                                <input id="myInput" type={showpass ? "text" : "password"} className="bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                                <input value={password} onChange={e=>setPassword(e.target.value)} required id="myInput" type={showpass ? "text" : "password"} className="bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                                 <div onClick={()=>setShowPass(!showpass)} className="absolute right-0 mt-2 mr-3 cursor-pointer">
                                     <div id="show">
                                         <svg width={16} height={16} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
