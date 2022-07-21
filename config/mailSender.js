@@ -3,7 +3,7 @@ const { google } = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 const ck = require('ckey');
 
-const mailSender = async (mail, firstName, uniqueString) => {
+const mailSender = async (email, uniqueString, firstName) => {
 
     const myOAuth2Client = new OAuth2(
         ck.CLIENT_ID,
@@ -33,9 +33,9 @@ const mailSender = async (mail, firstName, uniqueString) => {
     });
 
     let mailOptions = {
-        from: `Cody-eCommerce <${ck.USER}>`,
-        to: mail,
-        subject: 'Verify account',
+        from: `Cody Support Team <${ck.USER}>`,
+        to: email,
+        subject: 'Verifica tu cuenta',
         html: `
                 <table
                     style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 320px;Margin: 0 auto;background-color: #b8cce2;width:100%"
@@ -250,7 +250,7 @@ const mailSender = async (mail, firstName, uniqueString) => {
         if (error) {
             console.log(error);
         } else {
-            console.log('Email sended to ' + mail);
+            console.log('Email sended to ' + email);
         }
     })
 }
