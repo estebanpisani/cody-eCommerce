@@ -29,7 +29,7 @@ function Sidebar() {
         console.log(currentStore)
 
     return (
-        <div className="flex flex-no-wrap mt-16">
+        <div className="flex flex-no-wrap mt-16 sidebar-container">
             {/* Sidebar starts */}
             {/* Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] */}
             <div className="sidebar w-64 absolute sm:relative sidecolor shadow md:h-full flex-col justify-between hidden sm:flex">

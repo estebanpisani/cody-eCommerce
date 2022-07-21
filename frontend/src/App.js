@@ -5,22 +5,30 @@ import Store from './pages/Store'
 import Navbar from './components/Navbar';
 import ShoppingCart from './components/ShoppingCart';
 // import Cart from './components/CartItem'
+import { Routes, Route } from 'react-router-dom';
+import { Footer } from './components/Footer';
+import Home from './pages/Home';
 
-import {Routes,Route} from 'react-router-dom';
 
 
 function App() {
   return (
-    <div >
+    <div className='page-container'>
+      <div className='content-wrap'>
       <Navbar />
-      <ShoppingCart/>
+      <ShoppingCart />
       <Routes>
-               <Route path="/store" element={<Store/>} />
-               {/* <Route path="/Cart" element={<Cart />} /> */}
-           
+        <Route path='/' element={<Home/>} />
+        <Route path="/store" element={<Store />} />
+        {/* <Route path="/Cart" element={<Cart />} /> */}
+        
       </Routes>
-   
-     
+      </div>
+      <Footer />
+
+
+
+
     </div>
   );
 }

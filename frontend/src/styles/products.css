@@ -1,6 +1,7 @@
 .bg-cardcontainer{
     background-color: #f9f2ed;
     border: none!important;
+    height: 100vh;
 }
 
 .card-container {
