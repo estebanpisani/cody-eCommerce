@@ -11,6 +11,7 @@ const productSchema = new mongoose.Schema(
         date: {type:Date, default: Date(), require: true},
         categories: [{type:String, require:true}],
         variations: [{type: String, require: false}]
+    
     }
 )
 const Product = mongoose.model('products', productSchema);

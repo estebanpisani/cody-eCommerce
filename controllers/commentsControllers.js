@@ -1,4 +1,4 @@
-const Event = require("../models/eventControllers");
+const Event = require("../models/event");
 
 const commentsControllers = {
   addComment: async (req, res) => {
