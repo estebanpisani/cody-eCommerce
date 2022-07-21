@@ -1,0 +1,24 @@
+.bg-white{
+    border: none!important;
+}
+
+.sidebar{
+    box-shadow: 1px 1px 4px #581c0c;
+}
+.logo-side{
+    display: flex!important;
+    flex-direction: row!important;
+    justify-content: center!important;
+    align-items: center;
+    height: 20vh!important;
+    padding: 0!important;
+}
+
+.sidecolor{
+    background-color: #f8b384;
+}
+
+.list-hover:hover{
+    background-color: #3ab0ff!important;
+    
+}
