@@ -1,0 +1,21 @@
+.container-events {
+    display: flex;
+    flex-direction: column;
+    padding:2rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.title-events{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    padding-bottom: 1rem;
+}
+
+
+

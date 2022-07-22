@@ -3,9 +3,13 @@ const passport = require('./config/passport');
 
 const productControllers = require('./controllers/productControllers');
 const eventControllers = require('./controllers/eventControllers');
+const commentsControllers = require('./controllers/commentsControllers')
+
+const {getEvents, getEventById, addEvent, modifyEvent, deleteEvent, likeDislike} = eventControllers;
+const {addComment, modifiComment, deleteComment } = commentsControllers;
 const userControllers = require('./controllers/userControllers')
 const { getProducts, addProduct, getProductById, modifyProduct, deleteProduct, buyProducts } = productControllers;
-const { getEvents, getEventById, addEvent, modifyEvent, deleteEvent } = eventControllers;
+
 const { signUp, signIn, verifyMail, verifyToken, getUsers, getUserById, modifyUser, deleteUser } = userControllers;
 
 // Products Routes
@@ -54,5 +58,19 @@ Router.route('/admin/users')
 Router.route('/admin/users/:id')
     .put(modifyUser)
     .delete(deleteUser)
+
+// LIKE-DISLIKE ROUTES
+
+Router.route("/comments/like/:id")
+.put(passport.authenticate("jwt", {session: false}),likeDislike)
+
+//COMMENTS ROUTES
+Router.route('/events/comment')
+.post(passport.authenticate('jwt',{ session: false }),addComment)
+
+
+Router.route('/events/comment/:id')
+.post(passport.authenticate('jwt',{ session: false }),deleteComment)
+.put(passport.authenticate('jwt',{ session: false }),modifiComment)
 
 module.exports = Router;

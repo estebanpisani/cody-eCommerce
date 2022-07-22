@@ -1,41 +1,41 @@
-import { useReducer } from "react";
-import { TYPES } from "../redux/actions/shoppingActions";
-import {
-  shoppingInitialState,
-  shoppingReducer,
-} from "../redux/reducers/shoppingReducer";
+
 import CartItem from "./CartItem";
 import ProductItem from "./ProductItem";
 import '../styles/sidebar.css'
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, clearCart, delFromCart } from "../redux/actions/shoppingActions";
 
 const ShoppingCart = () => {
-  const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);
+  const state = useSelector(state => state)
+  const dispatch = useDispatch();
 //importo el estado inicial del reducer (constante products en shoppingReducer), para renderizar las cards de productos y traer el carrito.
-  const { products, cart } = state;
+  const { products, cart } = state.shopping
+
+  console.log(cart)
   //de nuestro estado vamos a desestructurar los productos y el carrito de compras (estados iniciales de shoppingReducer)
 
   //funciones q va a recibir el carrito de compras
-  const addToCart = (id) => {
-    //console.log(id);
-    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
-  };
+  // const addToCart = (id) => {
+  //   //console.log(id);
+  //   dispatch({ type: TYPES.ADD_TO_CART, payload: id });
+  // };
 
   //esta funcion recibe como parametro el id q va a eliminar. y una variable all q nos indique si se eliminan todos o 1
   //por lo q cuando queramos eliminar todos el parametro all lo mandamos en true all=true y cuando no queramos, osea se eliminarian de a 1
   //lo inicializamos en false.
   //ternario: si quiero eliminar todo dispachame el action de remover todo del carrito sino dispachame remover uno solo del carrito.
-  const delFromCart = (id, all = false) => {
-    //console.log(id, all);
-    if (all) {
-      dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id });
-    } else {
-      dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
-    }
-  };
+  // const delFromCart = (id, all = false) => {
+  //   //console.log(id, all);
+  //   if (all) {
+  //     dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id });
+  //   } else {
+  //     dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
+  //   }
+  // };
 
-  const clearCart = () => {
-    dispatch({ type: TYPES.CLEAR_CART });
-  };
+  // const clearCart = () => {
+  //   dispatch({ type: TYPES.CLEAR_CART });
+  // };
 
   //return: linea 44, mapeo de productos trayendo el componente ProductItem y le pasamos la función addToCart.
   //return:linea 50, mapeo de cada uno de los productos del carrito le pasamos al boton funcion clearCart y al componente CartItem data(props) d cada producto y la función delFromCart
@@ -44,16 +44,13 @@ const ShoppingCart = () => {
     <div>
       <h2>Carrito de Compras</h2> 
       <h3>Productos</h3>
-      <article className="box grid-responsive">
-        {products.map((product) => (
-          <ProductItem key={product.id} data={product} addToCart={addToCart} />
-        ))}
-      </article>
       <h3>Carrito</h3>
       <article className="box">
-        <button onClick={clearCart}>Limpiar Carrito</button>
+        <button onClick={()=> dispatch(clearCart())}>Limpiar Carrito</button>
         {cart.map((item, index) => (
-          <CartItem key={index} data={item} delFromCart={delFromCart} />
+          <CartItem key={index} data={item} 
+          delOneFromCart={()=> dispatch(delFromCart(item._id))}
+          delAllFromCart={()=> dispatch(delFromCart(item._id, true))} />
         ))}
       </article>
     </div>
