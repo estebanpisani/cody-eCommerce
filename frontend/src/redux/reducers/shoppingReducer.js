@@ -1,5 +1,5 @@
 import { ADD_TO_CART, CLEAR_CART, REMOVE_ALL_FROM_CART, REMOVE_ONE_FROM_CART } from "../types/types";
-import { useSelector } from "react-redux";
+ 
 
 
 
@@ -89,7 +89,7 @@ export function shoppingReducer(state= initialState, action) {
       };
     }
     case CLEAR_CART:
-      return ;
+      return initialState.cart;
     default:
       return state;
   }

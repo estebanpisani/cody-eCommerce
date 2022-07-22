@@ -19,9 +19,6 @@ function App() {
   return (
     <div className='page-container'>
       <Navbar />
-      <Events />
-      {/* <Hero /> */}
-      {/* <Store></Store> */}
       <div className='content-wrap'>
         
         <ShoppingCart />
@@ -30,8 +27,8 @@ function App() {
           <Route path="/store" element={<Store />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-
-          {/* <Route path="/Cart" element={<Cart />} /> */}
+          <Route path="/eventos" element ={<Events/>}/>
+          
 
         </Routes>
       </div>
