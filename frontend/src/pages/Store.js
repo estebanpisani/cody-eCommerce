@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import productActions from "../redux/actions/productActions";
 import userActions from "../redux/actions/userActions";
-import Sidebar from '../components/Sidebar';
+import Sidebar2 from '../components/Sidebar2'
 
 
 
@@ -25,7 +25,7 @@ const dispatch = useDispatch()
 
     return (
 
-        <Sidebar/>
+        <Sidebar2/>
     )
 }
 

@@ -1,10 +1,13 @@
-import { TYPES } from "../actions/shoppingActions";
+import { ADD_TO_CART, CLEAR_CART, REMOVE_ALL_FROM_CART, REMOVE_ONE_FROM_CART } from "../types/types";
+
+export const initialState = {
+// import { TYPES } from "../actions/shoppingActions";
 //importo TYPES, desestructurado de mi action shoppingActions, (TYPES, era el nombre de la constante donde guardaba en un objeto
 //todas las actions)
 
 //estado inicial: los productos q voy a usar en el ej, harcodeado.
 //variable carrito con el estado inicial, array vacio. 
-export const shoppingInitialState = {
+
   products: [
     { id: 1, name: "Producto 1", price: 100 },
     { id: 2, name: "Producto 2", price: 200 },
@@ -32,9 +35,9 @@ export const shoppingInitialState = {
 //coincida con el id del newItem, le sumamos 1 a su propiedad quanty(cantidad) osea ej:cuando sumemos alfajor, y volvamos a agregar alfajor la propiedad quanty va a ir sumandolo x1.
 //si viene nulo se va a ejecutar el ultimo else, si el producto es nuevo la propiedad de cantidad la ponemos en 1 pq es el primer item q se añade al carrito.
 
-export function shoppingReducer(state, action) {
+export function shoppingReducer(state= initialState, action) {
   switch (action.type) {
-    case TYPES.ADD_TO_CART: {
+    case ADD_TO_CART: {
       let newItem = state.products.find(
         (product) => product.id === action.payload
       );
@@ -56,7 +59,7 @@ export function shoppingReducer(state, action) {
             cart: [...state.cart, { ...newItem, quantity: 1 }],
           };
     }
-    case TYPES.REMOVE_ONE_FROM_CART: {
+    case REMOVE_ONE_FROM_CART: {
       let itemToDelete = state.cart.find((item) => item.id === action.payload);
 //si la cantidad de productos para eliminar es mayor a uno restamos 1 a la cant5idad si es true sino retornamos el producto nomas
 //si es false(el elemento q queremos eliminar no es mayor a 1)q filtre el item (lo elimine) 
@@ -74,14 +77,14 @@ export function shoppingReducer(state, action) {
             cart: state.cart.filter((item) => item.id !== action.payload),
           };
     }
-    case TYPES.REMOVE_ALL_FROM_CART: {
+    case REMOVE_ALL_FROM_CART: {
       return {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload),
       };
     }
-    case TYPES.CLEAR_CART:
-      return shoppingInitialState;
+    case CLEAR_CART:
+      return initialState;
     default:
       return state;
   }
