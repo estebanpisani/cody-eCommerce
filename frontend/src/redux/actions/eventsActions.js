@@ -67,11 +67,11 @@ const eventsActions = {
 //     }
 // },
 
-likeDislike: (id) => {
+likeDislike: (_id) => {
     const token = localStorage.getItem('token')
     return async () => {
         try {
-            let response = await axios.put(`http://localhost:4000/api/events/like/${id}`, {},
+            let response = await axios.put(`http://localhost:4000/api/events/like/${_id}`, {},
             {headers: {
                 Authorization: "Bearer "+token
                 }

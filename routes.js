@@ -47,7 +47,7 @@ Router.route('/auth/profile')
     .get(getUserById)
     .put(modifyUser)
 
-Router.route('/auth')
+Router.route('/auth/SignInToken')
     .get(passport.authenticate('jwt', { session: false }), verifyToken);
 
 Router.route('/auth/verify/:string')
@@ -61,7 +61,7 @@ Router.route('/admin/users/:id')
 
 // LIKE-DISLIKE ROUTES
 
-Router.route("/comments/like/:id")
+Router.route("/events/like/:id")
 .put(passport.authenticate("jwt", {session: false}),likeDislike)
 
 //COMMENTS ROUTES

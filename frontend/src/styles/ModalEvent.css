@@ -1,6 +1,7 @@
 .container-modal {
-    max-height: 50vh;
+    height: 70vh;
     margin-top: 10rem;
+    overflow-y: auto;
 }
 
 .background-modal {

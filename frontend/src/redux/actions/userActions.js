@@ -72,8 +72,10 @@ const userActions = {
 VerificateToken: (token) => {
   
     return async (dispatch, getState) => {
-        await axios.get('', {
-            headers: {'Authorization': 'Bearer ' +token}
+        await axios.get('http://localhost:4000/api/auth/signInToken', 
+        {
+            headers: {Authorization: 'Bearer ' + token,
+        }
         })
             .then(user => {if(user.data.success){
                 dispatch({ type: 'USER', payload: user.data.response});

@@ -12,10 +12,24 @@ import ShoppingCart from './components/ShoppingCart';
 import { Routes, Route } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import Home from './pages/Home';
+import userActions from '../src/redux/actions/userActions';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 
 
 function App() {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if(localStorage.getItem('token')!== null) {
+        const token = localStorage.getItem('token')
+        console.log(token)
+        dispatch(userActions.VerificateToken(token))
+    }
+  },[])
+
   return (
     <div className='page-container'>
       <Navbar />
