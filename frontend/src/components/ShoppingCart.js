@@ -36,7 +36,7 @@ const ShoppingCart = () => {
   // const clearCart = () => {
   //   dispatch({ type: TYPES.CLEAR_CART });
   // };
-
+console.log(cart)
   //return: linea 44, mapeo de productos trayendo el componente ProductItem y le pasamos la función addToCart.
   //return:linea 50, mapeo de cada uno de los productos del carrito le pasamos al boton funcion clearCart y al componente CartItem data(props) d cada producto y la función delFromCart
   //<h3>Carrito</h3 (esto va a ser otro modal q se va a desplegar con la lista de compras q esten dentro del carrito no un h3 xd cuando apretemos el loguito del carrito)
@@ -52,6 +52,7 @@ const ShoppingCart = () => {
           delOneFromCart={()=> dispatch(delFromCart(item._id))}
           delAllFromCart={()=> dispatch(delFromCart(item._id, true))} />
         ))}
+        <p>{cart.length}</p>
       </article>
     </div>
   );

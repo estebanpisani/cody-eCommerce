@@ -89,7 +89,10 @@ export function shoppingReducer(state= initialState, action) {
       };
     }
     case CLEAR_CART:
-      return initialState;
+      return {
+        ...state,
+        cart: []
+      };
     default:
       return state;
   }

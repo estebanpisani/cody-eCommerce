@@ -112,7 +112,7 @@ export default function BasicModal({data}) {
   return (
     <div>
         
-<Button onClick={handleOpen} class="button hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-500 hover:border-blue-500 rounded">
+<Button onClick={handleOpen} class="viewmore-button button hover:bg-white text-white font-bold py-1 px-3 border-b-4 border-blue-500 hover:border-blue-500 rounded">
       Ver más
 </Button>
       
@@ -125,25 +125,25 @@ export default function BasicModal({data}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-            <div className='all-info'>
-            <div className='image-name'>   
-          <img
+            {/* <div className='all-info'> */}
+            {/* <div className='image-name'>    */}
+          {/* <img
              
              className='image-modal'
             src={data.image}
             alt="product"
           
-          />
+          /> */}
   
     
-            <Typography className='fontfamily'  id="modal-modal-title" variant="h6" component="h2">
+            {/* <Typography className='fontfamily'  id="modal-modal-title" variant="h6" component="h2">
             {data.name}
            
-          </Typography>    
-          </div>
+          </Typography>     */}
+          {/* </div> */}
        
 
-          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+          {/* <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
       <InputLabel id="demo-select-small">Sabores</InputLabel>
       <Select
         labelId="demo-select-small"
@@ -156,19 +156,19 @@ export default function BasicModal({data}) {
         <MenuItem value={20}>{data.variations[1]}</MenuItem>
         <MenuItem value={30}>{data.variations[2]}</MenuItem>
       </Select>
-    </FormControl>   
-    <div> 
+    </FormControl>    */}
+    {/* <div> 
       <p>precio: {data.price}</p> 
       <p>stock: {data.stock}</p>  
       <p> {data.categories[0]}</p> 
       <p>{data.categories[1]}</p>
-     </div> 
+     </div>  */}
     
          
-          </div>
-          <div className='description-modal'> <Typography id="modal-modal-description" sx={{ mt: 5, mb:5, width:400 }}>
+          {/* </div> */}
+          {/* <div className='description-modal'> <Typography id="modal-modal-description" sx={{ mt: 5, mb:5, width:400 }}>
            {data.description} 
-          </Typography>  </div>
+          </Typography>  </div> */}
            
     
           <div className='add-cart'>

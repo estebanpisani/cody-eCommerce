@@ -41,12 +41,12 @@ import BasicModal from './modal';
                         {product.name}
                     </h3>
                     <p className="text-sm font-medium text-gray-900 price">${product.price}</p>
-                    
+                    <div className='detail-modal'> <BasicModal data={product}></BasicModal></div>
                   
                 </div>
                 </div>
                 
-                <div className='detail-modal'> <BasicModal data={product}></BasicModal></div>
+                
               </div>
             ))}
           </div>
