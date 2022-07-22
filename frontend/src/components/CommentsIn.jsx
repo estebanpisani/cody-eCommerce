@@ -41,10 +41,11 @@ function CommentsIn({ comments, setChangeReload, eventId }) {
           <div className="bodyComment">
             <div className="div-user-comment">
               <div className="div-image-comment">
-                <img src={comment.userId.photoUrl} alt="userimage"></img>
+                <img src={comment?.user?.image} alt="userimg"></img>
+              
               </div>
               <div className="div-name-comments">
-                <h4>{comment.userId.firstName}</h4>
+                <h4>{comment?.user?.firstName}</h4>
               </div>
             </div>
 
@@ -59,7 +60,7 @@ function CommentsIn({ comments, setChangeReload, eventId }) {
               <div className="div-comments-buttons">
                 <div className="button-comments">
                   <button
-                    className="button"
+                    className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
                     id={comment._id}
                     onClick={() => changeComment(comment._id)}
                   >
@@ -69,7 +70,7 @@ function CommentsIn({ comments, setChangeReload, eventId }) {
                 </div>
                 <div className="button-comments">
                   <button
-                    className="button"
+                    className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
                     id={comment._id}
                     onClick={() => removeComment(comment._id)}
                   >
@@ -94,7 +95,7 @@ function CommentsIn({ comments, setChangeReload, eventId }) {
 
 
           <div className="button-comments-send">
-            <button className="button" onClick={newComment}>
+            <button className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full" onClick={newComment}>
               SEND
             </button>
           </div>

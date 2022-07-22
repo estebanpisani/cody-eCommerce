@@ -9,7 +9,7 @@ const commentsControllers = {
         { _id: event },
         { $push: { comments: { comment: comment, user: user } } },
         { new: true }
-      ).populate("comments.user", { firstName: 1, image: 1 });
+      )
       res.json({
         success: true,
         response: { nuevoComment },
