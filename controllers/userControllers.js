@@ -9,65 +9,131 @@ const ck = require('ckey');
 const userControllers = {
 
     signUp: async (req, res) => {
-        const { firstName, lastName, email, country, image, password, from } = req.body.userData
-        try {
-            const user = await User.findOne({ email })
-            const hashWord = bcryptjs.hashSync(password, 10)
-            const verification = false;
+        const { firstName, lastName, email, country, image, password, method } = req.body.userData
+        try{
+            const userExists = await User.findOne({email})
+            const verification = false
             const role = 'user'
             const uniqueString = crypto.randomBytes(15).toString('hex')
-            if (!user) {
-                const newUser = await new User({
-                    firstName, lastName, image, country, email, role, verification,
-                    uniqueString: uniqueString,
-                    password: [hashWord],
-                    from: [from]
-                })
-                if (from === "signUpForm") {
-                    await newUser.save()
-                    await mailSender(email, uniqueString, firstName)
-                    res.json({
-                        success: true,
-                        from: from,
-                        message: `Revisa tu correo y finaliza tu registro!`
-                    })
-                } else {
-                    newUser.verification = true
-                    await newUser.save()
-                    res.json({
-                        success: true,
-                        from: from,
-                        message: `Te registraste de ${from}! ahora inicia sesion!`
-                    })
-                }
-            } else {
-                if (user.from.indexOf(from) !== -1) {
+            if (userExists){
+                if(userExists.from.indexOf(method) !== -1) {
                     res.json({
                         success: false,
-                        from: from,
-                        message: `${email} ya se encuentra registrado, por favor inicie sesion!`
+                        from: method,
+                        message: "Ya estas registrtado, por favor inicia sesión"
                     })
-                } else {
-                    user.password.push(hashWord)
-                    user.from.push(from)
-                    user.verification = true
-                    await user.save()
+                }else {
+                    const hashpass = bcryptjs.hashSync(password, 10)
+                    userExists.from.push(method)
+                    userExists.password.push(hashpass)
+                    userExists.verification = true
+                    await userExists.save()
                     res.json({
                         success: true,
-                        from: from,
-                        message: `Se agregó exitosamente ${from} a sus opciones de registro!`
+                        from: method,
+                        message: "Se registro " + email + ", podes inicar sesión!"
+                    })
+                }
+            }else {
+                const hashpass = bcryptjs.hashSync(password, 10)
+                const newUser = await new User({
+                    firstName,
+                    lastName,
+                    image,
+                    email,
+                    password: [hashpass],
+                    role,
+                    country,
+                    uniqueString: uniqueString,
+                    verification: verification,
+                    from: [method],
+                })
+                if (method !== "signUpForm") {
+                    newUser.verification = true,
+                    await newUser.save()
+                    res.json({
+                        success: true,
+                        from: "Google",
+                        message: "Felicitaciones, tu cuenta fue creada con " + from + ", ya puedes iniciar sesión!"
+                    })
+                }else {
+                    await newUser.save()
+                    await mailSender(email, uniqueString)
+                    res.json({
+                        success: true,
+                        from: method,
+                        message: "Te enviamos un correo para verificar tu cuenta, mira tu casilla y segui los pasos"
                     })
                 }
             }
         } catch (error) {
-            console.log(error)
             res.json({
                 success: false,
-                from: from,
-                message: error
+                message: "Algo salio mal, vuelve a intentarlo en unos minutos"
             })
         }
     },
+    //      async (req, res) => {
+    //     const { firstName, lastName, email, country, image, password, from } = req.body.userData
+    //     try {
+    //         const user = await User.findOne({ email })
+    //         const hashWord = bcryptjs.hashSync(password, 10)
+    //         const verification = false;
+    //         const role = 'user'
+    //         const uniqueString = crypto.randomBytes(15).toString('hex')
+    //         if (!user) {
+    //             const newUser = await new User({
+    //                 firstName, lastName, image, country, email, role, 
+    //                 verification: verification,
+    //                 uniqueString: uniqueString,
+    //                 password: [hashWord],
+    //                 from: [from]
+    //             })
+    //             if (from === "signUpForm") {
+    //                 await newUser.save()
+    //                 await mailSender(email, uniqueString, firstName)
+    //                 res.json({
+    //                     success: true,
+    //                     from: from,
+    //                     message: `Revisa tu correo y finaliza tu registro!`
+    //                 })
+    //             } else {
+    //                 newUser.verification = true
+    //                 await newUser.save()
+    //                 res.json({
+    //                     success: true,
+    //                     from: from,
+    //                     message: `Te registraste de ${from}! ahora inicia sesion!`
+    //                 })
+    //             }
+    //         } else {
+    //             if (user.from.indexOf(from) !== -1) {
+    //                 res.json({
+    //                     success: false,
+    //                     from: from,
+    //                     message: `${email} ya se encuentra registrado, por favor inicie sesion!`
+    //                 })
+    //             } else {
+    //                 user.password.push(hashWord)
+    //                 user.from.push(from)
+    //                 user.verification = true
+    //                 await user.save()
+    //                 res.json({
+    //                     success: true,
+    //                     from: from,
+    //                     message: `Se agregó exitosamente ${from} a sus opciones de registro!`
+    //                 })
+    //             }
+    //         }
+    //     } catch (error) {
+    //         console.log(error)
+    //         res.json({
+    //             success: false,
+    //             from: from,
+    //             message: error
+    //         })
+    //     }
+    // },
     signIn: async (req, res) => {
 
         console.log(req.body)
