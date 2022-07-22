@@ -107,6 +107,32 @@ const productControllers = {
             }
         )
     },
+    buyProducts: async (req, res) => {
+        // Desde front debería llegar un array de objetos que tengan id de producto y cantidad
+        const productsReq = req.body;
+
+        // if (req.user) {
+        //Si el usuario está logeado, recibo sus datos desde passport:
+
+        let productDB;
+        let error = null;
+        await productsReq.forEach(async (product, i) => {
+            try {
+                productDB = await Product.findOne({ _id: product.id });
+                if (productDB) {
+                    if (productDB.stock > 0 && productDB.stock >= product.units) {
+                        productDB.stock = productDB.stock - product.units;
+                        await productDB.save();
+                    } else {
+                        console.log('Error al comprar ' + productDB.name);
+                    }
+                }
+            } catch (err) {
+                error = err;
+                console.log(error);
+            }
+        })
+    }
     // addDeleteProduct: async (req,res) => {
     //     //console.log(req)
     //     let id = req.params.id //id del producto, donde queremos añadir o sacar la compra. llega por parametro desde axios
@@ -115,8 +141,6 @@ const productControllers = {
     //     console.log(user)
     //     try { 
     //          let product = await Product.findOne({_id:id}) //buscamos un producto en donde el object id sea igual al id q pasamos por parametro
-           
-      
     //         if (product.addToCart.includes(user)) { //de este producto encontrado buscamos la propiedad addToCart y si esa propiedad incluye el usuario
     //           //si encontramos el producto lo actualizamos.
     //            Product.findOneAndUpdate({_id:id}, {$pull:{addToCart:user}}, {new:true}) //extraemos de addToCart el usuario y devolvemos el nuevo dato

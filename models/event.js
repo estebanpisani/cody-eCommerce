@@ -16,7 +16,7 @@ const eventSchema = new mongoose.Schema(
         tags: [{ type: String, require: false }],
         likes: [{ type: mongoose.Types.ObjectId, ref: 'users', require: false }],
         comments: [{
-            comment: { type: String, require: false },
+            comment: { type: String },
             user: { type: mongoose.Types.ObjectId, ref: 'users' }
         }]
     }

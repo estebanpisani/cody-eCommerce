@@ -1,9 +1,12 @@
 import './App.css';
+import Events from '../src//pages/Events';
 import Login from './pages/Login'
 import SignUp from './pages/SignUp';
 // import Hero from '../src/components/Hero'
-import Store from './pages/Store'
+
 import Navbar from './components/Navbar';
+import ModalEvent from './components/ModalEvent';
+import Store from './pages/Store';
 import ShoppingCart from './components/ShoppingCart';
 // import Cart from './components/CartItem'
 import { Routes, Route } from 'react-router-dom';
@@ -16,6 +19,9 @@ function App() {
   return (
     <div className='page-container'>
       <Navbar />
+      <Events />
+      {/* <Hero /> */}
+      {/* <Store></Store> */}
       <div className='content-wrap'>
         
         <ShoppingCart />

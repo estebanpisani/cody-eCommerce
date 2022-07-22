@@ -19,12 +19,12 @@ function SignUp(props) {
         const userData = {
             firstName: firstName,
             lastName: lastName,
-            userPhoto: userPhoto,
+            image: userPhoto,
             email: email,
             password: password,
             passwordRepeat: passwordRepeat,
             country: country,
-            method: "form-Signup"
+            method: "signUpForm"
         }
         props.signUpUser(userData)
     }
