@@ -1,9 +1,21 @@
 .container-modal {
-    height: 70vh;
-    margin-top: 10rem;
+    max-height: 90vh;
+    margin-top: 7rem;
     overflow-y: auto;
 }
 
 .background-modal {
     background-color: #581C0C;
+}
+
+.cont-booking-buttons {
+margin: 0.5rem;
+}
+
+.cont-like-buttons {
+    margin: 0.5rem;
+}
+
+.cont-buttons {
+    flex-direction: column;
 }

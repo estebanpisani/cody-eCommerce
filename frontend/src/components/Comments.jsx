@@ -5,8 +5,10 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CommentsIn from '../components/CommentsIn';
+import CommentsIn1 from '../components/CommentsIn1'
 
-export default function Comments({ everyEvent, setChangeReload }) {
+
+export default function Comments({ everyEvent, setChangeReload, user }) {
   return (
     <div className='background-accordion-comments'>
       <Accordion>
@@ -24,7 +26,8 @@ export default function Comments({ everyEvent, setChangeReload }) {
           <Typography>
             {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget. */}
-            <CommentsIn eventId={everyEvent._id} comments={everyEvent.comments} setChangeReload={setChangeReload}/>
+            <CommentsIn eventId={everyEvent._id} comments={everyEvent.comments} setChangeReload={setChangeReload} user={user}/>
+            {/* <CommentsIn1 /> */}
             
           </Typography>
         </AccordionDetails>

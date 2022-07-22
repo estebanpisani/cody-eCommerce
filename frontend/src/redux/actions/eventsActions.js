@@ -82,6 +82,23 @@ likeDislike: (_id) => {
             console.log(error)
         }
     }
+},
+
+bookingYesNo: (_id) => {
+    const token = localStorage.getItem('token')
+    return async () => {
+        try {
+            let response = await axios.put(`http://localhost:4000/api/events/attendance/${_id}`, {},
+            {headers: {
+                Authorization: "Bearer "+token
+                }
+            })
+            return response
+            
+        }catch (error) {
+            console.log(error)
+        }
+    }
 }
 
     // filterCities: (input)=> {
