@@ -6,6 +6,7 @@ const productActions = {
         return async (dispatch, getState) => {
             const res = await axios.get('http://localhost:4000/api/products')
             dispatch({type: "GETPRODUCTS", payload:res.data.response.products})
+            dispatch({type: "GETSTOCK", payload:res.data.response.products})
         }
     },
     getOneProduct: (id) => {

@@ -1,6 +1,6 @@
 const CartItem = ({ data, delOneFromCart, delAllFromCart }) => {
     let { id, name, price, quantity } = data;
-  
+  console.log(data)
     return (
       <div style={{ borderBottom: "thin solid gray" }}>
         <h4>{name}</h4>

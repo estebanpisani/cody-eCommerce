@@ -10,6 +10,8 @@ const ShoppingCart = () => {
   const dispatch = useDispatch();
 //importo el estado inicial del reducer (constante products en shoppingReducer), para renderizar las cards de productos y traer el carrito.
   const { products, cart } = state.shopping
+
+  console.log(cart)
   //de nuestro estado vamos a desestructurar los productos y el carrito de compras (estados iniciales de shoppingReducer)
 
   //funciones q va a recibir el carrito de compras
@@ -42,19 +44,13 @@ const ShoppingCart = () => {
     <div>
       <h2>Carrito de Compras</h2> 
       <h3>Productos</h3>
-      <article className="box grid-responsive">
-        {products.map((product) => (
-          <ProductItem key={product.id} data={product} addToCart={() =>
-          dispatch(addToCart(product.id))} />
-        ))}
-      </article>
       <h3>Carrito</h3>
       <article className="box">
         <button onClick={()=> dispatch(clearCart())}>Limpiar Carrito</button>
         {cart.map((item, index) => (
           <CartItem key={index} data={item} 
-          delOneFromCart={()=> dispatch(delFromCart(item.id))}
-          delAllFromCart={()=> dispatch(delFromCart(item.id, true))} />
+          delOneFromCart={()=> dispatch(delFromCart(item._id))}
+          delAllFromCart={()=> dispatch(delFromCart(item._id, true))} />
         ))}
       </article>
     </div>

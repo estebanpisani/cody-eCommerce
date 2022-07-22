@@ -8,6 +8,7 @@ import productActions from "../redux/actions/productActions";
 import Products from "./Products";
 
 
+
 function Sidebar() {
     const [category, setCategory] = React.useState("")
     const [reload, setReload] = React.useState(false)

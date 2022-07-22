@@ -8,6 +8,12 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+import CartItem from "./CartItem";
+import ProductItem from "./ProductItem";
+import '../styles/sidebar.css'
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, clearCart, delFromCart } from "../redux/actions/shoppingActions";
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -96,7 +102,7 @@ export default function BasicModal({data}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  const dispatch = useDispatch()
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
@@ -166,7 +172,12 @@ export default function BasicModal({data}) {
            
     
           <div className='add-cart'>
-            <Button class="button hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-500 hover:border-blue-500 rounded  ">Agregar al carrito</Button>
+           
+        
+             
+            <ProductItem key={data._id} data={data} addToCart={() =>
+              dispatch(addToCart(data._id))}
+            class="button hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-500 hover:border-blue-500 rounded  ">Agregar al carrito</ProductItem>
           </div>
      
         </Box>
