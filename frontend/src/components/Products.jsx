@@ -1,3 +1,4 @@
+
 import React from 'react'
 import '../styles/products.css'
 import { Input } from "@material-tailwind/react";
@@ -5,76 +6,52 @@ import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react';
 import productActions from "../redux/actions/productActions";
 import BasicModal from './modal';
-// import userActions from "../redux/actions/userActions";
-
   
   export default function Products(props) {
     const filterStore = props.filterStore
+    const title = props.title
     const [input, setInput] = React.useState('')
     
-  //   const dispatch = useDispatch()
-  //   React.useEffect(() => {
-  //     dispatch(productActions.filterProduct(input))
-  //      // eslint-disable-next-line react-hooks/exhaustive-deps
-  // },[input])
-
     const FilteredStore = filterStore.filter(item => item.name.toLowerCase().startsWith(input.trim().toLowerCase()))
     console.log(FilteredStore)
     return (
-      <div className="h-full bg-white container-products">
-        
-        <div className="h-full bg-cardcontainer max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-          
-          <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Tienda</h2>
+      <div className="bg-white">
+        <div className="bg-cardcontainer max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        {title?
+          <h2 className="store-title text-2xl font-extrabold tracking-tight text-gray-900">{title}</h2>
+          :
+          <h2 className="store-title text-2xl font-extrabold tracking-tight text-gray-900">Tienda</h2>
+        }
           <Input onKeyUp={(e) => {setInput(e.target.value)}} className='searchinput' placeholder='Buscar . . .' 
           ></Input>
-          
-          <div className="h-full mt-6 flex flex-wrap grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-          
+          <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {FilteredStore.map((product) => (
-              <div key={product._id} className="group relative group-cards">
-                <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none card-container">
-                  <div className='imgcontainer'>
+              <div key={product._id} className="group relative">
+                <div  className="card-container w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                  <div className='product-img'>
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="object-center product-item"
+                    className="object-center img"
                   />
                   </div>
-                  <div className='info-content'>
-                  <h3 className="text-sm text-white fontfamily">
-                      
-                        <span aria-hidden="true" className="absolute inset-0" />
+                  <div className="product-info">
+                  
+                    <h3 className="text-sm fontfamily">
                         {product.name}
-                      
-                  </h3>
-                  <div className='product-info'>
-                        <p className="price text-sm font-medium text-white">{product.price}</p>
-                  </div>
-                
-                  <div>
-                
-               
-                  </div>
-                  </div>
-                </div>
-                <div className="mt-4 flex justify-between">
-                  <div>
+                    </h3>
+                    <p className="text-sm font-medium text-gray-900 price">${product.price}</p>
                     
-                    
-                  </div>
                   
                 </div>
+                </div>
+                
                 <div className='detail-modal'> <BasicModal data={product}></BasicModal></div>
-               
               </div>
             ))}
           </div>
-        </div>   
-    
-      </div>     
-      
-   
+        </div>
+      </div>
     )
   }
   

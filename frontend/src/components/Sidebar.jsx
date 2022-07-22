@@ -1,11 +1,11 @@
 import React from "react";
-import Products from './Products'
 import '../styles/sidebar.css'
 import Logo from '../media/logo.png'
 import {useDispatch, useSelector} from 'react-redux'
 // import { useEffect } from 'react';
 import productActions from "../redux/actions/productActions";
-import userActions from "../redux/actions/userActions";
+
+import Products from "./Products";
 
 
 function Sidebar() {
@@ -13,8 +13,6 @@ function Sidebar() {
     const [reload, setReload] = React.useState(false)
     const dispatch = useDispatch()
 
-    
-    
     const selectCategory =  async (event) => {
         setCategory(event.target.id)
         // setCategory(event.target.value)
@@ -27,21 +25,19 @@ function Sidebar() {
     
         const currentStore = useSelector(store => store.productReducer.filter)
         console.log(currentStore)
-
     return (
-        <div className="flex flex-no-wrap mt-16 sidebar-container">
+        <div className="flex flex-no-wrap">
             {/* Sidebar starts */}
             {/* Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] */}
-            <div className="sidebar w-64 absolute sm:relative sidecolor shadow md:h-full flex-col justify-between hidden sm:flex">
+            <div className="sidebar w-64 absolute sm:relative bg-indigo-900 shadow md:h-full flex-col justify-between hidden sm:flex">
                 <div>
-                    <div className="h-16 w-full flex items-center logo-side">
+                    <div className="h-16 w-full flex items-center px-8 logo-side">
                         <img src={Logo} width={100} height={30}>
                             
                         </img>
                     </div>
                     <ul>
-                        {/* sumar value{recomendado} y 2 onlicks con seteo setCategory y funcion selectcategory */}
-                        <li   className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center py-3 px-8">
+                        <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center py-3 px-8">
                             <div className="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -53,7 +49,7 @@ function Sidebar() {
                                 <span id="Recomendado" value="recomendado" onClick={selectCategory} className="text-sm  ml-2">Recomendados</span>
                             </div>
                         </li>
-                        <li className="flex w-full justify-between text-gray-600 hover:text-gray-300 list-hover cursor-pointer items-center px-8 py-3">
+                        <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
                             <div className="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-puzzle" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -62,17 +58,17 @@ function Sidebar() {
                                 <span id="Desayuno" value="Desayuno" onClick={selectCategory} className="text-sm  ml-2">Desayuno/Merienda</span>
                             </div>
                         </li>
-                        <li className="flex w-full justify-between text-gray-600 hover:text-gray-300 list-hover cursor-pointer items-center px-8 py-3">
-                            <div className="flex items-center">
+                        <li  className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
+                            <div  className="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-compass" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <polyline points="8 16 10 10 16 8 14 14 8 16" />
                                     <circle cx={12} cy={12} r={9} />
                                 </svg>
-                                <span className="text-sm  ml-2">Almuerzo</span>
+                                <span id="Almuerzo" value="Almuerzo" onClick={selectCategory} className="text-sm  ml-2">Almuerzo</span>
                             </div>
                         </li>
-                        <li className="flex w-full justify-between text-gray-600 hover:text-gray-300 list-hover cursor-pointer items-center px-8 py-3">
+                        <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
                             <div className="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-code" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -83,7 +79,7 @@ function Sidebar() {
                                 <span id="Postre" value="Postre" onClick={selectCategory} className="text-sm  ml-2">Postres</span>
                             </div>
                         </li>
-                        <li className="flex w-full justify-between text-gray-600 hover:text-gray-300 list-hover cursor-pointer items-center  px-8 py-3">
+                        <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center  px-8 py-3">
                             <div className="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-puzzle" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -92,7 +88,7 @@ function Sidebar() {
                                 <span className="text-sm  ml-2">Productos</span>
                             </div>
                         </li>
-                        <li className="flex w-full justify-between text-gray-600 hover:text-gray-300 list-hover cursor-pointer items-center px-8 py-3">
+                        <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
                             <div className="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-stack" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
@@ -100,7 +96,7 @@ function Sidebar() {
                                     <polyline points="4 12 12 16 20 12" />
                                     <polyline points="4 16 12 20 20 16" />
                                 </svg>
-                                <span className="text-sm  ml-2">Menu Completo</span>
+                                <span id="Cody" value="Cody" onClick={selectCategory} className="text-sm  ml-2">Menu Completo</span>
                             </div>
                         </li>
                     </ul>
@@ -189,10 +185,12 @@ function Sidebar() {
             </div>
             {/* Sidebar ends */}
             {/* Remove class [ h-64 ] when adding a card block */}
-            <div className="container mx-auto h-64 md:w-4/5 w-11/12 px-6">
-                
-                <div className="w-full h-full rounded store-conteiner"><Products filterStore={currentStore}></Products></div>
-    </div>
+            <div className="container mx-auto py-10 md:w-4/5 w-11/12 px-6">
+                {/* Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border */}
+                <div className="w-full h-full rounded border-dashed border-2 border-gray-300">
+                    <Products filterStore={currentStore} title={category}></Products>
+                </div>
+            </div>
         </div>
     );
 }
