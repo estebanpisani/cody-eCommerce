@@ -108,7 +108,6 @@ export default function ModalEvent({ everyEvent, setChangeReload }) {
 
                         {user ? (
                           <div>
-                            {/* {" "} */}
                             {everyEvent.likes?.includes(user._id) ? (
                               <>
                                 <button
