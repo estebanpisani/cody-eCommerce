@@ -188,7 +188,7 @@ export default function ModalEvent({ everyEvent, setChangeReload }) {
                     </div>
                   </div>
                 </div>
-                <Comments everyEvent={everyEvent} />
+                <Comments everyEvent={everyEvent} setChangeReload={setChangeReload} />
               </div>
               {/* Card code block end */}
             </div>
