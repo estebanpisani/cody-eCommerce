@@ -5,7 +5,7 @@
 }
 
 .card-container {
-    background-image: url(https://i.imgur.com/nrahNBR.jpg)!important;
+    background-image: url(https://i.imgur.com/nrahNBR.jpg);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -77,7 +77,7 @@
     padding: 0.4rem;
 }
 
-.searchinput{
+.searchinput {
     border: 1px solid #581c0c;
     background-color: #f8b384;
     padding-left: 20px;
@@ -100,9 +100,29 @@
     align-items: center;
 }
 
+<<<<<<< HEAD
 
 
 
+=======
+.product-item {
+    height: 200px;
+    filter: drop-shadow(5px 5px 3px black);
+}
+
+.fontfamily {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    color: #f8b384;
+    text-shadow: 2px 2px 5px #581c0c;
+    background-color: #f9f2ed;
+    padding: 10px 30px;
+    min-width: 80%;
+    text-align: center;
+}
+>>>>>>> 87f0910e34083624954d19a651ff4089fa600af1
 
 .info-content {
     height: 35%;
@@ -112,26 +132,36 @@
     align-items: center;
     align-self: flex-end;
     justify-content: space-between;
-    
+
 }
 
 
-.product-info{
+.product-info {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
+<<<<<<< HEAD
 
+=======
+.price {
+    background-color: #f8b384;
+    text-shadow: 2px 2px 5px #581c0c;
+    padding: 0.3rem 0.5rem;
+    border-radius: 50px;
+    border: 0.1rem solid #f9f2ed;
+}
+>>>>>>> 87f0910e34083624954d19a651ff4089fa600af1
 
-.button{
-    padding: 0.4rem!important;
+.button {
+    padding: 0.4rem !important;
     background-color: #3ab0ff;
     box-shadow: 0px 0px 10px#addeff;
 }
 
-.group-cards{
+.group-cards {
     flex-wrap: wrap;
     min-width: fit-content;
     box-shadow: 1px 1px 4px #581c0c;
@@ -152,18 +182,18 @@
     width: 100px;
 }
 
-.all-info{
+.all-info {
     display: flex;
     justify-content: space-around;
 }
 
-.add-cart{
+.add-cart {
     display: flex;
     justify-content: center;
 
 }
 
-.description-modal{
+.description-modal {
     display: flex;
     justify-content: center;
 }

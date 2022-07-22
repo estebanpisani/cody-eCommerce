@@ -1,11 +1,18 @@
 
-
-.sidebar-container{
+.container-sb {
     height: 100vh;
-    object-fit: contain;
 }
 
-.sidebar{
+.store-conteiner {
+    height: 100vh;
+}
+
+/* .sidebar-container {
+    height: 100vh;
+    object-fit: contain;
+} */
+
+.sidebar {
     box-shadow: 1px 1px 4px #581c0c;
     background-color: #f8b384;
     position: sticky;
@@ -23,8 +30,7 @@ display:inline-block;
     flex-direction: row!important;
     justify-content: center!important;
     align-items: center;
-    height: 20vh!important;
-    padding: 0!important;
+    height: 20vh !important;
+    padding: 0 !important;
 }
-
 

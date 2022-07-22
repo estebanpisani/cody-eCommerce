@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/sidebar.css'
 import Logo from '../media/logo.png'
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 // import { useEffect } from 'react';
 import productActions from "../redux/actions/productActions";
 
@@ -34,7 +34,7 @@ function Sidebar() {
                 <div>
                     <div className="h-16 w-full flex items-center px-8 logo-side">
                         <img src={Logo} width={100} height={30}>
-                            
+
                         </img>
                     </div>
                     <ul>

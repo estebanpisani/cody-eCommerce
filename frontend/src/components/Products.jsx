@@ -2,7 +2,7 @@
 import React from 'react'
 import '../styles/products.css'
 import { Input } from "@material-tailwind/react";
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import productActions from "../redux/actions/productActions";
 import BasicModal from './modal';
