@@ -7,7 +7,6 @@ import SignUp from './pages/SignUp';
 import Navbar from './components/Navbar';
 import ModalEvent from './components/ModalEvent';
 import Store from './pages/Store';
-import ShoppingCart from './components/ShoppingCart';
 // import Cart from './components/CartItem'
 import { Routes, Route } from 'react-router-dom';
 import { Footer } from './components/Footer';
@@ -35,7 +34,6 @@ function App() {
       <Navbar />
       <div className='content-wrap'>
 
-        <ShoppingCart />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/home' element={<Home />} />
