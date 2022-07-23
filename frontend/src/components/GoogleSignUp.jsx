@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import jwt_decode from "jwt-decode"
 import { useDispatch } from "react-redux"
 import userActions from '../redux/actions/userActions'
@@ -6,32 +6,48 @@ import userActions from '../redux/actions/userActions'
 function GoogleSignUp() {
     const dispatch = useDispatch()
 
-    async function handleCallback(res){
+    async function handleCallback(res) {
         const userObject = jwt_decode(res.credential)
         console.log(userObject);
-        dispatch(userActions.signUpUsers({
-            firstName: userObject.name,
+        await dispatch(userActions.signUpUsers({
+            firstName: userObject.given_name,
+            lastName: userObject.family_name,
             email: userObject.email,
             password: userObject.sub,
-            country: "Argentina",
             image: userObject.picture,
-            method: "Google Sign Up"
+            method: "google"
         }))
     }
-    useEffect(()=>{
-    /* global google */
-    window.google?.accounts.id.initialize({
-        client_id: process.env.CLIENT_ID,
-        callback: handleCallback
-    })
-    window.google?.accounts.id.renderButton(
-        document.getElementById("gButton"),
-        { theme: "outline", size: "medium" }
-    )
-    })
-    return(
+    // useEffect(() => {
+    //     /* global google */
+    //     google.accounts?.id.initialize({
+    //         client_id: process.env.CLIENT_ID,
+    //         callback: handleCallback
+    //     })
+    //     google.accounts.id.renderButton(
+    //         document.getElementById("gButton"),
+    //         { theme: "filled_blue", size: "medium", shape: "pill", locale: "en-IN", text: "signup_with" },
+    //     )
+    // });
+    useEffect(() => {
+        /* global google */
+        google.accounts.id.initialize({
+            client_id: "746332027834-m8loo1r3f5jd58tjhk5hcmjrg1sor5fp.apps.googleusercontent.com",
+            callback: handleCallback
+        });
+
+        google.accounts.id.renderButton(
+            document.getElementById('buttonDiv'),
+            { theme: "filled_blue", size: "medium", shape: "pill", locale: "en-IN", text: "signup_with" },
+
+        )
+    });
+
+
+
+    return (
         <div>
-            <div id='gButton'></div>
+            <div id='buttonDiv'></div>
         </div>
     )
 }

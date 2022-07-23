@@ -34,3 +34,26 @@ display:inline-block;
     padding: 0 !important;
 }
 
+/* cart */
+.cartbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-icon{
+    font-size: 2rem !important;
+}
+.cart-quantity{
+    background-color: #3ab0ff;
+    color: white;
+    border-radius: 50px;
+    width: 20px;
+    height: 5px;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.3rem;
+    position: relative;
+    right: 0.3rem;
+    bottom: 0.3rem;
+}

@@ -36,18 +36,17 @@ const sumWithInitial = arrayPrice.reduce(
   initialValue
 );
 
-console.log(sumWithInitial);
     return (
         <div>
-            <Button onClick={handleOpen}><ShoppingCartOutlinedIcon /> <p className="cart-quantity">{cart.length}</p></Button>
+            <Button onClick={handleOpen}><ShoppingCartOutlinedIcon className="cart-icon"/> <p className="cart-quantity ">{cart.length}</p></Button>
             <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-      >
+        >
         <Box sx={style}>
-         <article className="box">
+        <article className="box">
                 <button onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
                 {cart.map((item, index) => (
                     <CartItem key={index} data={item}

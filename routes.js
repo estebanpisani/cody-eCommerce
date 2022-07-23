@@ -38,10 +38,10 @@ Router.route('/events/:id')
     .delete(deleteEvent);
 
 //User Routes
-Router.route('/auth/signUp')
+Router.route('/auth/signup')
     .post(signUp)
-Router.route('/auth/signIn')
-    .post(signIn)
+Router.route('/auth/signup')
+    .put(signIn)
 
 Router.route('/auth/profile')
     .get(getUserById)
@@ -61,7 +61,7 @@ Router.route('/admin/users/:id')
 
 // LIKE-DISLIKE ROUTES
 Router.route("/events/like/:id")
-.put(passport.authenticate("jwt", {session: false}),likeDislike)
+    .put(passport.authenticate("jwt", { session: false }), likeDislike)
 
 // BOOKING ROUTES
 Router.route("/events/attendance/:id")
@@ -69,11 +69,11 @@ Router.route("/events/attendance/:id")
 
 //COMMENTS ROUTES
 Router.route('/events/comment')
-.post(passport.authenticate('jwt',{ session: false }),addComment)
+    .post(passport.authenticate('jwt', { session: false }), addComment)
 
 
 Router.route('/events/comment/:id')
-.post(passport.authenticate('jwt',{ session: false }),deleteComment)
-.put(passport.authenticate('jwt',{ session: false }),modifiComment)
+    .post(passport.authenticate('jwt', { session: false }), deleteComment)
+    .put(passport.authenticate('jwt', { session: false }), modifiComment)
 
 module.exports = Router;

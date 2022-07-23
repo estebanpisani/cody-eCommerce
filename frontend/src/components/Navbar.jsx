@@ -43,9 +43,6 @@ const Navbar = () => {
                     <LinkRouter to='/login'>
                       <button className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:bg-neutral-50 transition">Iniciar Sesion</button>
                     </LinkRouter>
-                    <LinkRouter to='signup'>
-                      <button className="px-4 py-2 rounded-r-xl bg-neutral-50 hover:bg-neutral-100 transition">Registrarse</button>
-                    </LinkRouter>
                   </div>
 
                 </ul>

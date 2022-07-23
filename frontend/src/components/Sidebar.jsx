@@ -87,7 +87,7 @@ function Sidebar() {
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1" />
                                 </svg>
-                                <span className="text-sm  ml-2">Productos</span>
+                                <span id="Producto" value="Producto" onClick={selectCategory} className="text-sm  ml-2">Productos</span>
                             </div>
                         </li>
                         <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
@@ -101,8 +101,8 @@ function Sidebar() {
                                 <span id="Cody" value="Cody" onClick={selectCategory} className="text-sm  ml-2">Menu Completo</span>
                             </div>
                         </li>
-                        <li className=" flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
-                            <div className="flex items-center">
+                        <li className="cartbox flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
+                            <div className="cartbox flex items-center">
                                 {/* <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-stack" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <polyline points="12 4 4 8 12 12 20 8 12 4" />
@@ -138,8 +138,8 @@ function Sidebar() {
                             <span className="text-sm  ml-2">Products</span>
                         </div>
                     </li>
-                    <li className="flex w-full justify-between text-gray-600 hover:text-gray-300 hover:bg-indigo-800 cursor-pointer items-center px-2 py-3">
-                        <div className="flex items-center">
+                    <li className="cartbox flex w-full justify-between text-gray-600 hover:text-gray-300 hover:bg-indigo-800 cursor-pointer items-center px-2 py-3">
+                        <div className=" flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-compass" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" />
                                 <polyline points="8 16 10 10 16 8 14 14 8 16" />

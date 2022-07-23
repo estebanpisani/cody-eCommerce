@@ -9,20 +9,20 @@ const ck = require('ckey');
 const userControllers = {
 
     signUp: async (req, res) => {
-        const { firstName, lastName, email, country, image, password, method } = req.body.userData
-        try{
-            const userExists = await User.findOne({email})
+        const { firstName, lastName, email, password, image, method } = req.body.userData
+        try {
+            const userExists = await User.findOne({ email })
             const verification = false
             const role = 'user'
             const uniqueString = crypto.randomBytes(15).toString('hex')
-            if (userExists){
-                if(userExists.from.indexOf(method) !== -1) {
+            if (userExists) {
+                if (userExists.from.indexOf(method) !== -1) {
                     res.json({
                         success: false,
                         from: method,
                         message: "Ya estas registrtado, por favor inicia sesión"
                     })
-                }else {
+                } else {
                     const hashpass = bcryptjs.hashSync(password, 10)
                     userExists.from.push(method)
                     userExists.password.push(hashpass)
@@ -34,29 +34,28 @@ const userControllers = {
                         message: "Se registro " + email + ", podes inicar sesión!"
                     })
                 }
-            }else {
+            } else {
                 const hashpass = bcryptjs.hashSync(password, 10)
                 const newUser = await new User({
                     firstName,
                     lastName,
-                    image,
                     email,
                     password: [hashpass],
+                    image,
                     role,
-                    country,
+                    from: [method],
                     uniqueString: uniqueString,
                     verification: verification,
-                    from: [method],
                 })
                 if (method !== "signUpForm") {
                     newUser.verification = true,
-                    await newUser.save()
+                        await newUser.save()
                     res.json({
                         success: true,
                         from: "Google",
                         message: "Felicitaciones, tu cuenta fue creada con " + from + ", ya puedes iniciar sesión!"
                     })
-                }else {
+                } else {
                     await newUser.save()
                     await mailSender(email, uniqueString)
                     res.json({
@@ -136,7 +135,7 @@ const userControllers = {
     // },
     signIn: async (req, res) => {
 
-        console.log(req.body)
+
         const { email, password, from } = req.body.logedUser
         try {
             const loginUser = await User.findOne({ email })
@@ -260,7 +259,7 @@ const userControllers = {
             })
         }
     },
-    unsubscribeUser: async(req, res) => {
+    unsubscribeUser: async (req, res) => {
         let user = {}
         let error = null
         let { id } = req.params

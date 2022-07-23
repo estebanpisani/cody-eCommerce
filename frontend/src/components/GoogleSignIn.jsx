@@ -6,26 +6,26 @@ import userActions from '../redux/actions/userActions'
 function GoogleSignIn() {
     const dispatch = useDispatch()
 
-    async function handleCallback(res){
+    async function handleCallback(res) {
         const userObject = jwt_decode(res.credential)
         dispatch(userActions.signInUser({
             email: userObject.email,
             password: userObject.sub,
-            method: "Google Sign In"
+            method: "google"
         }))
     }
-    useEffect(()=>{
-    /* global google */
-    window.google?.accounts.id.initialize({
-        client_id: process.env.CLIENT_ID,
-        callback: handleCallback
+    useEffect(() => {
+        /* global google */
+        google.accounts.id.initialize({
+            client_id: "746332027834-m8loo1r3f5jd58tjhk5hcmjrg1sor5fp.apps.googleusercontent.com",
+            callback: handleCallback
+        })
+        google.accounts.id.renderButton(
+            document.getElementById("gButton"),
+            { theme: "filled_blue", size: "medium", shape: "pill", locale: "en-IN", text: "register_with", },
+        )
     })
-    window.google?.accounts.id.renderButton(
-        document.getElementById("gButton"),
-        { theme: "outline", size: "medium" }
-    )
-    })
-    return(
+    return (
         <div>
             <div id='gButton'></div>
         </div>
