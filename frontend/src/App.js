@@ -1,9 +1,5 @@
 import './App.css';
 import Events from '../src//pages/Events';
-import Login from './pages/Login'
-import SignUp from './pages/SignUp';
-// import Hero from '../src/components/Hero'
-
 import Navbar from './components/Navbar';
 import ModalEvent from './components/ModalEvent';
 import Store from './pages/Store';
@@ -15,6 +11,7 @@ import Home from './pages/Home';
 import userActions from '../src/redux/actions/userActions';
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import LoginAndSignUp from './components/LoginAndSignUp';
 
 
 
@@ -23,27 +20,26 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if(localStorage.getItem('token')!== null) {
-        const token = localStorage.getItem('token')
-        console.log(token)
-        dispatch(userActions.VerificateToken(token))
+    if (localStorage.getItem('token') !== null) {
+      const token = localStorage.getItem('token')
+
+      dispatch(userActions.VerificateToken(token))
     }
-  },[])
+  }, [])
 
   return (
     <div className='page-container'>
       <Navbar />
       <div className='content-wrap'>
 
-        <ShoppingCart />
+        {/* <ShoppingCart /> */}
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/home' element={<Home />} />
           <Route path="/store" element={<Store />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/eventos" element ={<Events/>}/>
-          
+          <Route path="/eventos" element={<Events />} />
+          <Route path="/login" element={<LoginAndSignUp />} />
+
 
         </Routes>
       </div>

@@ -19,10 +19,10 @@ const userValidator = (req, res, next) => {
                 'string.max': 'La contraseña debe contener un máximo de 40 caracteres',
                 'string.empty': 'Por favor, ingrese una contraseña.'
             }),
-        passwordRepeat: joi.string().required().valid(joi.ref('password')).messages({
-            'string.empty': 'Por favor, repita su contraseña.',
-            'any.only': 'PLas contraseñas no coinciden.'
-        }),
+        // passwordRepeat: joi.string().required().valid(joi.ref('password')).messages({
+        //     'string.empty': 'Por favor, repita su contraseña.',
+        //     'any.only': 'PLas contraseñas no coinciden.'
+        // }),
         firstName: joi.string()
             .required()
             .messages({
@@ -40,8 +40,8 @@ const userValidator = (req, res, next) => {
             }),
         image: joi.string()
             .allow(''),
-        country: joi.string()
-            .required(),
+        // country: joi.string()
+        //     .required(),
         verified: joi.boolean()
     });
 
