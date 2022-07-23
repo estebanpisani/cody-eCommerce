@@ -112,10 +112,10 @@ export default function BasicModal({data}) {
   return (
     <div>
         
-<Button onClick={handleOpen} class="viewmore-button button hover:bg-white text-white font-bold py-1 px-3 border-b-4 border-blue-500 hover:border-blue-500 rounded">
+{/* <Button  class="viewmore-button button hover:bg-white text-white font-bold py-1 px-3 border-b-4 border-blue-500 hover:border-blue-500 rounded">
       Ver más
-</Button>
-      
+</Button> */}
+<button className="addToCart-button boton4" onClick={handleOpen}>Ver más</button>
 
   
       <Modal

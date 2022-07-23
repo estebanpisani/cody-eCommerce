@@ -1,17 +1,29 @@
+import DeleteIcon from '@mui/icons-material/Delete';
+import ClearIcon from '@mui/icons-material/Clear';
+
 const CartItem = ({ data, delOneFromCart, delAllFromCart }) => {
-    let { id, name, price, quantity } = data;
+    let { id, name, price, quantity, image } = data;
   console.log(data)
     return (
-      <div style={{ borderBottom: "thin solid gray" }}>
-        <h4>{name}</h4>
-        <h5>
-          ${price}.00 x {quantity} = ${price * quantity}.00
-        </h5>
-        <button onClick={() => delOneFromCart(id)}>Eliminar Uno</button>
-        <br />
-        <button onClick={() => delAllFromCart(id, true)}>Eliminar Todos</button>
-        <br />
-        <br />
+      <div className="cartproductitem" style={{ borderBottom: "thin solid #581c0c" }}>
+        <div className="imgnamecont">
+        <h3 className="text-sm fontfamily">
+          {name}
+        </h3>
+        <img className="cartproductimg" src={image}></img>
+        </div>
+        <div className='cart-cont-info'>
+        <p className='cart-item-info'>${price}.00</p>
+        <p className='cart-item-info'>Unidades: {quantity}</p>
+        <p className='cart-item-price'>Subtotal: $ {price * quantity}.00</p>
+        </div>
+        
+        
+        <div className="boxBotones">
+        <button className='btn-del' style={{display:'flex',flexDirection:'row',justifyContent:'center', alignItems:'center'}} onClick={() => delOneFromCart(id)}><DeleteIcon fontSize="small"/> Borrar</button>
+        
+        <button className='btn-del' style={{display:'flex',flexDirection:'row',justifyContent:'center', alignItems:'center'}} onClick={() => delAllFromCart(id, true)}><ClearIcon fontSize="small"/>Borrar Todos</button>
+        </div>
       </div>
     );
   };

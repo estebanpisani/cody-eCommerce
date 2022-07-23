@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, delFromCart } from "../redux/actions/shoppingActions";
+import codybuy from '../media/cody4.png';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
 const style = {
   position: 'absolute',
@@ -14,7 +16,6 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
@@ -36,25 +37,55 @@ const sumWithInitial = arrayPrice.reduce(
   initialValue
 );
 
+    const arrayQuantity = cart.map((item)=>(item.quantity))
+    const sumQuantity = arrayQuantity.reduce(
+      (previousValue, currentValue) => previousValue + currentValue,
+      initialValue
+    );
+
     return (
         <div>
-            <Button onClick={handleOpen}><ShoppingCartOutlinedIcon className="cart-icon"/> <p className="cart-quantity ">{cart.length}</p></Button>
+            <Button className="btn-cart-icon" onClick={handleOpen}><ShoppingCartOutlinedIcon className="cart-icon"/> 
+            {sumQuantity>0?
+            <p className="cart-quantity ">{sumQuantity}</p>
+            :
+            <p></p>
+}
+            
+
+            
+            </Button>
             <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         >
-        <Box sx={style}>
-        <article className="box">
-                <button onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
+        <Box className="ModalCart" sx={style}>
+        <article className="box BoxCart">
+                <button className="btn-clear" onClick={() => dispatch(clearCart())}><RemoveShoppingCartIcon/> Limpiar Carrito</button>
+                {cart.length > 0 ?
+                <div className="scrollProducts">
+                  <div>
                 {cart.map((item, index) => (
                     <CartItem key={index} data={item}
                         delOneFromCart={() => dispatch(delFromCart(item._id))}
                         delAllFromCart={() => dispatch(delFromCart(item._id, true))} />
                 ))}
-          <p>total de compra: ${sumWithInitial}</p>
-          
+                  </div>
+                </div>
+                :
+                <div>
+                  <p>No hay productos agregados</p>
+                </div>
+                }
+          <div className="cont-buy">
+            <div className="cont-btn-buy">
+              <p className="cart-total-txt fontfamily">Total: ${sumWithInitial}</p>
+              <button className="addToCart-button boton4">Comprar</button>
+            </div>
+            <img className="codybuy" src={codybuy}></img>
+          </div>
             </article>
         </Box>
       </Modal>

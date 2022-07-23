@@ -63,7 +63,11 @@ const ProductItem = ({ data, addToCart }) => {
     <h5 className='MorePrice'>${price}.00</h5>
     
     </div>
+    {stock > 0 ?
         <button className="addToCart-button boton3" onClick={() => addToCart(id)}>Agregar</button>
+        :
+        <button className="addToCart-button boton3" >Agregar</button>
+    }
       </div>
     );
     
