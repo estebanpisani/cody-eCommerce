@@ -31,7 +31,18 @@ const productActions = {
             console.log(res)
             
         }
+    },
+
+    buyCart: (currentcart) =>{
+        console.log(currentcart)
+        return async (dispatch, getState) => {
+        const res = await axios.post('http://localhost:4000/api/products/buy', {currentcart})
+        console.log(res)
+        }
     }
 }
+
+
+
 
 export default productActions

@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearCart, delFromCart } from "../redux/actions/shoppingActions";
 import codybuy from '../media/cody4.png';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import productActions from "../redux/actions/productActions";
+import PayPal from "./Paypal";
 
 const style = {
   position: 'absolute',
@@ -24,6 +26,7 @@ export default function CartIcon() {
     const state = useSelector(state => state)
     const dispatch = useDispatch();
     const { cart } = state.shopping
+    const sendCart = []
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -32,9 +35,9 @@ export default function CartIcon() {
     const  arrayPrice = cart.map((item)=>(item.price*item.quantity ))
     
     const initialValue = 0;
-const sumWithInitial = arrayPrice.reduce(
-  (previousValue, currentValue) => previousValue + currentValue,
-  initialValue
+    const sumWithInitial = arrayPrice.reduce(
+    (previousValue, currentValue) => previousValue + currentValue,
+    initialValue
 );
 
     const arrayQuantity = cart.map((item)=>(item.quantity))
@@ -42,6 +45,19 @@ const sumWithInitial = arrayPrice.reduce(
       (previousValue, currentValue) => previousValue + currentValue,
       initialValue
     );
+
+    async function buyCart() {
+      cart.forEach(element => {
+        let newObj = {
+          id: element._id,
+          units: element.quantity
+        }
+        sendCart.push(newObj)
+      })
+      dispatch(productActions.buyCart(sendCart))
+  }
+
+
 
     return (
         <div>
@@ -82,7 +98,8 @@ const sumWithInitial = arrayPrice.reduce(
           <div className="cont-buy">
             <div className="cont-btn-buy">
               <p className="cart-total-txt fontfamily">Total: ${sumWithInitial}</p>
-              <button className="addToCart-button boton4">Comprar</button>
+              <button className="addToCart-button boton4" onClick={buyCart}>Comprar</button>
+              {/* <PayPal></PayPal> */}
             </div>
             <img className="codybuy" src={codybuy}></img>
           </div>
