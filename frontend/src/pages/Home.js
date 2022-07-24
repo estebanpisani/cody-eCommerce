@@ -2,7 +2,7 @@ import React from 'react'
 import AboutUs from '../components/AboutUs'
 import ActivitiesHero from '../components/ActivitiesHero'
 import Hero from '../components/Hero'
-import PruebaModal from '../components/PruebaModal'
+
 
 const Home = () => {
   return (
@@ -10,7 +10,6 @@ const Home = () => {
       <Hero />
       <AboutUs />
       <ActivitiesHero />
-      <PruebaModal />
     </div>
   )
 }
