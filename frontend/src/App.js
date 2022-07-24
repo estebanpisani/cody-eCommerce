@@ -11,6 +11,9 @@ import userActions from '../src/redux/actions/userActions';
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import LoginAndSignUp from './components/LoginAndSignUp';
+import { ToastContainer, Zoom } from 'react-toastify';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -29,7 +32,17 @@ function App() {
     <div className='page-container'>
       <Navbar />
       <div className='content-wrap'>
-
+      <ToastContainer position="bottom-left"
+            theme='dark'
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover 
+            transition={Zoom}/>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/home' element={<Home />} />

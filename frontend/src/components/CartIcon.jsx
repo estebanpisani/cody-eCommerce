@@ -10,6 +10,8 @@ import codybuy from '../media/cody4.png';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import productActions from "../redux/actions/productActions";
 import PayPal from "./Paypal";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const style = {
   position: 'absolute',
@@ -54,8 +56,16 @@ export default function CartIcon() {
         }
         sendCart.push(newObj)
       })
-      dispatch(productActions.buyCart(sendCart))
+      const res = await dispatch(productActions.buyCart(sendCart))
+      console.log(res)
+
+      if(res.data.success){
+        toast.success(res.data.message)
+    }else {
+        toast.error(res.data.message)
+    }
   }
+
 
 
 

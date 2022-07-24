@@ -109,7 +109,7 @@ const productControllers = {
     },
     buyProducts: async (req, res) => {
         // Desde front debería llegar un array de objetos que tengan id de producto y cantidad
-        const productsReq = req.body;
+        const productsReq = req.body.currentcart;
         // if (req.user) {
         //Si el usuario está logeado, recibo sus datos desde passport:
         let productDB;

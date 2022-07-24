@@ -40,7 +40,7 @@ Router.route('/events/:id')
 //User Routes
 Router.route('/auth/signup')
     .post(signUp)
-Router.route('/auth/signup')
+Router.route('/auth/signin')
     .put(signIn)
 
 Router.route('/auth/profile')
