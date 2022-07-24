@@ -34,7 +34,8 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function ModalEvent({ everyEvent, setChangeReload }) {
+export default function ModalEvent({ everyEvent }) {
+  console.log(everyEvent)
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
@@ -47,12 +48,12 @@ export default function ModalEvent({ everyEvent, setChangeReload }) {
   };
 
   const user = useSelector((store) => store.userReducer.user);
-  console.log(user);
+
 
   async function likesOrDislikes() {
     const res = await dispatch(eventsActions.likeDislike(everyEvent._id));
-    setChangeReload();
-    console.log(everyEvent.likes);
+
+
   }
 
   //   useEffect( () => {
@@ -62,7 +63,7 @@ export default function ModalEvent({ everyEvent, setChangeReload }) {
   //  const everyEvent = useSelector(store=> store.eventsReducer.eventById)
   //  console.log(everyEvent)
 
-  console.log(everyEvent);
+
 
   return (
     <div>
