@@ -4,6 +4,7 @@ import Cody3 from '../media/cody5.png'
 import { useDispatch, useSelector } from 'react-redux'
 // import { useEffect } from 'react';
 import productActions from "../redux/actions/productActions";
+import { useEffect } from "react";
 
 import Products from "./Products";
 import CartIcon from "./CartIcon";
@@ -16,9 +17,13 @@ function Sidebar() {
     const [reload, setReload] = React.useState(false)
     const dispatch = useDispatch()
 
-    const selectCategory =  async (event) => {
+    useEffect(()=> {
+        dispatch(productActions.getProductsbyCategory(category))
+    },[!reload])
+    
+    
+        const selectCategory =  async (event) => {
         setCategory(event.target.id)
-        // setCategory(event.target.value)
         event.preventDefault();
         const categoryclicked = category
         const res = await dispatch(productActions.getProductsbyCategory(categoryclicked))
