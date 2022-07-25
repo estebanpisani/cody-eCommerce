@@ -5,13 +5,15 @@ import { useDispatch } from "react-redux";
 import "../styles/Comments.css";
 import Delete from '../media/delete.svg'
 import Edit from '../media/edit.svg'
-import eventsActions from '../redux/actions/eventsActions';
+import eventsActions from "../redux/actions/eventsActions";
 
-function CommentsIn({ comments, eventId, events }) {
-  const [reload, setReload] = useState(false)
+
+function CommentsIn({ eventId, events, setChangeReload }) {
+  const [event, setEvent] = useState()
   let oneEvent = events?.data?.response?.event
+
   let userComment = events?.data?.response?.event?.comments
-  console.log(oneEvent)
+  const [reload, setReload] = useState(false)
 
 
   const [input, setInput] = useState("");
@@ -25,13 +27,13 @@ function CommentsIn({ comments, eventId, events }) {
     };
 
     await dispatch(commentsAction.addComment(comment));
-    document.querySelector("#nuevoComentario").textContent = "";
-    setReload(!reload)
+    setInput("")
+    setChangeReload()
   }
 
   async function removeComment(id) {
     await dispatch(commentsAction.deleteComment(id));
-    setReload(!reload)
+    setChangeReload()
   }
 
   async function changeComment(id) {
@@ -39,22 +41,29 @@ function CommentsIn({ comments, eventId, events }) {
       comment: modify,
     };
     await dispatch(commentsAction.modifiComment(id, data));
-
+    setChangeReload()
   }
-  async function getEvent() {
-    await dispatch(eventsActions.getEventById(eventId));
+  console.log(event)
 
-  }
-  useEffect(() => {
-    getEvent()
+  // useEffect(() => {
+  //   async function response() {
+  //     const res = await dispatch(eventsActions.getEventById(oneEvent?._id))
+  //     setEvent(res)
 
-    // eslint-disable-next-line
-  }, [reload])
+  //   }
+  //   response()
+
+  //   // eslint-disable-next-line
+  // }, [reload])
+
+  // function reloadChanger() {
+  //   setReload(!reload);
+  // }
 
   return (
     <>
-      {userComment?.map((item) => (
-        <div className="div-comments w-full" >
+      {userComment?.map((item, index) => (
+        <div className="div-comments w-full" key={index}>
           <div className="bodyComment flex flex-wrap justify-around">
             <div className="div-user-comment">
               <div className="div-image-comment flex space-x-2 items-center">
@@ -65,6 +74,7 @@ function CommentsIn({ comments, eventId, events }) {
             <div
               className="div-text-comments my-2"
               contentEditable
+              suppressContentEditableWarning={true}
               onInput={(event) => setModify(event.currentTarget.textContent)}>
               {item?.comment}
             </div>

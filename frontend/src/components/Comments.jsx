@@ -10,16 +10,22 @@ import eventsActions from '../redux/actions/eventsActions';
 import { useState, useEffect } from 'react';
 
 export default function Comments({ props }) {
+  const [reload, setReload] = useState(false)
   const dispatch = useDispatch()
   const [event, setEvent] = useState()
 
+
+  function reloadChanger() {
+    setReload(!reload);
+  }
   async function getEvent() {
     const res = await dispatch(eventsActions.getEventById(props._id));
     setEvent(res)
+
   }
   useEffect(() => {
     getEvent()
-  }, [])
+  }, [reload])
 
 
 
@@ -37,38 +43,14 @@ export default function Comments({ props }) {
         <AccordionDetails
           sx={{ backgroundColor: '#F9F2ED' }}
         >
-          <Typography>
-            {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. */}
-            <CommentsIn eventId={props?._id} comments={props?.comments} events={event} />
 
-          </Typography>
+
+          <CommentsIn eventId={props?._id} comments={props?.comments} events={event} setChangeReload={reloadChanger} />
+
+
         </AccordionDetails>
       </Accordion>
-      {/* <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
-        >
-          <Typography>Accordion 2</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion disabled>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3a-content"
-          id="panel3a-header"
-        >
-          <Typography>Disabled Accordion</Typography>
-        </AccordionSummary>
-      </Accordion> */}
+
     </div>
   );
 }

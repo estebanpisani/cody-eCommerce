@@ -76,7 +76,7 @@ function Events() {
                                 </tr>
                             </thead>
                             <tbody className="w-full">
-                                {allEvents.map(item => <Calendar props={item} />)}
+                                {allEvents.map(item => <Calendar props={item} setChangeReload={reloadChanger} />)}
                             </tbody>
                         </table>
                     </div>

@@ -4,7 +4,8 @@ import Carousel, { Item } from "react-grid-carousel";
 
 
 
-export default function Gallery({ allEvents, setChangeReload }) {
+export default function Gallery({ allEvents }) {
+  const futureEvents = allEvents.slice(0, 5)
 
 
 
@@ -53,7 +54,7 @@ export default function Gallery({ allEvents, setChangeReload }) {
         ]}
       >
 
-        {allEvents.map((everyEvent) => (
+        {futureEvents.map((everyEvent) => (
 
           <Carousel.Item>
             <div className="cont-img-carousel">
