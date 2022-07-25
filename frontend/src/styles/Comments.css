@@ -1,3 +1,21 @@
-.background-accordion-comments{
+.background-accordion-comments {
     background-color: #FFA43A;
+}
+
+.div-comments {
+    width: 100%;
+    height: auto;
+    word-wrap: break-word;
+}
+
+.container-text-area {
+    width: 60vw;
+    margin-right: 5px;
+    margin-left: 5px
+}
+
+.div-text-comments {
+    width: 40vw;
+    word-wrap: break-word;
+    height: auto;
 }

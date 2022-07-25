@@ -1,44 +1,44 @@
 const Event = require('../models/event');
 
 const eventControllers = {
-    getEvents: async (req,res) => {
+    getEvents: async (req, res) => {
         let events;
         let error = null;
         try {
             events = await Event.find();
-        }catch (err){
+        } catch (err) {
             error = err;
         }
 
         res.json(
             {
-                response: error ? 'Error requesting events data' : {events},
+                response: error ? 'Error requesting events data' : { events },
                 success: error ? false : true,
                 error: error
             }
         )
     },
-    getEventById: async (req,res) => {
+    getEventById: async (req, res) => {
         const id = req.params.id;
         let event;
         let error = null;
         try {
-            event = await Event.findOne({_id:id});
-        }catch (err){
+            event = await Event.findOne({ _id: id }).populate("comments.user", { firstName: 1, image: 1 });
+        } catch (err) {
             error = err;
             console.log(error);
         }
 
         res.json(
             {
-                response: error ? 'Error requesting event data' : {event},
+                response: error ? 'Error requesting event data' : { event },
                 success: error ? false : true,
                 error: error
             }
         )
     },
-    addEvent: async (req,res) => {
-        const {name, description, authors, images, price, limit, date, categories, tags, attendance, likes, comments }=req.body
+    addEvent: async (req, res) => {
+        const { name, description, authors, images, price, limit, date, categories, tags, attendance, likes, comments } = req.body
         // console.log(req.body)
         let event;
         let error = null;
@@ -57,7 +57,7 @@ const eventControllers = {
                 likes: likes,
                 comments: comments
             }).save();
-        }catch (err){
+        } catch (err) {
             error = err;
             console.log(error);
         }
@@ -70,7 +70,7 @@ const eventControllers = {
             }
         )
     },
-    modifyEvent: async (req,res) => {
+    modifyEvent: async (req, res) => {
         const id = req.params.id;
         // console.log(id);
         let eventReq = req.body;
@@ -78,8 +78,8 @@ const eventControllers = {
         let eventDB;
         let error = null;
         try {
-            eventDB = await Event.findOneAndUpdate({ _id:id }, eventReq, {new:true});
-        }catch (err){
+            eventDB = await Event.findOneAndUpdate({ _id: id }, eventReq, { new: true });
+        } catch (err) {
             error = err;
             console.log(error);
         }
@@ -92,13 +92,13 @@ const eventControllers = {
             }
         )
     },
-    deleteEvent: async (req,res) => {
+    deleteEvent: async (req, res) => {
         const id = req.params.id;
         let event;
         let error = null;
         try {
-            event = await Event.findOneAndDelete({_id:id});
-        }catch (err){
+            event = await Event.findOneAndDelete({ _id: id });
+        } catch (err) {
             error = err;
             console.log(error);
         }
@@ -111,25 +111,25 @@ const eventControllers = {
             }
         )
     },
-    likeDislike:async (req,res) =>{
-        const id=req.params.id //LLEGA POR PARAMETRO DESDE AXIOS
+    likeDislike: async (req, res) => {
+        const id = req.params.id //LLEGA POR PARAMETRO DESDE AXIOS
         const user = req.user.id //LLEGA POR RESPUESTA DE PASSPORT
 
-       await  Event.findOne({_id: id})
+        await Event.findOne({ _id: id })
 
-        .then((event) =>{
-            console.log(event)
-            if(event.likes.includes(user)){
-                Event.findOneAndUpdate({_id:id}, {$pull:{likes:user}},{new:true})//PULL QUITA, SACA
-               .then((response)=> res.json({success:true, response:response.likes}))
-               .catch((error) => console.log(error))
-            }else{
-                Event.findOneAndUpdate({_id: id}, {$push:{likes:user}},{new:true})//PUSH AGREGA
-                .then((response) => res.json({success:true, response:response.likes}))
-                .catch((error) => console.log(error))
-            }
-        })
-        .catch((error) => res.json({success:false, response:error}))
+            .then((event) => {
+                console.log(event)
+                if (event.likes.includes(user)) {
+                    Event.findOneAndUpdate({ _id: id }, { $pull: { likes: user } }, { new: true })//PULL QUITA, SACA
+                        .then((response) => res.json({ success: true, response: response.likes }))
+                        .catch((error) => console.log(error))
+                } else {
+                    Event.findOneAndUpdate({ _id: id }, { $push: { likes: user } }, { new: true })//PUSH AGREGA
+                        .then((response) => res.json({ success: true, response: response.likes }))
+                        .catch((error) => console.log(error))
+                }
+            })
+            .catch((error) => res.json({ success: false, response: error }))
     }
 }
 

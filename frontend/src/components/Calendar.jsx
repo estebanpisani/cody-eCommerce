@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import eventsActions from "../redux/actions/eventsActions";
 import Comments from "./Comments";
@@ -9,9 +9,7 @@ import Comments from "./Comments";
 const Calendar = ({ props }) => {
   const [show, setShow] = useState(null);
   const [showModal, setShowModal] = useState(false);
-
-
-
+  const [reload, setReload] = useState(false)
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
@@ -28,9 +26,14 @@ const Calendar = ({ props }) => {
 
   async function likesOrDislikes() {
     const res = await dispatch(eventsActions.likeDislike(props._id));
-
-
+    setReload(!reload)
   }
+
+  useEffect(() => {
+    dispatch(eventsActions.getEvents())
+
+
+  }, [reload])
 
   return (
 
@@ -62,14 +65,14 @@ const Calendar = ({ props }) => {
                 <div className="relative">
                   <img
                     className="h-56 shadow rounded-t w-full object-cover object-center"
-                    src="https://technwzs.com/wp-content/uploads/2022/06/webstorm-vs-vscode-780x470.jpeg"
-                    alt
+                    src={props.images}
+                    alt="Imagen del Evento"
                   />
                   <div className="inset-0 m-auto w-24 h-24 absolute bottom-0 -mb-12 xl:ml-10 rounded border-2 shadow border-white">
                     <img
                       className="w-full h-full overflow-hidden object-cover rounded"
                       src="https://image.freepik.com/free-photo/indoor-picture-cheerful-handsome-young-man-having-folded-hands-looking-directly-smiling-sincerely-wearing-casual-clothes_176532-10257.jpg"
-                      alt
+                      alt="Imagen del Autor del Evento"
                     />
                   </div>
                 </div>
