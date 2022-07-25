@@ -98,7 +98,7 @@ const style = {
 // console.log(productsDetail)
 
 export default function BasicModal({data}) {
-    console.log(data)
+  
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

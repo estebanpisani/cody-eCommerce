@@ -5,19 +5,56 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import codymore from '../media/cody2.png';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import { useDispatch, useSelector  } from 'react-redux';
+import { useState} from 'react';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import productActions from '../redux/actions/productActions';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
     
 
 const ProductItem = ({ data, addToCart }) => {
-    let { id, name, price, description, image, stock, variations, categories } = data;
-
+    let { _id, name, price, description, image, stock, variations, categories } = data;
+    const dispatch = useDispatch()
     const [age, setAge] = React.useState('');
-
+    const [reload,setReload] = useState(false) 
     const handleChange = (event) => {
       setAge(event.target.value);
     };
+
+    const [inputname, setInputname] = React.useState('')
+    const [inputstock, setInputstock] = React.useState('')
+    const [inputprice, setInputprice] = React.useState('')
+
+    const user = useSelector(store => store.userReducer.user)
+
+    async function deleteProduct(event) {
+      const res = dispatch(productActions.deleteProduct(_id))
+      .then(response => {
+        if(response.data.success){
+          toast.success(response.data.message)
+      }else {
+          toast.error(response.data.message)
+      }
+    })
+      setReload(!reload)
+      
+      
+  }
+
+  
+  async function modifyProduct(event){
+    const modifiedProduct ={
+      name: inputname,
+      price: inputprice,
+      stock: inputstock,
+      id: _id
+    }
+    console.log(modifiedProduct)
+    const res = await dispatch(productActions.modifyProduct(modifiedProduct))
+  }
 
     return (
       <div className='MoreBorder' style={{padding: "1rem" }}>
@@ -33,20 +70,29 @@ const ProductItem = ({ data, addToCart }) => {
             alt="product"
 
           />
+          {user?.user.role === 'admin'?
+          <input type='textarea' defaultValue={name} onChange={(event) => setInputname(event.target.value)} className='MoreName text-sm fontfamily'/>
+          :
           <h4 className="text-sm fontfamily MoreName">{name}</h4>
+          }
           </div>
           </div>
-          {/* <img
-          className='image-modal MoreCody'
-          src={codymore}
-          alt="product"
-          /> */}
-          
-        
-        
-        
+      
+      {user?.user.role === 'admin'?
       <div className='MoreBuy'>
-        
+        <p>stock:</p>
+      <input type='textarea' defaultValue={stock} onChange={(event) => setInputstock(event.target.value)} className='MoreStock'/>
+        {/* <div>
+          {variations.map((item, index) =>
+            <input key={index} type='textarea' defaultValue={item} />
+            )}
+        </div> */}
+        <p>price: </p>
+    <input type='textarea' defaultValue={price} onChange={(event) => setInputprice(event.target.value)} className='MorePrice'></input>
+    </div>
+
+      :
+      <div className='MoreBuy'>  
       <h5 className='MoreStock'>Disponible: {stock}</h5>
         <FormControl color='warning' className='MoreSelect' sx={{ m: 1, minWidth: 120}} size="small">
       <InputLabel color='warning' id="demo-select-small">Elige</InputLabel>
@@ -64,27 +110,31 @@ const ProductItem = ({ data, addToCart }) => {
       </Select>
     </FormControl>
     <h5 className='MorePrice'>${price}.00</h5>
-    
-     
-
     </div>
+}
 
-    {/* <div className='admin-container'>
+
+
+
+    {user?.user.role === 'admin' ?
+    <div className='admin-container'>
       <h3 className='admin-title'>« Administrador »</h3>
       <h3 className='admin-text'>¿Que cambios desea realizar en el producto?</h3>
       <div >
-       <button className="  button-admin " onClick={() => addToCart(id)}>Modificarlo<ModeEditIcon/></button>
-       <button className=" button-admin" onClick={() => addToCart(id)}>Eliminarlo<DeleteIcon/></button> 
+       <button className="  button-admin" onClick={modifyProduct}> Modificarlo <ModeEditIcon/></button>
+       <button className=" button-admin" onClick={deleteProduct}>Eliminarlo<DeleteIcon/></button> 
       </div> 
 
  
-    </div>  */}
-
-     {stock > 0 ?
-        <button className="addToCart-button boton3" onClick={() => addToCart(id)}>Agregar</button>
-        :
-        <button className="addToCart-button boton3" >Agregar</button>
-    } 
+    </div>
+    :
+    <button className="addToCart-button boton3" onClick={() => addToCart(_id)}>Agregar</button>
+    }
+     {/* {stock > 0 ?
+        
+         :
+         <button className="addToCart-button boton3" >Agregar</button>
+    }  */}
       </div>
     );
     

@@ -5,6 +5,11 @@ import Modal from '@mui/material/Modal';
 import codymore from '../media/cody2.png';
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import productActions from "../redux/actions/productActions";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const style = {
     position: 'absolute',
@@ -22,7 +27,15 @@ export default function AdminProduct(){
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
+    const [name, setName] = React.useState('');
+    const [description, setDescription] = React.useState('');
+    const [image, setImage] = React.useState('');
+    const [price, setPrice] = React.useState('');
+    const [stock, setStock] = React.useState('');
+    const [categories, setCategories] = React.useState('');
+    // const [variations, setVariations] = React.useState('');
+    const [reload, setReload] = React.useState(false)
+    const dispatch = useDispatch()
     const [age, setAge] = React.useState('');
 
     const handleChange = (event) => {
@@ -30,6 +43,34 @@ export default function AdminProduct(){
     };
     const variations = ['uno', 'dos', 'tres'];
   
+
+    async function addProduct(event) {
+      const newProduct = {
+          name: name,
+          description: description,
+          image: image,
+          price: price,
+          stock: stock,
+          // date: date,
+          categories: categories,
+          variations: variations,
+      }
+      console.log(newProduct)
+      const res = await dispatch(productActions.addProduct(newProduct))
+  
+      // setInputText("")
+        setReload(!reload)
+        
+          if(res.data.success){
+            toast.success(res.data.message)
+        }else {
+            toast.error(res.data.message)
+        }
+      
+    
+    }
+    
+
     return(
         <div className="panel-admin">
 
@@ -53,15 +94,15 @@ export default function AdminProduct(){
       noValidate
       autoComplete="off"
     >
-      <TextField id="filled-basic" label="Imagen" variant="filled" />
-      <TextField id="filled-basic" label="Nombre" variant="filled" />
-      <TextField id="filled-basic" label="Stock" variant="filled" />
-      <TextField id="filled-basic" label="Precio" variant="filled" />
-      <TextField id="filled-basic" label="Categoría" variant="filled" />
+      <TextField id="filled-basic" label="Imagen" onChange={(event) => setImage(event.target.value)} value={image} variant="filled" />
+      <TextField id="filled-basic" label="Nombre" onChange={(event) => setName(event.target.value)} value={name} variant="filled" />
+      <TextField id="filled-basic" label="Stock" onChange={(event) => setStock(event.target.value)} value={stock} variant="filled" />
+      <TextField id="filled-basic" label="Precio" onChange={(event) => setPrice(event.target.value)} value={price} variant="filled" />
+      <TextField id="filled-basic" label="Categoría" onChange={(event) => setCategories(event.target.value)} value={categories} variant="filled" />
      
      
     </Box>
-    <Button>Crear</Button>
+ <Button onClick={addProduct}>Crear</Button> 
 
         </Box>
       </Modal>

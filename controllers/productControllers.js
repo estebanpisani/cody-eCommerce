@@ -39,7 +39,7 @@ const productControllers = {
     },
     addProduct: async (req, res) => {
         const { name, description, image, price, stock, date, categories, variations } = req.body
-        // console.log(req.body)
+        console.log(req.body)
         let product;
         let error = null;
         try {
@@ -60,7 +60,7 @@ const productControllers = {
 
         res.json(
             {
-                response: error ? 'Error creating product' : product,
+                message: error ? 'Error al crear producto' : 'Nuevo producto agregado',
                 success: error ? false : true,
                 error: error
             }
@@ -101,9 +101,10 @@ const productControllers = {
 
         res.json(
             {
-                response: error ? 'Error removing product' : product,
+                message: error ? 'Error al eliminar el producto' : "Producto eliminado",
                 success: error ? false : true,
-                error: error
+                error: error,
+
             }
         )
     },

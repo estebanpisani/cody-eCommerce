@@ -20,7 +20,7 @@ const dispatch = useDispatch()
     )
     
     const currentStore = useSelector(store => store.productReducer.products)
-    console.log(currentStore)
+    
 
     return (
 

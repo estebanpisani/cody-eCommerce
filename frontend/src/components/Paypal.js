@@ -48,7 +48,7 @@ export default function PayPal(props) {
   });
   };
   const onApprove = (data, actions) => { //recibo el resultado de mi operacion
-      console.log(data)
+      
     return actions.order.capture()
     .then(function (details) {
         const { payer } = details;
