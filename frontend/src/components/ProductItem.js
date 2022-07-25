@@ -3,7 +3,10 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import codymore from '../media/cody2.png'
+import codymore from '../media/cody2.png';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
     
 
@@ -62,12 +65,26 @@ const ProductItem = ({ data, addToCart }) => {
     </FormControl>
     <h5 className='MorePrice'>${price}.00</h5>
     
+     
+
     </div>
-    {stock > 0 ?
+
+    {/* <div className='admin-container'>
+      <h3 className='admin-title'>« Administrador »</h3>
+      <h3 className='admin-text'>¿Que cambios desea realizar en el producto?</h3>
+      <div >
+       <button className="  button-admin " onClick={() => addToCart(id)}>Modificarlo<ModeEditIcon/></button>
+       <button className=" button-admin" onClick={() => addToCart(id)}>Eliminarlo<DeleteIcon/></button> 
+      </div> 
+
+ 
+    </div>  */}
+
+     {stock > 0 ?
         <button className="addToCart-button boton3" onClick={() => addToCart(id)}>Agregar</button>
         :
         <button className="addToCart-button boton3" >Agregar</button>
-    }
+    } 
       </div>
     );
     

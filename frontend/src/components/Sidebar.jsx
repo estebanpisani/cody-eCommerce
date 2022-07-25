@@ -7,6 +7,7 @@ import productActions from "../redux/actions/productActions";
 
 import Products from "./Products";
 import CartIcon from "./CartIcon";
+import AdminProduct from "./AdminProduct";
 
 
 
@@ -110,6 +111,8 @@ function Sidebar() {
                                     <polyline points="4 16 12 20 20 16" />
                                 </svg> */}
                                 <span className="text-sm  ml-2"><CartIcon></CartIcon></span>
+                                {/* <span className="text-sm  ml-2"><AdminProduct /></span>  */}
+                                {/* DESCOMENTAR Y HACER TERNARIO DE ADMIN */}
                             </div>
                         </li>
                     </ul>

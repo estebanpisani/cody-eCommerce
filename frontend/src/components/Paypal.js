@@ -1,18 +1,16 @@
 import React, {useEffect, useState} from "react";
 import ReactDOM from "react-dom"
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"; 
-import {useStateValue} from '../StateProvider';
-import {getTotal} from '../Reducer';
 
-export default function PayPal() {
-    const [{cart},dispatch] = useStateValue(); 
+
+
+export default function PayPal(props) {
+    const total = props.total
+    const [cart, setCart] = useState (props.props)
     const [success, setSuccess] = useState(false);
     const [orderID, setOrderID] = useState(false);
     const [ErrorMessage, setErrorMessage] = useState("");
-
-    console.log(1, orderID);
-    console.log(2, success);
-    console.log(3, ErrorMessage);  
+    
     
     useEffect(() => {
 
@@ -22,21 +20,21 @@ export default function PayPal() {
 
     const initialOptions = { // Genero las opciones para enviarle al CDN
         "client-id": "AUbeWD4APG6vN0ioj5IWEyZnwNm-rP3FPDzU_eiajy62W1nIutrJTuF4ICuxqWyG2OcZ72wieAPM54FH",
-        currency: "ARS", //Establesco la moneda
+        currency: "USD", //Establesco la moneda
         intent: "capture", //Estableco el metodos este autoriza la operacion y captura los fondos
         
     };
-    let productsId=cart.map(items=>items.id)
-    console.log(productsId)
+    let productsId=cart.map(items=>items._id)
+    
   const createOrder = (data, actions) => {
        //Creo la orden de con los datos, esta puede ser general o con detalle de items
-      console.log(data)
+      
     return actions.order.create({
             purchase_units: [
        {
           description:"items",
           amount: {
-            value: getTotal(cart),
+            value: total,
           },
     
         },      

@@ -108,8 +108,8 @@ export default function CartIcon() {
           <div className="cont-buy">
             <div className="cont-btn-buy">
               <p className="cart-total-txt fontfamily">Total: ${sumWithInitial}</p>
-              <button className="addToCart-button boton4" onClick={buyCart}>Comprar</button>
-              {/* <PayPal></PayPal> */}
+              {/* <button className="addToCart-button boton4" onClick={buyCart}>Comprar</button> */}
+              <PayPal props={cart} total={sumWithInitial}></PayPal>
             </div>
             <img className="codybuy" src={codybuy}></img>
           </div>
