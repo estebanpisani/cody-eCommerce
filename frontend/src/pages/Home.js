@@ -10,6 +10,7 @@ const Home = () => {
       <Hero />
       <AboutUs />
       <ActivitiesHero />
+
     </div>
   )
 }
