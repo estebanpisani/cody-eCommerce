@@ -50,6 +50,7 @@ const Calendar = ({ props }) => {
 
     }
     await dispatch(eventsActions.modifyEvent(props._id, data));
+    setPopUpHandler(!true)
     setReload(!reload);
   }
 

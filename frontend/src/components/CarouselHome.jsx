@@ -25,11 +25,11 @@ const CarouselHome = () => {
         modules={[EffectCards]}
         className="mySwiper"
       >
-        {futureEvents.map((item, index) =>
+        {futureEvents?.map((item, index) =>
           <SwiperSlide key={index}>
             <div
               style={{
-                backgroundImage: `url("${item.images}")`,
+                backgroundImage: `url("${item?.images}")`,
                 backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat"
               }} className="imgCubo "
             > <h4 className="title-cube">{item.name}</h4> </div>

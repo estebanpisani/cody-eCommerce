@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import eventsActions from "../redux/actions/eventsActions";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { Link as LinkRouter } from 'react-router-dom'
 
 const style = {
   position: "absolute",
@@ -55,12 +54,6 @@ export default function ModalEvent({ everyEvent }) {
     const res = await dispatch(eventsActions.likeDislike(everyEvent._id));
 
 
-  }
-
-  async function bookingEvent() {
-    const res = await dispatch(eventsActions.bookingYesNo(everyEvent._id));
-    setChangeReload();
-    console.log(everyEvent.attendance);
   }
 
   //   useEffect( () => {
@@ -113,12 +106,49 @@ export default function ModalEvent({ everyEvent }) {
                         <h2 className="mb-3 xl:mb-0 xl:mr-4 text-2xl text-gray-800 dark:text-gray-100 font-medium tracking-normal">
                           {everyEvent.authors}
                         </h2>
+
+                        {user ? (
+                          <div>
+                            {everyEvent.likes?.includes(user._id) ? (
+                              <>
+                                <button
+                                  className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
+                                  onClick={likesOrDislikes}
+                                >
+                                  DISLIKE
+                                </button>
+                              </>
+                            ) : (
+                              <>
+                                <button
+                                  className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
+                                  onClick={likesOrDislikes}
+                                >
+                                  LIKE
+                                </button>
+                              </>
+                            )}
+                          </div>
+                        ) : (
+                          <>
+                            <button className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full">
+                              LIKE
+                            </button>
+                          </>
+                        )}
+
+                        {/* <button
+                          className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
+                          onClick={likesOrDislikes}
+                        >
+                          LIKE
+                        </button> */}
                       </div>
                       <p className="text-center xl:text-left mt-2 text-sm tracking-normal text-gray-600 dark:text-gray-400 leading-5">
                         {everyEvent.description}
                       </p>
                     </div>
-                    <div className="xl:px-10 w-full py-5 flex items-start justify-center xl:w-1/3">
+                    <div className="xl:px-10 xl:border-l xl:border-r w-full py-5 flex items-start justify-center xl:w-1/3">
                       <div className="mr-6 xl:mr-10">
                         <h2 className="text-gray-600 dark:text-gray-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">
                           {" "}
@@ -138,69 +168,28 @@ export default function ModalEvent({ everyEvent }) {
                       </div>
                       <div>
                         <h2 className="text-gray-600 dark:text-gray-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">
-                          {everyEvent.limit - everyEvent.attendance.length}
+                          {everyEvent.limit - everyEvent.attendance}
                         </h2>
                         <p className="text-gray-800 dark:text-gray-100 text-sm xl:text-xl leading-5">
                           Vacantes
                         </p>
                       </div>
                     </div>
-                    <div className="flex justify-center items-center xl:justify-end w-full xl:pt-5 cont-buttons">
-                      {user ? (
-                        <>
-                          <div className="justify-center items-center cont-like-buttons">
-                            {everyEvent.likes?.includes(user._id) ? (
-                              <button
-                                className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
-                                onClick={likesOrDislikes}
-                              >
-                                DISLIKE
-                              </button>
-                            ) : (
-                              <button
-                                className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
-                                onClick={likesOrDislikes}
-                              >
-                                LIKE
-                              </button>
-                            )}
-                          </div>
+                    <div className="w-full xl:w-2/3 flex-col md:flex-row justify-center xl:justify-end flex md:pl-6">
+                      <div className="flex items-center justify-center xl:justify-start mt-1 md:mt-0 mb-5 md:mb-0">
+                        <button className="rounded-full bg-gray-200 text-gray-600 dark:text-gray-400 text-sm px-6 py-2 flex justify-center items-center">
+                          RESERVAS
+                        </button>
 
-                          <div className="justify-center items-center cont-booking-buttons">
-                            {everyEvent.attendance?.includes(user._id) ? (
-                              <button
-                                onClick={bookingEvent}
-                                className="rounded-full bg-gray-200 text-gray-600 dark:text-gray-400 text-sm px-6 py-2 flex justify-center items-center"
-                              >
-                                DESHACER RESERVA
-                              </button>
-                            ) : (
-                              <button
-                                onClick={bookingEvent}
-                                className="rounded-full bg-gray-200 text-gray-600 dark:text-gray-400 text-sm px-6 py-2 flex justify-center items-center"
-                              >
-                                HACER RESERVA
-                              </button>
-                            )}
-                          </div>
-                        </>
-                      ) : (
-                        <div className="w-full xl:w-2/3 flex-col md:flex-row justify-center xl:justify-end flex md:pl-6">
-                          <LinkRouter to="/login">
-                            <button className="focus:outline-none ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm">
-                              Iniciar Sesion
-                            </button>
-                          </LinkRouter>
-                        </div>
-                      )}
+                        {/* <div className="ml-5 rounded-full bg-green-200 text-green-500 text-sm px-6 py-2 flex justify-center items-center">Reservas</div> */}
+                      </div>
+                      <button className="focus:outline-none ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm">
+                        SignIn
+                      </button>
                     </div>
                   </div>
                 </div>
-                <Comments
-                  everyEvent={everyEvent}
-                  setChangeReload={setChangeReload}
-                  user={user}
-                />
+                <Comments everyEvent={everyEvent} />
               </div>
               {/* Card code block end */}
             </div>
