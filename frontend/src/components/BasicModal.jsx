@@ -97,18 +97,20 @@ const style = {
 // ]
 // console.log(productsDetail)
 
-export default function BasicModal({data}) {
+export default function BasicModal({data, functionReload}) {
   
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useDispatch()
   const [age, setAge] = React.useState('');
-
+ const ReloadChange= functionReload
   const handleChange = (event) => {
     setAge(event.target.value);
   };
 
+
+  console.log(ReloadChange)
   return (
     <div>
         
@@ -175,8 +177,8 @@ export default function BasicModal({data}) {
            
         
              
-            <ProductItem key={data._id} data={data} addToCart={() =>
-              dispatch(addToCart(data._id))}
+            <ProductItem  key={data._id} data={data} addToCart={() =>
+              dispatch(addToCart(data._id))} functionReload={ReloadChange} handleClose={handleClose}
             class="button hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-500 hover:border-blue-500 rounded  ">Agregar al carrito</ProductItem>
           </div>
      
