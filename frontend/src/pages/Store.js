@@ -9,22 +9,23 @@ import Sidebar from '../components/Sidebar'
 
 
 function Store() {
+
+const [reload, setReload]= React.useState(false)
 const dispatch = useDispatch()
     useEffect(() => {
         dispatch(productActions.getProducts())
-    //     if(localStorage.getItem('token')!==null){
-    //       const token = localStorage.getItem("token")
-    //       dispatch(userActions.VerificateToken(token))
-    },[]
-// }
-    )
+    },[reload])
+    
+    function reloadChanger() {
+        setReload(!reload);
+    }
     
     const currentStore = useSelector(store => store.productReducer.products)
     
 
     return (
 
-        <Sidebar/>
+        <Sidebar functionReload={reloadChanger}/>
     )
 }
 

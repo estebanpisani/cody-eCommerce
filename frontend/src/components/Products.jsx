@@ -5,7 +5,7 @@ import { Input } from "@material-tailwind/react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
 import productActions from "../redux/actions/productActions";
-import BasicModal from './modal';
+import BasicModal from './BasicModal';
   
   export default function Products(props) {
     const filterStore = props.filterStore
@@ -41,7 +41,7 @@ import BasicModal from './modal';
                         {product.name}
                     </h3>
                     <p className="text-sm font-medium text-gray-900 price">${product.price}</p>
-                    <div className='detail-modal'> <BasicModal data={product}></BasicModal></div>
+                    <div className='detail-modal'> <BasicModal data={product} functionReload={props.functionReload}></BasicModal></div>
                   
                 </div>
                 </div>

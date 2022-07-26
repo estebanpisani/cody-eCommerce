@@ -23,7 +23,7 @@ const style = {
     p: 4,
   };
 
-export default function AdminProduct(){
+export default function AdminProduct({functionReload}){
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -59,10 +59,11 @@ export default function AdminProduct(){
       const res = await dispatch(productActions.addProduct(newProduct))
   
       // setInputText("")
-        setReload(!reload)
+      functionReload()
         
           if(res.data.success){
             toast.success(res.data.message)
+            handleClose()
         }else {
             toast.error(res.data.message)
         }

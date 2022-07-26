@@ -12,15 +12,17 @@ import AdminProduct from "./AdminProduct";
 
 
 
-function Sidebar() {
+function Sidebar({functionReload}) {
     const [category, setCategory] = React.useState("")
     const [reload, setReload] = React.useState(false)
     const dispatch = useDispatch()
     const user = useSelector(store => store.userReducer.user)
+    
     useEffect(()=> {
         dispatch(productActions.getProductsbyCategory(category))
         
-    },[!reload])
+    },[reload])
+
     
     
         const selectCategory =  async (event) => {
@@ -118,7 +120,7 @@ function Sidebar() {
                                     <polyline points="4 16 12 20 20 16" />
                                 </svg> */}
                                 {user?.user.role === 'admin' ?
-                                <span className="text-sm  ml-2"><AdminProduct /></span>  
+                                <span className="text-sm  ml-2"><AdminProduct functionReload={functionReload} /></span>  
                                 
                                  : 
                                  <span className="text-sm  ml-2"><CartIcon></CartIcon></span>
@@ -214,7 +216,7 @@ function Sidebar() {
             <div className="container mx-auto py-10 md:w-4/5 w-11/12 px-6">
                 {/* Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border */}
                 <div className="w-full h-full rounded border-dashed border-2 border-gray-300">
-                    <Products filterStore={currentStore} title={category}></Products>
+                    <Products filterStore={currentStore} title={category} functionReload={functionReload}></Products>
                 </div>
             </div>
         </div>

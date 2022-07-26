@@ -63,11 +63,12 @@ export default function PayPal(props) {
       cart.forEach(element => {
         let newObj = {
           id: element._id,
-          units: element.quantity
+          units: element.quantity,
+          name: element.name
         }
         sendCart.push(newObj)
       })
-      dispatch(productActions.buyCart(sendCart))
+      dispatch(productActions.buyCart(sendCart, total))
       .then(response => {if(response.data.success){
         toast.success(response.data.message)
       }else{

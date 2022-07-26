@@ -33,10 +33,10 @@ const productActions = {
         }
     },
 
-    buyCart: (currentcart) =>{
+    buyCart: (currentcart, total) =>{
         console.log(currentcart)
         return async (dispatch, getState) => {
-        const res = await axios.post('http://localhost:4000/api/products/buy', {currentcart})
+        const res = await axios.post('http://localhost:4000/api/products/buy', {currentcart, total})
         return res
         }
     },

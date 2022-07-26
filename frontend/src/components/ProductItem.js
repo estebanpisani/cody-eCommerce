@@ -15,15 +15,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
     
 
-const ProductItem = ({ data, addToCart }) => {
+const ProductItem = ({ data, addToCart, functionReload, handleClose }) => {
     let { _id, name, price, description, image, stock, variations, categories } = data;
     const dispatch = useDispatch()
     const [age, setAge] = React.useState('');
     const [reload,setReload] = useState(false) 
     const handleChange = (event) => {
-      setAge(event.target.value);
-    };
+      setAge(event.target.value);};
 
+    console.log(handleClose)
     const [inputname, setInputname] = React.useState('')
     const [inputstock, setInputstock] = React.useState('')
     const [inputprice, setInputprice] = React.useState('')
@@ -39,7 +39,7 @@ const ProductItem = ({ data, addToCart }) => {
           toast.error(response.data.message)
       }
     })
-      setReload(!reload)
+      functionReload()
       
       
   }
@@ -54,6 +54,8 @@ const ProductItem = ({ data, addToCart }) => {
     }
     console.log(modifiedProduct)
     const res = await dispatch(productActions.modifyProduct(modifiedProduct))
+    functionReload()
+    handleClose()
   }
 
     return (
