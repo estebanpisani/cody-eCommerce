@@ -29,6 +29,7 @@ function App() {
   }, [])
 
   return (
+
     <div className='page-container'>
       <Navbar />
       <div className='content-wrap'>

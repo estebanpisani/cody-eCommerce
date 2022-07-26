@@ -191,7 +191,7 @@ const userControllers = {
                             email: loginUser.email,
                             firstName: loginUser.firstName,
                             image: loginUser.image,
-                            // role: loginUser.role,
+                            role: loginUser.role,
                             from: loginUser.from
                         }
                         await loginUser.save()
@@ -244,7 +244,7 @@ const userControllers = {
             email: req.user.email,
             firstName: req.user.firstName,
             image: req.user.image,
-            // role: req.user.role,
+            role: req.user.role,
             from: "token"
         }
         if (!req.err) {

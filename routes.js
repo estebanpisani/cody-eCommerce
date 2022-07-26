@@ -5,8 +5,8 @@ const productControllers = require('./controllers/productControllers');
 const eventControllers = require('./controllers/eventControllers');
 const commentsControllers = require('./controllers/commentsControllers')
 
-const {getEvents, getEventById, addEvent, modifyEvent, deleteEvent, likeDislike, bookingYesNo} = eventControllers;
-const {addComment, modifiComment, deleteComment } = commentsControllers;
+const { getEvents, getEventById, addEvent, modifyEvent, deleteEvent, likeDislike, bookingYesNo } = eventControllers;
+const { addComment, modifiComment, deleteComment } = commentsControllers;
 const userControllers = require('./controllers/userControllers')
 const { getProducts, addProduct, getProductById, modifyProduct, deleteProduct, buyProducts } = productControllers;
 
@@ -65,7 +65,7 @@ Router.route("/events/like/:id")
 
 // BOOKING ROUTES
 Router.route("/events/attendance/:id")
-.put(passport.authenticate("jwt", {session: false}),bookingYesNo)
+    .put(passport.authenticate("jwt", { session: false }), bookingYesNo)
 
 //COMMENTS ROUTES
 Router.route('/events/comment')

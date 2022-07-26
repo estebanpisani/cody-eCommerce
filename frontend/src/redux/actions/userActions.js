@@ -30,7 +30,7 @@ const userActions = {
 
         return async (dispatch, getState) => {
 
-            const res = await axios.put('http://localhost:4000/api/auth/signup', { logedUser }) //aca tenia get y es .post
+            const res = await axios.put('http://localhost:4000/api/auth/signin', { logedUser }) //aca tenia get y es .post
             console.log(res)
             if (res.data.success) {
                 localStorage.setItem('token', res.data.response.token)

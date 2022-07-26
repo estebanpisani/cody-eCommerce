@@ -4,6 +4,7 @@ import Cody3 from '../media/cody5.png'
 import { useDispatch, useSelector } from 'react-redux'
 // import { useEffect } from 'react';
 import productActions from "../redux/actions/productActions";
+import { useEffect } from "react";
 
 import Products from "./Products";
 import CartIcon from "./CartIcon";
@@ -15,19 +16,25 @@ function Sidebar() {
     const [category, setCategory] = React.useState("")
     const [reload, setReload] = React.useState(false)
     const dispatch = useDispatch()
-
-    const selectCategory =  async (event) => {
+    const user = useSelector(store => store.userReducer.user)
+    useEffect(()=> {
+        dispatch(productActions.getProductsbyCategory(category))
+        
+    },[!reload])
+    
+    
+        const selectCategory =  async (event) => {
         setCategory(event.target.id)
-        // setCategory(event.target.value)
         event.preventDefault();
         const categoryclicked = category
         const res = await dispatch(productActions.getProductsbyCategory(categoryclicked))
         setReload(!reload)
-        console.log(category)
         }
-    
+        
+        
         const currentStore = useSelector(store => store.productReducer.filter)
-        console.log(currentStore)
+        
+        
     return (
         <div className="flex flex-no-wrap">
             {/* Sidebar starts */}
@@ -110,9 +117,12 @@ function Sidebar() {
                                     <polyline points="4 12 12 16 20 12" />
                                     <polyline points="4 16 12 20 20 16" />
                                 </svg> */}
-                                <span className="text-sm  ml-2"><CartIcon></CartIcon></span>
-                                {/* <span className="text-sm  ml-2"><AdminProduct /></span>  */}
-                                {/* DESCOMENTAR Y HACER TERNARIO DE ADMIN */}
+                                {user?.user.role === 'admin' ?
+                                <span className="text-sm  ml-2"><AdminProduct /></span>  
+                                
+                                 : 
+                                 <span className="text-sm  ml-2"><CartIcon></CartIcon></span>
+                                }
                             </div>
                         </li>
                     </ul>

@@ -1,10 +1,20 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import commentsAction from "../redux/actions/commentsActions";
 import { useDispatch } from "react-redux";
 import "../styles/Comments.css";
+import Delete from '../media/delete.svg'
+import Edit from '../media/edit.svg'
+import eventsActions from "../redux/actions/eventsActions";
 
-function CommentsIn({ comments, setChangeReload, eventId }) {
+
+function CommentsIn({ eventId, events, setChangeReload }) {
+  const [event, setEvent] = useState()
+  let oneEvent = events?.data?.response?.event
+
+  let userComment = events?.data?.response?.event?.comments
+  const [reload, setReload] = useState(false)
+
 
   const [input, setInput] = useState("");
   const [modify, setModify] = useState();
@@ -17,13 +27,13 @@ function CommentsIn({ comments, setChangeReload, eventId }) {
     };
 
     await dispatch(commentsAction.addComment(comment));
-    setChangeReload();
-    document.querySelector("#nuevoComentario").textContent = "";
+    setInput("")
+    setChangeReload()
   }
 
   async function removeComment(id) {
     await dispatch(commentsAction.deleteComment(id));
-    setChangeReload();
+    setChangeReload()
   }
 
   async function changeComment(id) {
@@ -31,58 +41,68 @@ function CommentsIn({ comments, setChangeReload, eventId }) {
       comment: modify,
     };
     await dispatch(commentsAction.modifiComment(id, data));
-    setChangeReload();
+    setChangeReload()
   }
+  console.log(event)
+
+  // useEffect(() => {
+  //   async function response() {
+  //     const res = await dispatch(eventsActions.getEventById(oneEvent?._id))
+  //     setEvent(res)
+
+  //   }
+  //   response()
+
+  //   // eslint-disable-next-line
+  // }, [reload])
+
+  // function reloadChanger() {
+  //   setReload(!reload);
+  // }
 
   return (
     <>
-      {comments?.map((comment) => (
-        <div className="div-comments">
-          <div className="bodyComment">
+      {userComment?.map((item, index) => (
+        <div className="div-comments w-full" key={index}>
+          <div className="bodyComment flex flex-wrap justify-around">
             <div className="div-user-comment">
-              <div className="div-image-comment">
-                <img src={comment?.user?.image} alt="userimg"></img>
-              
-              </div>
-              <div className="div-name-comments">
-                <h4>{comment?.user?.firstName}</h4>
+              <div className="div-image-comment flex space-x-2 items-center">
+                <img className='rounded-full h-8 w-8' src={item?.user?.image} alt="userimage"></img>
+                <span className="text-sm">{item?.user?.firstName}</span>
               </div>
             </div>
+            <div
+              className="div-text-comments my-2"
+              contentEditable
+              suppressContentEditableWarning={true}
+              onInput={(event) => setModify(event.currentTarget.textContent)}>
+              {item?.comment}
+            </div>
+            <div className="div-comment-small  ">
 
-            <div className="div-comment-small">
-              <div
-                className="div-text-comments"
-                contentEditable
-                onInput={(event) => setModify(event.currentTarget.textContent)}
-              >
-                {comment.comment}
-              </div>
               <div className="div-comments-buttons">
                 <div className="button-comments">
-                  <button
-                    className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
-                    id={comment._id}
-                    onClick={() => changeComment(comment._id)}
-                  >
-                    {" "}
-                    EDIT{" "}
+                  <button className="button mx-5">
+                    <img id={item._id} onClick={() => changeComment(item._id)} src={Edit} alt="" className='h-4 w-4' />
+                  </button>
+                  <button className="button" >
+                    <img id={item._id} onClick={() => removeComment(item._id)} src={Delete} alt="" className='h-4 w-4' />
                   </button>
                 </div>
-                <div className="button-comments">
-                  <button
-                    className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
-                    id={comment._id}
-                    onClick={() => removeComment(comment._id)}
-                  >
-                    DELETE
-                  </button>
-                </div>
+
               </div>
             </div>
           </div>
         </div>
-      ))}
-      <div className="div-comments">
+      ))
+      }
+      <div className=" mr-10 ml-10 container-text-area">
+        <textarea value={input} onInput={(event) => setInput(event.target.value)} className="text-area w-full text-xs md:text-lg h-24  border rounded-xl overflow-hidden resize-none focus:border-blue-500 ring-1 ring-transparent focus:ring-blue-500 focus:outline-none text-black p-2 transition ease-in-out duration-300" placeholder="Your comment here. . . ."></textarea>
+        <div className="flex justify-center md:justify-end ">
+          <button onClick={newComment} id={oneEvent?._id} className="font-itineraries flex justify-center focus:outline-none  ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm ">Comment</button>
+        </div>
+      </div>
+      {/* <div className="div-comments">
         <div className="div-new-comment">
           <textarea
             maxLength="140"
@@ -100,7 +120,7 @@ function CommentsIn({ comments, setChangeReload, eventId }) {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
 
     </>
   );
