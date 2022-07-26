@@ -95,7 +95,7 @@ const style = {
         
 //     }
 // ]
-// console.log(productsDetail)
+
 
 export default function BasicModal({data, functionReload}) {
   
@@ -110,7 +110,6 @@ export default function BasicModal({data, functionReload}) {
   };
 
 
-  console.log(ReloadChange)
   return (
     <div>
         

@@ -34,6 +34,17 @@
   color: #fff;
 }
 
+.button-hero{
+  background-color: #318aac;
+  color: #f9f2ed;
+}
+
+.button-hero:hover{
+  background-color: #fd981f;
+  color: #fff;
+
+}
+
 @media (max-width: 1024px) {
   .wrap-text {
     font-size: 15px;

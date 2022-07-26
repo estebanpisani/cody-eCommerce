@@ -16,7 +16,7 @@ import { EffectCards } from "swiper";
 const CarouselHome = () => {
   const allEvents = useSelector(store => store.eventsReducer.events)
   const futureEvents = allEvents.slice(0, 5)
-  console.log(futureEvents)
+
   return (
     <>
       <Swiper

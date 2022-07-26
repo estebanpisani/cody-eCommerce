@@ -39,7 +39,6 @@ const productControllers = {
     },
     addProduct: async (req, res) => {
         const { name, description, image, price, stock, date, categories, variations } = req.body
-        console.log(req.body)
         let product;
         let error = null;
         try {

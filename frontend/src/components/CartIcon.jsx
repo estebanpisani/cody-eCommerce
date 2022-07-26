@@ -57,7 +57,7 @@ export default function CartIcon() {
         sendCart.push(newObj)
       })
       const res = await dispatch(productActions.buyCart(sendCart))
-      console.log(res)
+
 
       if(res.data.success){
         toast.success(res.data.message)

@@ -8,7 +8,6 @@ function GoogleSignUp() {
 
     async function handleCallback(res) {
         const userObject = jwt_decode(res.credential)
-        console.log(userObject);
         await dispatch(userActions.signUpUsers({
             firstName: userObject.given_name,
             lastName: userObject.family_name,

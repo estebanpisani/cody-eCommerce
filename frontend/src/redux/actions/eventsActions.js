@@ -29,7 +29,6 @@ const eventsActions = {
         return async (dispatch, getState) => {
             try {
                 const res = await axios.put(`http://localhost:4000/api/events/${_id}`, data);
-                console.log(res)
                 return res
             } catch (error) {
                 console.log(error)

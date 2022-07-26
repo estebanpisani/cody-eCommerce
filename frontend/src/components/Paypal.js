@@ -56,7 +56,6 @@ export default function PayPal(props) {
         console.log('Capture result', details, JSON.stringify(details, null, 2)); //veo los datos en consola
                 var transaction = details.purchase_units[0].payments.captures[0];
                 alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details,' + 'la compra fue une xito');
-        console.log(details)
         setOrderID(transaction.id)
     })
     .then(function buyCart() {

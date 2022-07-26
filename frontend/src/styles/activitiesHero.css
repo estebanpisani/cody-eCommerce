@@ -1,3 +1,12 @@
 .container-activities {
   background-color: #F9B384;
+  margin-top: 10px;
+}
+
+.carrusel-home-bg{
+
+background: linear-gradient(to right, #F9B484, #318BAC);
+/* background: -webkit-radial-gradient(center, #F9B484, #318BAC);
+background: -moz-radial-gradient(center, #F9B484, #318BAC);
+background: radial-gradient(ellipse at center, #F9B484, #318BAC); */
 }

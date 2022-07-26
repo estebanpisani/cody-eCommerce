@@ -23,7 +23,6 @@ const ProductItem = ({ data, addToCart, functionReload, handleClose }) => {
     const handleChange = (event) => {
       setAge(event.target.value);};
 
-    console.log(handleClose)
     const [inputname, setInputname] = React.useState('')
     const [inputstock, setInputstock] = React.useState('')
     const [inputprice, setInputprice] = React.useState('')
@@ -52,7 +51,6 @@ const ProductItem = ({ data, addToCart, functionReload, handleClose }) => {
       stock: inputstock,
       id: _id
     }
-    console.log(modifiedProduct)
     const res = await dispatch(productActions.modifyProduct(modifiedProduct))
     functionReload()
     handleClose()

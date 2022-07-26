@@ -17,7 +17,6 @@ const commentsActions = {
           }
           
         );
-        console.log(res)
         dispatch({
           type: "message",
           payload: {

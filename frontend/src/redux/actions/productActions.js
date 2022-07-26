@@ -34,7 +34,6 @@ const productActions = {
     },
 
     buyCart: (currentcart, total) =>{
-        console.log(currentcart)
         return async (dispatch, getState) => {
         const res = await axios.post('http://localhost:4000/api/products/buy', {currentcart, total})
         return res
@@ -42,10 +41,9 @@ const productActions = {
     },
 
     addProduct: (newProduct) => {
-        console.log(newProduct)
         return async (dispatch, getState) => {
             const res = await axios.post("http://localhost:4000/api/products", {...newProduct})
-        console.log(res)
+
         return res
         }
     },
@@ -54,7 +52,6 @@ const productActions = {
         const id = modifiedProduct.id
         return async (dispatch,getState) => {
             const res = await axios.put(`http://localhost:4000/api/products/${id}`, {...modifiedProduct})
-            console.log(res)
             return res
         }
     },
@@ -62,7 +59,6 @@ const productActions = {
     deleteProduct: (id) => {
         return async (dispatch, getState) => {
             const res = await axios.delete(`http://localhost:4000/api/products/${id}`)
-        console.log(res)
         // dispatch({
         //     type: 'message',
         //     payload: {

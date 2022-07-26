@@ -55,7 +55,6 @@ export default function AdminProduct({functionReload}){
           categories: categories,
           variations: variations,
       }
-      console.log(newProduct)
       const res = await dispatch(productActions.addProduct(newProduct))
   
       // setInputText("")

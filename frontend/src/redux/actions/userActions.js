@@ -8,8 +8,6 @@ const userActions = {
         return async (dispatch, getState) => { //propiedades de despacho y estado
             try {
                 const res = await axios.post('http://localhost:4000/api/auth/signup', { userData })
-                console.log(res)
-
                 dispatch({
                     type: 'MESSAGE',
                     payload: {
@@ -27,16 +25,15 @@ const userActions = {
 
 
     signInUser: (logedUser) => {
-
+        console.log(logedUser)
         return async (dispatch, getState) => {
 
             const res = await axios.put('http://localhost:4000/api/auth/signin', { logedUser }) //aca tenia get y es .post
-            console.log(res)
             if (res.data.success) {
                 localStorage.setItem('token', res.data.response.token)
                 dispatch({
                     type: 'USER',
-                    payload: res.data.response.userData,
+                    payload: res.data.response,
                     view: true,
                     message: res.data.message,
                     success: res.data.success
@@ -53,7 +50,7 @@ const userActions = {
                     }
                 })
 
-            } return res
+            } console.log(res)
 
         }
     },
@@ -61,7 +58,7 @@ const userActions = {
     signOutUser: (userOut) => {
 
         return async (dispatch, getState) => {
-            const res = axios.post('', { userOut })
+            
             localStorage.removeItem('token')
             dispatch({
                 type: 'USER',

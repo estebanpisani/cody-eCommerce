@@ -43,7 +43,7 @@ function CommentsIn({ eventId, events, setChangeReload }) {
     await dispatch(commentsAction.modifiComment(id, data));
     setChangeReload()
   }
-  console.log(event)
+
 
   // useEffect(() => {
   //   async function response() {

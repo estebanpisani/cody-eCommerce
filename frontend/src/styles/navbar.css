@@ -8,15 +8,23 @@
 
 
 
-.button-login {
-  background-color: #FFA43A;
-}
+/* .button-login {
+  background-color: #FFA43A!important;
+} */
 
+.button-login:hover{
+  color: #f9f2ed!important;
+  background-color: #FFA43A!important;
+}
 
 .navbar {
   background-color: #f9f2ed;
 
 
+}
+
+.border{
+  border: none!important;
 }
 
 @media (max-width: 768px) {

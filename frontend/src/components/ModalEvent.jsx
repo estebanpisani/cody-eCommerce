@@ -35,7 +35,6 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function ModalEvent({ everyEvent }) {
-  console.log(everyEvent)
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
@@ -61,7 +60,7 @@ export default function ModalEvent({ everyEvent }) {
   //  },[id])
 
   //  const everyEvent = useSelector(store=> store.eventsReducer.eventById)
-  //  console.log(everyEvent)
+
 
 
 

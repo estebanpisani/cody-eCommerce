@@ -9,7 +9,7 @@ const ActivitiesHero = () => {
     <div className='container-activities'>
       {/* <div className="flex justify-center items-center flex-col px-4 md:px-6 xl:px-20 py-9 md:py-12 xl:py-10 "> */}
       <section className='flex '>
-        <div className='flex flex-col w-1/2 justify-center bg-orange-400'>
+        <div className='flex flex-col w-1/2 justify-center'>
           <h1 className="
           leading-5 md:leading-6 xl:leading-9
           text-gray-800 text-xl
@@ -28,6 +28,7 @@ const ActivitiesHero = () => {
           </div>
           <section className="flex justify-center mt-5">
             <button className="
+          button-hero
           px-6
           h-11
           text-gray-800 text-base
@@ -37,13 +38,13 @@ const ActivitiesHero = () => {
           border border-gray-600
           hover:bg-gray-200
         ">
-              <span> Explore </span>
+              <span> Nuestras Actividades </span>
               <img className="ml-2" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/Banner10_leftToRightArrow.svg" />
             </button>
           </section>
         </div>
 
-        <div className='flex flex-col w-1/2 justify-center p-16'>
+        <div className='carrusel-home-bg flex flex-col w-1/2 justify-center p-16'>
           <CarouselHome />
         </div>
       </section>

@@ -3,7 +3,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 
 const CartItem = ({ data, delOneFromCart, delAllFromCart }) => {
     let { id, name, price, quantity, image } = data;
-  console.log(data)
+
     return (
       <div className="cartproductitem" style={{ borderBottom: "thin solid #581c0c" }}>
         <div className="imgnamecont">
