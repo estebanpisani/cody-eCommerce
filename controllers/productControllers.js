@@ -1,4 +1,6 @@
 const Product = require('../models/product');
+const User = require('../models/user')
+const buyMail = require('../config/buyMail')
 
 const productControllers = {
     getProducts: async (req, res) => {
@@ -122,6 +124,7 @@ const productControllers = {
                     if (productDB.stock > 0 && productDB.stock >= product.units) {
                         productDB.stock = productDB.stock - product.units;
                         await productDB.save();
+                        await buyMail(email, productDB)
                     } else {
                         console.log('Error al comprar ' + productDB.name);
                     }

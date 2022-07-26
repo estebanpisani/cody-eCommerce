@@ -3,7 +3,7 @@ const { google } = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 const ck = require('ckey');
 
-const buyMail = async (email, uniqueString, firstName) => {
+const buyMail = async (email, productDB) => {
 
     const myOAuth2Client = new OAuth2(
         ck.CLIENT_ID,
@@ -35,7 +35,7 @@ const buyMail = async (email, uniqueString, firstName) => {
     let mailOptions = {
         from: `Cody Support Team <${ck.USER}>`,
         to: email,
-        subject: 'Verifica tu cuenta',
+        subject: 'Confirmación de compra',
         html: `
         <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -260,6 +260,7 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
     <p style="font-size: 14px; line-height: 140%;"><span style="font-family: 'Lobster Two', cursive; font-size: 28px; line-height: 39.2px;"><strong><span style="line-height: 39.2px; font-size: 28px;">Gracias por su compra!</span></strong></span></p>
 <p style="font-size: 14px; line-height: 140%;"> </p>
 <p style="line-height: 140%; font-size: 14px;"><span style="font-family: Lobster Two, cursive;"><span style="line-height: 19.6px; font-size: 14px;"><span style="font-size: 22px; line-height: 30.8px;">Su pedido estará llegando pronto a su hogar!</span></span></span></p>
+<ul style="line-height: 140%; font-size: 14px;"><span style="font-family: Lobster Two, cursive;"><span style="line-height: 19.6px; font-size: 14px;"><span style="font-size: 22px; line-height: 30.8px;">${productDB}</span></span></span></ul>
   </div>
 
       </td>
