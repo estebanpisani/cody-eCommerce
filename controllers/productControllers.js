@@ -1,5 +1,4 @@
 const Product = require('../models/product');
-const User = require('../models/user')
 const buyMail = require('../config/buyMail')
 
 const productControllers = {
@@ -113,11 +112,12 @@ const productControllers = {
     buyProducts: async (req, res) => {
         // Desde front debería llegar un array de objetos que tengan id de producto y cantidad
         const productsReq = req.body.currentcart;
+        const email = req.user.email
         // if (req.user) {
         //Si el usuario está logeado, recibo sus datos desde passport:
         let productDB;
         let error = null;
-
+        // let productlist = []
         productsReq.forEach(async (product, i) => {
             try {
                 productDB = await Product.findOne({ _id: product.id });
@@ -125,7 +125,7 @@ const productControllers = {
                     if (productDB.stock > 0 && productDB.stock >= product.units) {
                         productDB.stock = productDB.stock - product.units;
                         await productDB.save();
-                        await buyMail(email, productDB)
+                        // productlist.push(productDB)
                     } else {
                         console.log('Error al comprar ' + productDB.name);
                     }
@@ -135,7 +135,8 @@ const productControllers = {
                 console.log(error);
             }
         });
-
+        await buyMail(email, productsReq)
+        // console.log(productlist)
         res.json(
             {
                 response: productsReq,

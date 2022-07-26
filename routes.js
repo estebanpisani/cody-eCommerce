@@ -23,7 +23,7 @@ Router.route('/products/:id')
     .delete(deleteProduct);
 
 Router.route('/products/buy')
-    .post(buyProducts);
+    .post(passport.authenticate('jwt', { session: false }), buyProducts);
 
 // Router.route("/addDeleteProduct/:id").put(passport.authenticate("jwt", {session:false}), addDeleteProduct);
 
