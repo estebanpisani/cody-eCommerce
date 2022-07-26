@@ -70,6 +70,25 @@ const userActions = {
         }
     },
 
+    modifyUser: (id , modifiedUser) => {
+        const userId = id
+        console.log(userId)
+        return async (dispatch,getState) => {
+            const res = await axios.put(`http://localhost:4000/api/auth/profile/${id}`, modifiedUser)
+            console.log(res)
+            return res
+        }
+    },
+
+    getUserById: (id) => {
+        return async (dispatch, getState) => {
+            const res = await axios.get(`http://localhost:4000/api/auth/${id}`)
+            dispatch({ type: "GET_USER_BY_ID", payload: res.data.response.user })
+            return res
+
+        }
+    },
+
     VerificateToken: (token) => {
 
         return async (dispatch, getState) => {

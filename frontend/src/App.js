@@ -14,6 +14,7 @@ import LoginAndSignUp from './components/LoginAndSignUp';
 import { ToastContainer, Zoom } from 'react-toastify';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UserProfile from '../src/components/UserProfile'
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
           <Route path="/store" element={<Store />} />
           <Route path="/eventos" element={<Events />} />
           <Route path="/login" element={<LoginAndSignUp />} />
+          <Route path="/user" element={<UserProfile />} />
 
 
         </Routes>

@@ -53,7 +53,6 @@ export default function ModalEvent({ everyEvent }) {
   async function likesOrDislikes() {
     const res = await dispatch(eventsActions.likeDislike(everyEvent._id));
 
-
   }
 
   //   useEffect( () => {

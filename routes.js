@@ -43,7 +43,7 @@ Router.route('/auth/signup')
 Router.route('/auth/signin')
     .put(signIn)
 
-Router.route('/auth/profile')
+Router.route('/auth/profile/:id')
     .get(getUserById)
     .put(modifyUser)
 
