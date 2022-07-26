@@ -33,22 +33,7 @@ function Events() {
 
     return (
         <>
-            <div className="container-events ">
-                <div className="title-events">
-                    <h2>
-                        Nuestros Eventos
-                    </h2>
-                </div>
 
-                {allEvents?.length > 0 ? (
-                    <div>
-
-                        <Gallery allEvents={allEvents} setChangeReload={reloadChanger} />
-                    </div>
-                ) : (
-                    <NoEvents />
-                )}
-            </div>
 
             {/* TABLA DE EVENTOS */}
             <div className="flex justify-center flex-wrap p-5 bg-slate-300">
