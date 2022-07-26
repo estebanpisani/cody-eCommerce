@@ -59,19 +59,15 @@ export default function UserProfile() {
            <label class="block text-gray-700 text-sm font-bold " for="username">
              Nombre
            </label>
-           <input defaultValue={user?.user?.firstName} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" />
+           <input defaultValue={user?.user?.firstName} class="shadow appearance-none border rounded w-full px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" />
          </div>
-
-         <div className='flex justify-between items-center flex-wrap'>
    
            <div>
              <label class="block text-gray-700 text-sm font-bold " for="username">
                Correo Electronico
              </label>
-             <input defaultValue={user?.user?.email} class="shadow appearance-none border rounded w-full  px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="email" />
+             <input defaultValue={user?.user?.email} class="shadow appearance-none border rounded w-full px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="email" />
            </div>
-
-         </div>
          
          <div className='flex flex-wrap items-center justify-between'>
              <label class="block text-gray-700 text-sm font-bold " for="username">
@@ -83,7 +79,7 @@ export default function UserProfile() {
            <label class="block text-gray-700 text-sm font-bold " for="username">
              Imagen de Usuario (opcional)
            </label>
-           <input defaultValue={user?.user?.image} class="shadow appearance-none border rounded w-full  px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" />
+           <input defaultValue={user?.user?.image} class="shadow appearance-none border rounded w-full  px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="file" />
          </div>
 
         
