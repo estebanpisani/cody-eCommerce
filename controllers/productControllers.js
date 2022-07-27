@@ -13,7 +13,7 @@ const productControllers = {
 
         res.json(
             {
-                response: error ? 'Error requesting products data' : { products },
+                response: error ? 'Error al solicitar productos.' : { products },
                 success: error ? false : true,
                 error: error
             }
@@ -32,7 +32,7 @@ const productControllers = {
 
         res.json(
             {
-                response: error ? 'Error requesting product data' : { product },
+                response: error ? 'Error al solicitar información del producto.' : { product },
                 success: error ? false : true,
                 error: error
             }
@@ -42,81 +42,110 @@ const productControllers = {
         const { name, description, image, price, stock, date, categories, variations } = req.body
         let product;
         let error = null;
-        try {
-            product = await new Product({
-                name: name,
-                description: description,
-                categories: categories,
-                image: image,
-                price: price,
-                stock: stock,
-                date: date,
-                variations: variations,
-            }).save();
-        } catch (err) {
-            error = err;
-            console.log(error);
-        }
-
-        res.json(
-            {
-                message: error ? 'Error al crear producto' : 'Nuevo producto agregado',
-                success: error ? false : true,
-                error: error
+        if (req.user.role === 'admin') {
+            try {
+                product = await new Product({
+                    name: name,
+                    description: description,
+                    categories: categories,
+                    image: image,
+                    price: price,
+                    stock: stock,
+                    date: date,
+                    variations: variations,
+                }).save();
+            } catch (err) {
+                error = err;
+                console.log(error);
             }
-        )
+
+            res.json(
+                {
+                    message: error ? 'Error al crear producto' : 'Nuevo producto agregado',
+                    success: error ? false : true,
+                    error: error
+                }
+            )
+        } else {
+            res.json(
+                {
+                    message: 'No tiene permisos para realizar esta acción.',
+                    success: false,
+                    error: error
+                }
+            )
+        }
     },
     modifyProduct: async (req, res) => {
         const id = req.params.id;
-        // console.log(id);
         let productReq = req.body;
-        // console.log(productReq);
         let productDB;
-        let error = null;
-        try {
-            productDB = await Product.findOneAndUpdate({ _id: id }, productReq, { new: true });
-        } catch (err) {
-            error = err;
-            console.log(error);
-        }
 
-        res.json(
-            {
-                response: error ? 'Error updating product' : productDB,
-                success: error ? false : true,
-                error: error
+        let error = null;
+
+        if (req.user.role === 'admin') {
+            try {
+                productDB = await Product.findOneAndUpdate({ _id: id }, productReq, { new: true });
+            } catch (err) {
+                error = err;
+                console.log(error);
             }
-        )
+
+            res.json(
+                {
+                    response: error ? 'Error updating product' : productDB,
+                    success: error ? false : true,
+                    error: error
+                }
+            );
+        } else {
+            res.json(
+                {
+                    message: 'No tiene permisos para realizar esta acción.',
+                    success: false,
+                    error: error
+                }
+            );
+        }
     },
     deleteProduct: async (req, res) => {
         const id = req.params.id;
         let product;
         let error = null;
-        try {
-            product = await Product.findOneAndDelete({ _id: id });
-        } catch (err) {
-            error = err;
-            console.log(error);
-        }
 
-        res.json(
-            {
-                message: error ? 'Error al eliminar el producto' : "Producto eliminado",
-                success: error ? false : true,
-                error: error,
-
+        if (req.user.role === 'admin') {
+            try {
+                product = await Product.findOneAndDelete({ _id: id });
+            } catch (err) {
+                error = err;
+                console.log(error);
             }
-        )
+
+            res.json(
+                {
+                    message: error ? 'Error al eliminar el producto' : "Producto eliminado",
+                    success: error ? false : true,
+                    error: error,
+
+                }
+            )
+        } else {
+            res.json(
+                {
+                    message: 'No tiene permisos para realizar esta acción.',
+                    success: false,
+                    error: error
+                }
+            );
+        }
     },
     buyProducts: async (req, res) => {
-        // Desde front debería llegar un array de objetos que tengan id de producto y cantidad
         const productsReq = req.body.currentcart;
+        // Obtener dato del total!!
         const email = req.user.email
-        // if (req.user) {
-        //Si el usuario está logeado, recibo sus datos desde passport:
         let productDB;
         let error = null;
-        // let productlist = []
+
         productsReq.forEach(async (product, i) => {
             try {
                 productDB = await Product.findOne({ _id: product.id });
@@ -124,7 +153,6 @@ const productControllers = {
                     if (productDB.stock > 0 && productDB.stock >= product.units) {
                         productDB.stock = productDB.stock - product.units;
                         await productDB.save();
-                        // productlist.push(productDB)
                     } else {
                         console.log('Error al comprar ' + productDB.name);
                     }
@@ -134,17 +162,16 @@ const productControllers = {
                 console.log(error);
             }
         });
+
         await buyMail(email, productsReq)
-        // console.log(productlist)
         res.json(
             {
                 response: productsReq,
                 success: true,
-                message:'Gracias por su compra.'
+                message: 'Gracias por su compra.'
             }
         )
     }
-
 }
 
 module.exports = productControllers;

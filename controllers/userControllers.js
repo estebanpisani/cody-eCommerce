@@ -20,7 +20,7 @@ const userControllers = {
                     res.json({
                         success: false,
                         from: method,
-                        message: "Ya estas registrtado, por favor inicia sesión"
+                        message: "Esta cuenta ya está registrada. Por favor, inicie sesión."
                     })
                 } else {
                     const hashpass = bcryptjs.hashSync(password, 10)
@@ -31,7 +31,7 @@ const userControllers = {
                     res.json({
                         success: true,
                         from: method,
-                        message: "Se registro " + email + ", podes inicar sesión!"
+                        message: "Se agregó " + method + " a sus opciones de inicio de sesión."
                     })
                 }
             } else {
@@ -53,7 +53,7 @@ const userControllers = {
                     res.json({
                         success: true,
                         from: "Google",
-                        message: "Felicitaciones, tu cuenta fue creada con " + from + ", ya puedes iniciar sesión!"
+                        message: "Cuenta creada exitosamente."
                     })
                 } else {
                     await newUser.save()
@@ -61,7 +61,7 @@ const userControllers = {
                     res.json({
                         success: true,
                         from: method,
-                        message: "Te enviamos un correo para verificar tu cuenta, mira tu casilla y segui los pasos"
+                        message: "Se ha enviado un correo para verificar su cuenta."
                     })
                 }
             }
@@ -72,70 +72,7 @@ const userControllers = {
             })
         }
     },
-    //      async (req, res) => {
-    //     const { firstName, lastName, email, country, image, password, from } = req.body.userData
-    //     try {
-    //         const user = await User.findOne({ email })
-    //         const hashWord = bcryptjs.hashSync(password, 10)
-    //         const verification = false;
-    //         const role = 'user'
-    //         const uniqueString = crypto.randomBytes(15).toString('hex')
-    //         if (!user) {
-    //             const newUser = await new User({
-    //                 firstName, lastName, image, country, email, role, 
-    //                 verification: verification,
-    //                 uniqueString: uniqueString,
-    //                 password: [hashWord],
-    //                 from: [from]
-    //             })
-    //             if (from === "signUpForm") {
-    //                 await newUser.save()
-    //                 await mailSender(email, uniqueString, firstName)
-    //                 res.json({
-    //                     success: true,
-    //                     from: from,
-    //                     message: `Revisa tu correo y finaliza tu registro!`
-    //                 })
-    //             } else {
-    //                 newUser.verification = true
-    //                 await newUser.save()
-    //                 res.json({
-    //                     success: true,
-    //                     from: from,
-    //                     message: `Te registraste de ${from}! ahora inicia sesion!`
-    //                 })
-    //             }
-    //         } else {
-    //             if (user.from.indexOf(from) !== -1) {
-    //                 res.json({
-    //                     success: false,
-    //                     from: from,
-    //                     message: `${email} ya se encuentra registrado, por favor inicie sesion!`
-    //                 })
-    //             } else {
-    //                 user.password.push(hashWord)
-    //                 user.from.push(from)
-    //                 user.verification = true
-    //                 await user.save()
-    //                 res.json({
-    //                     success: true,
-    //                     from: from,
-    //                     message: `Se agregó exitosamente ${from} a sus opciones de registro!`
-    //                 })
-    //             }
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //         res.json({
-    //             success: false,
-    //             from: from,
-    //             message: error
-    //         })
-    //     }
-    // },
     signIn: async (req, res) => {
-
-
         const { email, password, from } = req.body.logedUser
         try {
             const loginUser = await User.findOne({ email })
@@ -143,8 +80,8 @@ const userControllers = {
             if (!loginUser) {
                 res.json({
                     success: false,
-                    from: 'no from',
-                    message: `Correo o contraseña incorrectos`
+                    from: 'Log In Controller',
+                    message: `La cuenta no existe. Por favor, regístrese.`
                 })
             } else {
                 let checkedWord = loginUser.password.filter(pass => bcryptjs.compareSync(password, pass))
@@ -161,7 +98,6 @@ const userControllers = {
                                 role: loginUser.role,
                                 from: loginUser.from
                             }
-                            // await loginUser.save()
                             const token = jwt.sign({ id: loginUser._id }, ck.SECRET_KEY, { expiresIn: 1000 * 60 * 60 * 24 })
 
                             res.json({
@@ -174,14 +110,14 @@ const userControllers = {
                             res.json({
                                 success: false,
                                 from: from,
-                                message: `Verifica tu usuario o contraseña!`
+                                message: `Correo o contraseña incorrectos.`
                             })
                         }
                     } else {
                         res.json({
                             success: false,
                             from: from,
-                            message: `Su cuenta está inactiva, por favor verifique su cuenta.`
+                            message: `Su cuenta está inactiva. Por favor verifique su cuenta.`
                         })
                     }
                 } else {
@@ -207,7 +143,7 @@ const userControllers = {
                         res.json({
                             success: false,
                             from: from,
-                            message: `Verifica tu usuario o contraseña!`
+                            message: `Correo o contraseña incorrectos.`
                         })
                     }
                 }
@@ -224,17 +160,15 @@ const userControllers = {
     verifyMail: async (req, res) => {
         const { string } = req.params
         const user = await User.findOne({ uniqueString: string })
-        console.log("hola");
         if (user) {
             user.verification = true
-            
             await user.save()
-            res.redirect("http://localhost:3000/login")
+            res.redirect(ck.URL_FRONT)
         }
         else {
             res.json({
                 success: false,
-                message: `El correo aun no tiene cuenta!`
+                message: `No existe ninguna cuenta con este correo.`
             })
         }
     },
@@ -256,7 +190,7 @@ const userControllers = {
         } else {
             res.json({
                 success: false,
-                message: "Inicie sesión"
+                message: "Sesión expirada. Por favor, inicie sesión."
             })
         }
     },

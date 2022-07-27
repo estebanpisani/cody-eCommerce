@@ -1,9 +1,12 @@
 require("dotenv").config()
 require("./config/database")
+const ck = require('ckey');
+
 const cors = require("cors")
 const express = require("express")
+
 const Router = require("./routes")
-const ck = require('ckey');
+const passport = require('passport');
 
 const PORT = ck.PORT
 const server = express();
@@ -12,10 +15,11 @@ const server = express();
 server.use(cors())
 server.use(express.json())
 server.use("/api", Router)
+server.use(passport.initialize())
+
 server.get('/', (req,res) => {
     res.send('SERVER INITIALIZED');
 });
-//server.use(passport.initialize())
 
 server.listen(PORT, ()=>{
     console.log("Server ready on port: " + PORT)
