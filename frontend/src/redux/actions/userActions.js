@@ -4,7 +4,6 @@ import axios from "axios";   //importamos axios porque vamos a fechear
 const userActions = {
 
     signUpUsers: (userData) => { //funcion
-
         return async (dispatch, getState) => { //propiedades de despacho y estado
             try {
                 const res = await axios.post('http://localhost:4000/api/auth/signup', { userData })
@@ -22,12 +21,8 @@ const userActions = {
             }
         }
     },
-
-
     signInUser: (logedUser) => {
-        console.log(logedUser)
         return async (dispatch, getState) => {
-
             const res = await axios.put('http://localhost:4000/api/auth/signin', { logedUser }) //aca tenia get y es .post
             if (res.data.success) {
                 localStorage.setItem('token', res.data.response.token)
@@ -38,8 +33,6 @@ const userActions = {
                     message: res.data.message,
                     success: res.data.success
                 })
-
-
             } else {
                 dispatch({
                     type: 'MESSAGE',
@@ -49,16 +42,12 @@ const userActions = {
                         success: res.data.success
                     }
                 })
-
             } console.log(res)
-
         }
     },
 
     signOutUser: (userOut) => {
-
         return async (dispatch, getState) => {
-            
             localStorage.removeItem('token')
             dispatch({
                 type: 'USER',
@@ -68,7 +57,6 @@ const userActions = {
     },
 
     VerificateToken: (token) => {
-
         return async (dispatch, getState) => {
             await axios.get('http://localhost:4000/api/auth/signInToken',
                 {
