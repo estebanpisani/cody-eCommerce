@@ -141,29 +141,33 @@ const productControllers = {
     },
     buyProducts: async (req, res) => {
         const productsReq = req.body.currentcart;
+        const total = req.body.total;
         // Obtener dato del total!!
         const email = req.user.email
         let productDB;
         let error = null;
+        // console.log('Llegó la compra!')
+        console.log(productsReq);
+        console.log(total);
 
-        productsReq.forEach(async (product, i) => {
-            try {
-                productDB = await Product.findOne({ _id: product.id });
-                if (productDB) {
-                    if (productDB.stock > 0 && productDB.stock >= product.units) {
-                        productDB.stock = productDB.stock - product.units;
-                        await productDB.save();
-                    } else {
-                        console.log('Error al comprar ' + productDB.name);
-                    }
-                }
-            } catch (err) {
-                error = err;
-                console.log(error);
-            }
-        });
+        // productsReq.forEach(async (product, i) => {
+        //     try {
+        //         productDB = await Product.findOne({ _id: product.id });
+        //         if (productDB) {
+        //             if (productDB.stock > 0 && productDB.stock >= product.units) {
+        //                 productDB.stock = productDB.stock - product.units;
+        //                 await productDB.save();
+        //             } else {
+        //                 console.log('Error al comprar ' + productDB.name);
+        //             }
+        //         }
+        //     } catch (err) {
+        //         error = err;
+        //         console.log(error);
+        //     }
+        // });
 
-        await buyMail(email, productsReq)
+        await buyMail(email, productsReq, total)
         res.json(
             {
                 response: productsReq,

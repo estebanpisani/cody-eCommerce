@@ -3,7 +3,7 @@ const { google } = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 const ck = require('ckey');
 
-const buyMail = async (email, productReq) => {
+const buyMail = async (email, productReq, total) => {
 
     const myOAuth2Client = new OAuth2(
         ck.CLIENT_ID,
