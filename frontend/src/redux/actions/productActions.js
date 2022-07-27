@@ -1,10 +1,10 @@
 import axios from 'axios';
-
+import URL_API from "../../url";
 
 const productActions = {
     getProducts: () => {
         return async (dispatch, getState) => {
-            const res = await axios.get('http://localhost:4000/api/products')
+            const res = await axios.get(`${URL_API}/api/products`)
             dispatch({ type: "GETPRODUCTS", payload: res.data.response.products })
             dispatch({ type: "GETSTOCK", payload: res.data.response.products })
         }
@@ -29,7 +29,7 @@ const productActions = {
     buyCart: (currentcart, total) => {
         const token = localStorage.getItem('token');
         return async (dispatch, getState) => {
-            const res = await axios.post('http://localhost:4000/api/products/buy', { currentcart, total },
+            const res = await axios.post(`${URL_API}/api/products/api/products/buy`, { currentcart, total },
                 {
                     headers: {
                         Authorization: 'Bearer ' + token,
@@ -41,7 +41,7 @@ const productActions = {
     addProduct: (newProduct) => {
         const token = localStorage.getItem('token');
         return async (dispatch, getState) => {
-            const res = await axios.post("http://localhost:4000/api/products", { ...newProduct },
+            const res = await axios.post(`${URL_API}/api/products`, { ...newProduct },
                 {
                     headers: {
                         Authorization: 'Bearer ' + token,
@@ -55,7 +55,7 @@ const productActions = {
         const id = modifiedProduct.id;
         const token = localStorage.getItem('token');
         return async (dispatch, getState) => {
-            const res = await axios.put(`http://localhost:4000/api/products/${id}`,
+            const res = await axios.put(`${URL_API}/api/products/${id}`,
                 { ...modifiedProduct },
                 {
                     headers: {
@@ -70,7 +70,7 @@ const productActions = {
         const token = localStorage.getItem('token');
 
         return async (dispatch, getState) => {
-            const res = await axios.delete(`http://localhost:4000/api/products/${id}`,
+            const res = await axios.delete(`${URL_API}/api/products/${id}`,
                 {
                     headers: {
                         Authorization: 'Bearer ' + token,

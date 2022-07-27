@@ -1,4 +1,5 @@
 import axios from "axios";
+import URL_API from "../../url";
 
 const commentsActions = {
   addComment: (comment) => {
@@ -7,7 +8,7 @@ const commentsActions = {
     return async (dispatch, getState) => {
       if (comment.comment !== "") {
         const res = await axios.post(
-          "http://localhost:4000/api/events/comment",
+          `${URL_API}/api/events/comment`,
           { comment },
           {
             headers: {
@@ -42,7 +43,7 @@ const commentsActions = {
     const token = localStorage.getItem("token");
     return async (dispatch, getState) => {
       const res = await axios.put(
-        `http://localhost:4000/api/events/comment/${id}`,
+        `${URL_API}/api/events/comment/${id}`,
         { data },
         {
           headers: {
@@ -66,7 +67,7 @@ const commentsActions = {
     const token = localStorage.getItem("token");
     return async (dispatch, getState) => {
       const res = await axios.post(
-        `http://localhost:4000/api/events/comment/${id}`,
+        `${URL_API}/api/events/comment/${id}`,
         {},
         {
           headers: {
