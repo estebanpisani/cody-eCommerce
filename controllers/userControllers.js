@@ -224,11 +224,12 @@ const userControllers = {
     verifyMail: async (req, res) => {
         const { string } = req.params
         const user = await User.findOne({ uniqueString: string })
-
+        console.log("hola");
         if (user) {
             user.verification = true
+            
             await user.save()
-            res.redirect("http://localhost:3000/signIn")
+            res.redirect("http://localhost:3000/login")
         }
         else {
             res.json({
