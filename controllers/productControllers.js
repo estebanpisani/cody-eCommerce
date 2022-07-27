@@ -93,7 +93,7 @@ const productControllers = {
 
             res.json(
                 {
-                    response: error ? 'Error updating product' : productDB,
+                    response: error ? `Error al modificar ${productReq.name}.` : productDB,
                     success: error ? false : true,
                     error: error
                 }
