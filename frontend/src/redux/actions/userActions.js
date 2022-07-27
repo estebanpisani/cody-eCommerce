@@ -23,7 +23,7 @@ const userActions = {
     },
     signInUser: (logedUser) => {
         return async (dispatch, getState) => {
-            const res = await axios.put(`${URL_API}/api/auth/api/auth/signin`, { logedUser })
+            const res = await axios.put(`${URL_API}/api/auth/signin`, { logedUser })
             if (res.data.success) {
                 localStorage.setItem('token', res.data.response.token)
                 dispatch({
@@ -56,7 +56,7 @@ const userActions = {
     },
     verifyToken: (token) => {
         return async (dispatch, getState) => {
-            await axios.get(`${URL_API}/api/auth/api/auth`,
+            await axios.get(`${URL_API}/api/auth/`,
                 {
                     headers: {
                         Authorization: 'Bearer ' + token,
@@ -81,7 +81,7 @@ const userActions = {
                             type: 'MESSAGE',
                             payload: {
                                 view: true,
-                                message: "Please, sign In Again",
+                                message: "Sesión expirada.",
                                 success: false
                             }
                         })
