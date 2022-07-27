@@ -40,7 +40,7 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem('token') !== null) {
       const token = localStorage.getItem('token')
-      dispatch(userActions.VerificateToken(token))
+      dispatch(userActions.verifyToken(token))
     }
     // eslint-disable-next-line 
   }, [])

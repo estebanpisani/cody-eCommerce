@@ -59,7 +59,7 @@ Router.route('/auth/signin')
 Router.route('/auth/profile')
     .get(getUserById)
     .put(passport.authenticate('jwt', { session: false }), modifyUser)
-Router.route('/auth/SignInToken')
+Router.route('/auth')
     .get(passport.authenticate('jwt', { session: false }), verifyToken);
 Router.route('/auth/verify/:string')
     .get(verifyMail);

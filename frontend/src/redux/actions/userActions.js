@@ -42,7 +42,7 @@ const userActions = {
                         success: res.data.success
                     }
                 })
-            } console.log(res)
+            }
         }
     },
 
@@ -56,9 +56,9 @@ const userActions = {
         }
     },
 
-    VerificateToken: (token) => {
+    verifyToken: (token) => {
         return async (dispatch, getState) => {
-            await axios.get('http://localhost:4000/api/auth/signInToken',
+            await axios.get('http://localhost:4000/api/auth',
                 {
                     headers: {
                         Authorization: 'Bearer ' + token,
@@ -91,7 +91,6 @@ const userActions = {
                 })
         }
     }
-
 }
 
 
