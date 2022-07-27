@@ -13,20 +13,19 @@ const commentsControllers = {
       res.json({
         success: true,
         response: { nuevoComment },
-        message: "gracias por dejarnos tu comentario",
+        message: "Gracias por dejarnos tu comentario.",
       });
     } catch (error) {
+      console.log(error)
       res.json({
         success: false,
-        message: "Algo a salido mal intentalo en unos minutos",
-        console: console.log(error),
+        message: "Algo ha salido mal intentalo en unos minutos."
       });
     }
   },
-  modifiComment: async (req, res) => {
+  modifyComment: async (req, res) => {
     const { comment } = req.body.data;
     const { id } = req.params;
-
     const user = req.user._id;
 
     try {
@@ -35,18 +34,17 @@ const commentsControllers = {
         { $set: { "comments.$.comment": comment } },
         { new: true }
       );
-      console.log(newComment);
+
       res.json({
         success: true,
         response: { newComment },
-        message: "tu comentario a sido modificado",
+        message: "Tu comentario ha sido modificado.",
       });
     } catch (error) {
       console.log(error);
       res.json({
         success: true,
-        message: "Algo a salido mal intentalo en unos minutos",
-        console: console.log(error),
+        message: "Algo ha salido mal, inténtalo en unos minutos."
       });
     }
   },
@@ -63,13 +61,13 @@ const commentsControllers = {
       res.json({
         success: true,
         response: { deleteComment },
-        message: "has eliminado el comentario",
+        message: "El comentario ha sido eliminado.",
       });
     } catch (error) {
       console.log(error);
       res.json({
         success: false,
-        message: "Algo a salido mal intentalo en unos minutos",
+        message: "Algo ha salido mal, inténtalo en unos minutos",
       });
     }
   },

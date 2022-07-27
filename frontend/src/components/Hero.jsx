@@ -1,6 +1,6 @@
 import React from 'react'
 import '../styles/hero.css'
-
+import { Link as LinkRouter } from 'react-router-dom'
 
 const Hero = () => {
 
@@ -12,7 +12,9 @@ const Hero = () => {
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center text-white font-bold leading-tight">Disfruta de nuestro amplio menú </h1>
           </div>
           <div className="flex justify-items-end items-end mb-10 sm:mb-20 pr-16">
-            <button className="button-hero hover:text-white hover:bg-transparent lg:text-xl hover:border-white border bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-indigo-700	focus:ring-white rounded text-red-500 px-4 sm:px-8 py-1 sm:py-3 text-sm">Visita nuestra tienda</button>
+            <LinkRouter className="button-hero hover:text-white hover:bg-transparent lg:text-xl hover:border-white border bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-indigo-700	focus:ring-white rounded text-red-500 px-4 sm:px-8 py-1 sm:py-3 text-sm" to='/store'>
+              Visita nuestra tienda
+            </LinkRouter>
           </div>
         </div>
       </div>

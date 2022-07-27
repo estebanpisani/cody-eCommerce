@@ -11,7 +11,7 @@ const commentsControllers = require('./controllers/commentsControllers')
 const userControllers = require('./controllers/userControllers')
 
 const { getEvents, getEventById, addEvent, modifyEvent, deleteEvent, likeDislike, bookingYesNo } = eventControllers;
-const { addComment, modifiComment, deleteComment } = commentsControllers;
+const { addComment, modifyComment, deleteComment } = commentsControllers;
 const { getProducts, addProduct, getProductById, modifyProduct, deleteProduct, buyProducts } = productControllers;
 const { signUp, signIn, verifyMail, verifyToken, getUsers, getUserById, modifyUser, deleteUser } = userControllers;
 
@@ -49,7 +49,7 @@ Router.route('/events/comment')
 
 Router.route('/events/comment/:id')
     .post(passport.authenticate('jwt', { session: false }), deleteComment)
-    .put(passport.authenticate('jwt', { session: false }), modifiComment)
+    .put(passport.authenticate('jwt', { session: false }), modifyComment)
 
 //User Routes
 Router.route('/auth/signup')

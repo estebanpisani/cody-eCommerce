@@ -1,8 +1,7 @@
 import React from "react";
 import '../styles/sidebar.css'
-import Cody3 from '../media/cody5.png'
+import cody3 from '../media/cody5.png'
 import { useDispatch, useSelector } from 'react-redux'
-// import { useEffect } from 'react';
 import productActions from "../redux/actions/productActions";
 import { useEffect } from "react";
 
@@ -12,31 +11,27 @@ import AdminProduct from "./AdminProduct";
 
 
 
-function Sidebar({functionReload}) {
+function Sidebar({ functionReload }) {
     const [category, setCategory] = React.useState("")
     const [reload, setReload] = React.useState(false)
     const dispatch = useDispatch()
     const user = useSelector(store => store.userReducer.user)
-    
-    useEffect(()=> {
-        dispatch(productActions.getProductsbyCategory(category))
-        
-    },[reload])
 
-    
-    
-        const selectCategory =  async (event) => {
+    useEffect(() => {
+        dispatch(productActions.getProductsbyCategory(category))
+        // eslint-disable-next-line 
+    }, [reload])
+
+    const selectCategory = async (event) => {
         setCategory(event.target.id)
         event.preventDefault();
         const categoryclicked = category
-        const res = await dispatch(productActions.getProductsbyCategory(categoryclicked))
+        await dispatch(productActions.getProductsbyCategory(categoryclicked))
         setReload(!reload)
-        }
-        
-        
-        const currentStore = useSelector(store => store.productReducer.filter)
-        
-        
+    }
+
+    const currentStore = useSelector(store => store.productReducer.filter)
+
     return (
         <div className="flex flex-no-wrap">
             {/* Sidebar starts */}
@@ -44,9 +39,7 @@ function Sidebar({functionReload}) {
             <div className="sidebar w-64 absolute sm:relative bg-indigo-900 shadow md:h-full flex-col justify-between hidden sm:flex">
                 <div>
                     <div className="h-16 w-full flex items-center px-8 logo-side">
-                        <img src={Cody3} width={100} height={30}>
-
-                        </img>
+                        <img alt='cody' src={cody3} width={100} height={30} />
                     </div>
                     <ul>
                         <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center py-3 px-8">
@@ -70,8 +63,8 @@ function Sidebar({functionReload}) {
                                 <span id="Desayuno" value="Desayuno" onClick={selectCategory} className="text-sm  ml-2">Desayuno/Merienda</span>
                             </div>
                         </li>
-                        <li  className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
-                            <div  className="flex items-center">
+                        <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
+                            <div className="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-compass" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" />
                                     <polyline points="8 16 10 10 16 8 14 14 8 16" />
@@ -120,17 +113,17 @@ function Sidebar({functionReload}) {
                                     <polyline points="4 16 12 20 20 16" />
                                 </svg> */}
                                 {user?.user.role === 'admin' ?
-                                <span className="text-sm  ml-2"><AdminProduct functionReload={functionReload} /></span>  
-                                
-                                 : 
-                                 <span className="text-sm  ml-2"><CartIcon></CartIcon></span>
+                                    <span className="text-sm  ml-2"><AdminProduct functionReload={functionReload} /></span>
+
+                                    :
+                                    <span className="text-sm  ml-2"><CartIcon></CartIcon></span>
                                 }
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div className="text-gray-600 mr-8 visible sm:hidden relative" onclick="dropdownHandler(this)">
+            <div className="text-gray-600 mr-8 visible sm:hidden relative">
                 <ul className="p-y w-64 border-r bg-indigo-900 absolute rounded left-0 shadow mt-8 sm:mt-16 hidden">
                     <li className="flex w-full justify-between text-gray-600 hover:text-gray-300 hover:bg-indigo-800 cursor-pointer items-center py-3 px-2">
                         <div className="flex items-center">

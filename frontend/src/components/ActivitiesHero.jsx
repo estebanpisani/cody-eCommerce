@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link as LinkRouter } from 'react-router-dom'
 import '../styles/activitiesHero.css'
 import CarouselHome from './CarouselHome'
 
@@ -27,7 +28,7 @@ const ActivitiesHero = () => {
             </p>
           </div>
           <section className="flex justify-center mt-5">
-            <button className="
+            <LinkRouter className="
           button-hero
           px-6
           h-11
@@ -37,10 +38,11 @@ const ActivitiesHero = () => {
           items-center
           border border-gray-600
           hover:bg-gray-200
-        ">
+        " to='/eventos'>
+
               <span> Nuestras Actividades </span>
-              <img className="ml-2" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/Banner10_leftToRightArrow.svg" />
-            </button>
+              <img alt="arrow-right" className="ml-2" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/Banner10_leftToRightArrow.svg" />
+            </LinkRouter>
           </section>
         </div>
 

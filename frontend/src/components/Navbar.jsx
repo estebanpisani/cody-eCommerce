@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import userActions from '../redux/actions/userActions';
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem"
 
@@ -21,17 +20,13 @@ const Navbar = () => {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
-const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
-  
-  
   const user = useSelector(store => store.userReducer.user)
-  console.log(user)
+
   return (
-
-
     <div className='navbar py-12 bg-gray-100 overflow-y-hidden'>
       <dh-component>
         <nav className="w-full nav">
@@ -59,47 +54,47 @@ const handleCloseUserMenu = () => {
 
                   </li>
                   <li className="text-gray-600 text-lg hover:text-gray-800 cursor-pointer md:ml-10 pt-10 md:pt-0">
-                    <LinkRouter to='/eventos'>Eventos</LinkRouter>
+                    <LinkRouter to='/events'>Eventos</LinkRouter>
                   </li>
 
                   <div className="border w-fit rounded-xl m-5 shadow-sm ">
-                    
-                    {user?
-                    <div className='border-avatar'>
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <Avatar  alt="imageUser" style={{ border:'none', height:'60px', width: "100%", backgroundColor:'white', borderRadius:'4rem', mx:5 }} src={user?.user.image} />  
-                    </IconButton>
-                    <Menu
-                    sx={{mt: "60px", display: 'flex', flexDirection: 'column', justifyContent: 'center', flexWrap: 'wrap' }}
-                    id="menu-appbar"
-                    anchorEl={anchorElUser}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    open={Boolean(anchorElUser)}
-                    onClick={handleCloseUserMenu}
-                    >
-                      <LinkRouter to='/'>
-                      <MenuItem className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:text-red-500 hover:bg-neutral-50 transition">Mi Perfil</MenuItem>
+
+                    {user ?
+                      <div className='border-avatar'>
+                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                          <Avatar alt="imageUser" style={{ border: 'none', height: '60px', width: "100%", backgroundColor: 'white', borderRadius: '4rem', mx: 5 }} src={user?.user.image} />
+                        </IconButton>
+                        <Menu
+                          sx={{ mt: "60px", display: 'flex', flexDirection: 'column', justifyContent: 'center', flexWrap: 'wrap' }}
+                          id="menu-appbar"
+                          anchorEl={anchorElUser}
+                          anchorOrigin={{
+                            vertical: "top",
+                            horizontal: "right",
+                          }}
+                          keepMounted
+                          transformOrigin={{
+                            vertical: "top",
+                            horizontal: "right",
+                          }}
+                          open={Boolean(anchorElUser)}
+                          onClick={handleCloseUserMenu}
+                        >
+                          <LinkRouter to='/'>
+                            <MenuItem className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:text-red-500 hover:bg-neutral-50 transition">Mi Perfil</MenuItem>
+                          </LinkRouter>
+                          <LinkRouter to='/login' onClick={() => dispatch(userActions.signOutUser())} >
+                            <MenuItem className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:text-red-500 hover:bg-neutral-50 transition">Cerrar Sesion</MenuItem>
+                          </LinkRouter>
+                        </Menu>
+                      </div>
+                      //   <LinkRouter to='/login' onClick={()=>dispatch(userActions.signOutUser())} >
+                      //   <button className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:text-red-500 hover:bg-neutral-50 transition">Cerrar Sesion</button>
+                      // </LinkRouter>
+                      :
+                      <LinkRouter to='/login'>
+                        <button className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:text-red-500 hover:bg-neutral-50 transition">Iniciar Sesion</button>
                       </LinkRouter>
-                      <LinkRouter to='/login' onClick={()=>dispatch(userActions.signOutUser())} >
-                        <MenuItem className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:text-red-500 hover:bg-neutral-50 transition">Cerrar Sesion</MenuItem>
-                      </LinkRouter>
-                    </Menu>
-                    </div>
-                    //   <LinkRouter to='/login' onClick={()=>dispatch(userActions.signOutUser())} >
-                    //   <button className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:text-red-500 hover:bg-neutral-50 transition">Cerrar Sesion</button>
-                    // </LinkRouter>
-                    :
-                    <LinkRouter to='/login'>
-                      <button className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:text-red-500 hover:bg-neutral-50 transition">Iniciar Sesion</button>
-                    </LinkRouter>
                     }
                   </div>
 

@@ -3,11 +3,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import eventsActions from "../redux/actions/eventsActions";
 import Comments from "./Comments";
-import toast, { Toaster } from 'react-hot-toast';
-import Cody from '../media/cody2.png'
-
-
-
+// import toast, { Toaster } from 'react-hot-toast';
+// import Cody from '../media/cody2.png'
 
 const Calendar = ({ props }) => {
 
@@ -16,29 +13,23 @@ const Calendar = ({ props }) => {
   const [popUpHandler, setPopUpHandler] = useState(false);
   const [reload, setReload] = useState(false)
   const dispatch = useDispatch();
-  const userLogin = localStorage.getItem('token')
   const user = useSelector((store) => store.userReducer.user);
   var options = { year: 'numeric', month: 'long', day: 'numeric' };
 
-
   async function likesOrDislikes() {
-    const res = await dispatch(eventsActions.likeDislike(props._id));
+    await dispatch(eventsActions.likeDislike(props._id));
     setReload(!reload);
   }
   async function bookingEvent() {
-    const res = await dispatch(eventsActions.bookingYesNo(props._id));
-
+    await dispatch(eventsActions.bookingYesNo(props._id));
     setReload(!reload);
-
   }
   async function deleteEvent() {
-    const res = await dispatch(eventsActions.deleteEvent(props._id));
-
+    await dispatch(eventsActions.deleteEvent(props._id));
     setReload(!reload);
   }
   const modifyEvent = async (e) => {
     e.preventDefault()
-
     const data = {
       name: e.target[0].value,
       description: e.target[7].value,
@@ -47,16 +38,14 @@ const Calendar = ({ props }) => {
       price: Number(e.target[5].value),
       limit: Number(e.target[6].value),
       date: e.target[1].value,
-
     }
     await dispatch(eventsActions.modifyEvent(props._id, data));
     setPopUpHandler(!true)
     setReload(!reload);
   }
-
   useEffect(() => {
     dispatch(eventsActions.getEvents())
-
+// eslint-disable-next-line 
   }, [reload])
 
   // const notify = () => toast.custom(<div className='w-full bg-orange-400 rounded-lg '>
@@ -203,7 +192,7 @@ const Calendar = ({ props }) => {
       </div> : null}
       {/* MODAL EDIT EVENT */}
       {popUpHandler ? <div id="popup" className="z-50 fixed w-full flex justify-center inset-0">
-        <div onclick="popuphandler(false)" className="w-full h-full z-0 absolute inset-0 backdrop-blur-sm" />
+        <div onClick="popuphandler(false)" className="w-full h-full z-0 absolute inset-0 backdrop-blur-sm" />
         <div className="mx-auto container">
           <div className="flex items-center justify-center h-full w-full">
             <div className="bg-white rounded-md shadow fixed overflow-y-auto h-3/4 w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5 ">
@@ -301,8 +290,8 @@ const Calendar = ({ props }) => {
             </div>
             <div className="pl-4">
               <p className="font-medium">{props.name}</p>
-              {props?.authors.map(author =>
-                <p className="text-xs leading-3 text-gray-600 pt-2">{author}</p>)}
+              {props?.authors.map((author, i) =>
+                <p key={i} className="text-xs leading-3 text-gray-600 pt-2">{author}</p>)}
             </div>
           </div>
         </td>
@@ -323,7 +312,7 @@ const Calendar = ({ props }) => {
             <img className="shadow-md w-8 h-8 rounded-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects(8).png" alt='Presentador' />
           </div>
         </td>
-        <td td className="px-7 2xl:px-0" >
+        <td className="px-7 2xl:px-0" >
           {
             show === 0 ? <button onClick={() => setShow(null)} className="focus:outline-none pl-7">
               <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 20 20" fill="none">
