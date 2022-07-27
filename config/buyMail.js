@@ -261,6 +261,7 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
 <p style="font-size: 14px; line-height: 140%;"> </p>
 <p style="line-height: 140%; font-size: 14px;"><span style="font-family: Lobster Two, cursive;"><span style="line-height: 19.6px; font-size: 14px;"><span style="font-size: 22px; line-height: 30.8px;">Su pedido estará llegando pronto a su hogar!</span></span></span></p>
 <ul style="line-height: 140%; font-size: 14px;"> ${productReq.map((product=> `<li><span style="font-family: Lobster Two, cursive;"><span style="line-height: 19.6px; font-size: 14px;"><span style="font-size: 22px; line-height: 30.8px;">${product.name} x${product.units}</span></span></span></li>`))}</ul>
+<p style="font-size: 14px; line-height: 140%;"><span style="font-family: 'Lobster Two', cursive; font-size: 28px; line-height: 39.2px;"><strong><span style="line-height: 39.2px; font-size: 28px;">Total: $${total}</span></strong></span></p>
   </div>
 
       </td>
