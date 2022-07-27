@@ -93,10 +93,10 @@ const Calendar = ({ props }) => {
       
 
       {/* FIN MODAL EDIT EVENT*/}
-      <tr className="h-20 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
+      <tr className="h-52 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
         <td className="pl-4 cursor-pointer">
           <div className="flex items-center">
-            <div className="w-10 h-10">
+            <div className="w-72 h-48">
               <img className="w-full h-full" src={props.images} alt='Nombre del Evento' />
             </div>
             <div className="pl-4">
@@ -163,21 +163,13 @@ const Calendar = ({ props }) => {
                   <ExpandCircleDownIcon sx={{ color: "white" }} fontSize="medium"/>
               </ExpandMore>
       </tr>
-      {/* <Collapse in={expanded} timeout="auto" unmountOnExit> */}
-      {expanded &&
-        <tr  className="h-80 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
-        <td colSpan={7} className="cursor-pointer">
-            <div className="w-full h-80 bg-red-600">
-            <div className="relative p-6  flex items-center justify-center h-full w-full">
-            {/* Card code block start */}
-            <div className="bg-white dark:bg-gray-800 shadow rounded background-modal ">
-              <div className="relative">
-                <img
-                  className="h-56 shadow rounded-t w-full object-cover object-center"
-                  src={props.images}
-                  alt="Imagen del Evento"
-                />
-                <div className="inset-0 m-auto w-24 h-24 absolute bottom-0 -mb-12 xl:ml-10 rounded border-2 shadow border-white">
+      
+      <tr>
+        <td colSpan={7} className="">
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <div className="h-80 text-sm leading-none text-gray-800 bg-white border-b border-t border-gray-100">
+            <div>
+                <div className="inset-0 m-auto w-24 h-24 bottom-0 -mb-12 xl:ml-10 rounded border-2 shadow border-white">
                   <img
                     className="w-full h-full overflow-hidden object-cover rounded"
                     src="https://image.freepik.com/free-photo/indoor-picture-cheerful-handsome-young-man-having-folded-hands-looking-directly-smiling-sincerely-wearing-casual-clothes_176532-10257.jpg"
@@ -231,9 +223,9 @@ const Calendar = ({ props }) => {
                           LIKE
                         </button> */}
                     </div>
-                    <p className="text-center xl:text-left mt-2 text-sm tracking-normal text-gray-600 dark:text-gray-400 leading-5">
+                    {/* <p className="text-center xl:text-left mt-2 text-sm tracking-normal text-gray-600 dark:text-gray-400 leading-5">
                       {props.description}
-                    </p>
+                    </p> */}
                   </div>
                   <div className="xl:px-10 xl:border-l xl:border-r w-full py-5 flex items-start justify-center xl:w-1/3">
                     <div className="mr-6 xl:mr-10">
@@ -277,13 +269,15 @@ const Calendar = ({ props }) => {
                   </div>
                 </div>
               </div>
-              <Comments props={props} />
             </div>
-            </div>
-            </div>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <Comments props={props} />
+            </Collapse>
+            </Collapse>
         </td >
-      </tr> }
-      {/* </Collapse> */}
+        
+      </tr> 
+      
     </>
 
 
