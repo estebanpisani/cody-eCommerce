@@ -21,10 +21,10 @@ export default function Comments({ props }) {
   async function getEvent() {
     const res = await dispatch(eventsActions.getEventById(props._id));
     setEvent(res)
-
   }
   useEffect(() => {
     getEvent()
+    // eslint-disable-next-line
   }, [reload])
 
 

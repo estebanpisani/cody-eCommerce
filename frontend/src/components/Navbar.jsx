@@ -80,7 +80,7 @@ const Navbar = () => {
                           open={Boolean(anchorElUser)}
                           onClick={handleCloseUserMenu}
                         >
-                          <LinkRouter to='/'>
+                          <LinkRouter to='/profile'>
                             <MenuItem className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:text-red-500 hover:bg-neutral-50 transition">Mi Perfil</MenuItem>
                           </LinkRouter>
                           <LinkRouter to='/login' onClick={() => dispatch(userActions.signOutUser())} >

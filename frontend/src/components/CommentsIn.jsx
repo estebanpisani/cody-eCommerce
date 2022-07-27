@@ -1,20 +1,16 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import commentsAction from "../redux/actions/commentsActions";
 import { useDispatch } from "react-redux";
 import "../styles/Comments.css";
 import Delete from '../media/delete.svg'
 import Edit from '../media/edit.svg'
-import eventsActions from "../redux/actions/eventsActions";
+// import eventsActions from "../redux/actions/eventsActions";
 
 
 function CommentsIn({ eventId, events, setChangeReload }) {
-  const [event, setEvent] = useState()
   let oneEvent = events?.data?.response?.event
-
   let userComment = events?.data?.response?.event?.comments
-  const [reload, setReload] = useState(false)
-
 
   const [input, setInput] = useState("");
   const [modify, setModify] = useState();

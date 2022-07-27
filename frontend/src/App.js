@@ -74,7 +74,7 @@ function App() {
           <Route path="/events" element={<Events />} />
           {!user && <Route path="/login" element={<LoginAndSignUp />} />}
           <Route path='/*' element={<Home />} />
-          <Route path="/user" element={<UserProfile />} />
+          <Route path="/profile" element={<UserProfile />} />
         </Routes>
       </div>
       <Footer />

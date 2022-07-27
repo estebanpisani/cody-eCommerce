@@ -25,99 +25,93 @@ const style = {
 };
 
 export default function CartIcon() {
-    const state = useSelector(state => state)
-    const dispatch = useDispatch();
-    const { cart } = state.shopping
-    const sendCart = []
+  const state = useSelector(state => state)
+  const dispatch = useDispatch();
+  const { cart } = state.shopping
+  const sendCart = []
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-    const  arrayPrice = cart.map((item)=>(item.price*item.quantity ))
-    
-    const initialValue = 0;
-    const sumWithInitial = arrayPrice.reduce(
+  const arrayPrice = cart.map((item) => (item.price * item.quantity))
+
+  const initialValue = 0;
+  const sumWithInitial = arrayPrice.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
     initialValue
-);
+  );
 
-    const arrayQuantity = cart.map((item)=>(item.quantity))
-    const sumQuantity = arrayQuantity.reduce(
-      (previousValue, currentValue) => previousValue + currentValue,
-      initialValue
-    );
+  const arrayQuantity = cart.map((item) => (item.quantity))
+  const sumQuantity = arrayQuantity.reduce(
+    (previousValue, currentValue) => previousValue + currentValue,
+    initialValue
+  );
 
-    async function buyCart() {
-      cart.forEach(element => {
-        let newObj = {
-          id: element._id,
-          units: element.quantity
-        }
-        sendCart.push(newObj)
-      })
-      const res = await dispatch(productActions.buyCart(sendCart))
+  async function buyCart() {
+    cart.forEach(element => {
+      let newObj = {
+        id: element._id,
+        units: element.quantity
+      }
+      sendCart.push(newObj)
+    })
+    const res = await dispatch(productActions.buyCart(sendCart))
 
 
-      if(res.data.success){
-        toast.success(res.data.message)
-    }else {
-        toast.error(res.data.message)
+    if (res.data.success) {
+      toast.success(res.data.message)
+    } else {
+      toast.error(res.data.message)
     }
   }
+  return (
+    <div>
+      <Button className="btn-cart-icon" onClick={handleOpen}><ShoppingCartOutlinedIcon className="cart-icon" />
+        {sumQuantity > 0 ?
+          <p className="cart-quantity ">{sumQuantity}</p>
+          :
+          <p></p>
+        }
 
-
-
-
-    return (
-        <div>
-            <Button className="btn-cart-icon" onClick={handleOpen}><ShoppingCartOutlinedIcon className="cart-icon"/> 
-            {sumQuantity>0?
-            <p className="cart-quantity ">{sumQuantity}</p>
-            :
-            <p></p>
-}
-            
-
-            
-            </Button>
-            <Modal
+      </Button>
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        >
+      >
         <Box className="ModalCart" sx={style}>
-        <article className="box BoxCart">
-                <button className="btn-clear" onClick={() => dispatch(clearCart())}><RemoveShoppingCartIcon/> Limpiar Carrito</button>
-                {cart.length > 0 ?
-                <div className="scrollProducts">
-                  <div>
-                {cart.map((item, index) => (
-                    <CartItem key={index} data={item}
-                        delOneFromCart={() => dispatch(delFromCart(item._id))}
-                        delAllFromCart={() => dispatch(delFromCart(item._id, true))} />
-                ))}
-                  </div>
-                </div>
-                :
+          <article className="box BoxCart">
+            <button className="btn-clear" onClick={() => dispatch(clearCart())}><RemoveShoppingCartIcon /> Limpiar Carrito</button>
+            {cart.length > 0 ?
+              <div className="scrollProducts">
                 <div>
-                  <p>No hay productos agregados</p>
+                  {cart.map((item, index) => (
+                    <CartItem key={index} data={item}
+                      delOneFromCart={() => dispatch(delFromCart(item._id))}
+                      delAllFromCart={() => dispatch(delFromCart(item._id, true))} />
+                  ))}
                 </div>
-                }
-          <div className="cont-buy">
-            <div className="cont-btn-buy">
-              <p className="cart-total-txt fontfamily">Total: ${sumWithInitial}</p>
-              {/* <button className="addToCart-button boton4" onClick={buyCart}>Comprar</button> */}
-              <PayPal props={cart} total={sumWithInitial}></PayPal>
+              </div>
+              :
+              <div>
+                <p>No hay productos agregados</p>
+              </div>
+            }
+            <div className="cont-buy">
+              <div className="cont-btn-buy">
+                <p className="cart-total-txt fontfamily">Total: ${sumWithInitial}</p>
+                {/* <button className="addToCart-button boton4" onClick={buyCart}>Comprar</button> */}
+                <PayPal props={cart} total={sumWithInitial}></PayPal>
+              </div>
+              <img className="codybuy" src={codybuy}></img>
             </div>
-            <img className="codybuy" src={codybuy}></img>
-          </div>
-            </article>
+          </article>
         </Box>
       </Modal>
-          
-        </div>
 
-    )
+    </div>
+
+  )
 }
