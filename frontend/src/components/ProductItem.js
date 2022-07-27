@@ -16,7 +16,7 @@ const ProductItem = ({ data, addToCart, functionReload, handleClose }) => {
   let { _id, name, price, description, image, stock, variations } = data;
   const dispatch = useDispatch()
 
-  const [opcion, setOpcion] = useState(variations[0]);
+  const [opcion, setOpcion] = useState(10);
   const [inputname, setInputname] = useState(name)
   const [inputstock, setInputstock] = useState(stock)
   const [inputprice, setInputprice] = useState(price)
@@ -113,8 +113,10 @@ const ProductItem = ({ data, addToCart, functionReload, handleClose }) => {
             <button className=" button-admin" onClick={deleteProduct}>Eliminarlo<DeleteIcon /></button>
           </div>
         </div>
-        :
+        : user?.user.role==='user' ?
         <button className="addToCart-button boton3" onClick={() => addToCart(_id)}>Agregar</button>
+        :
+        <p className="text-sm fontfamily MoreName">Inicia sesión para agregar este producto a tu pedido</p>
       }
       {/* {stock > 0 ?
         
