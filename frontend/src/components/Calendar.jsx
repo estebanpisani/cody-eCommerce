@@ -3,8 +3,24 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import eventsActions from "../redux/actions/eventsActions";
 import Comments from "./Comments";
+import IconButton from "@mui/material/IconButton";
+import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
+import { styled } from '@mui/material/styles';
+import { Collapse } from '@mui/material';
+import { Box } from "@mui/material";
 // import toast, { Toaster } from 'react-hot-toast';
 // import Cody from '../media/cody2.png'
+
+const ExpandMore = styled((props) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+  duration: theme.transitions.duration.shortest,
+  }),
+}));
 
 const Calendar = ({ props }) => {
 
@@ -12,9 +28,14 @@ const Calendar = ({ props }) => {
   const [showModal, setShowModal] = useState(false);
   const [popUpHandler, setPopUpHandler] = useState(false);
   const [reload, setReload] = useState(false)
+  const [expanded, setExpanded] = React.useState(false);
   const dispatch = useDispatch();
   const user = useSelector((store) => store.userReducer.user);
-  var options = { year: 'numeric', month: 'long', day: 'numeric' };
+  var options = { year: 'numeric', month: 'long', day: 'numeric' };  
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+};
 
   async function likesOrDislikes() {
     await dispatch(eventsActions.likeDislike(props._id));
@@ -68,11 +89,86 @@ const Calendar = ({ props }) => {
         <button onClick={notify}>Make me a toast</button>
         <Toaster />
       </div> */}
-      {showModal ? <div className="z-50 fixed w-full flex justify-center inset-0">
-        <div className="w-full h-full z-0 absolute inset-0 backdrop-blur-sm" />
-        <div className='mx-auto container'>
-          {/*BODY MODAL*/}
-          <div className="relative p-6  flex items-center justify-center h-full w-full">
+      
+      
+
+      {/* FIN MODAL EDIT EVENT*/}
+      <tr className="h-20 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
+        <td className="pl-4 cursor-pointer">
+          <div className="flex items-center">
+            <div className="w-10 h-10">
+              <img className="w-full h-full" src={props.images} alt='Nombre del Evento' />
+            </div>
+            <div className="pl-4">
+              <p className="font-medium">{props.name}</p>
+              {props?.authors.map((author, i) =>
+                <p key={i} className="text-xs leading-3 text-gray-600 pt-2">{author}</p>)}
+            </div>
+          </div>
+        </td>
+        <td className="pl-12">
+          <p className="font-medium">Límite {props.limit}</p>
+          <p className="text-xs leading-3 text-gray-600 mt-2">{props?.attendance.length} asistentes confirmados</p>
+        </td>
+        <td className="pl-20">
+          <p className="font-medium">${props.price}</p>
+          <p className="text-xs leading-3 text-gray-600 mt-2"></p>
+        </td>
+        <td className="pl-20" >
+          <p className="font-medium">{new Date(props.date).toLocaleDateString("es-ES", options)}</p>
+          <p className="text-xs leading-3 text-gray-600 mt-2">34 days</p>
+        </td>
+        <td className="pl-16">
+          <div className="flex items-center">
+            <img className="shadow-md w-8 h-8 rounded-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects(8).png" alt='Presentador' />
+          </div>
+        </td>
+        <td className="px-7 2xl:px-0" >
+          {
+            show === 0 ? <button onClick={() => setShow(null)} className="focus:outline-none pl-7">
+              <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 20 20" fill="none">
+                <path d="M4.16667 10.8334C4.62691 10.8334 5 10.4603 5 10.0001C5 9.53984 4.62691 9.16675 4.16667 9.16675C3.70643 9.16675 3.33334 9.53984 3.33334 10.0001C3.33334 10.4603 3.70643 10.8334 4.16667 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10 10.8334C10.4602 10.8334 10.8333 10.4603 10.8333 10.0001C10.8333 9.53984 10.4602 9.16675 10 9.16675C9.53976 9.16675 9.16666 9.53984 9.16666 10.0001C9.16666 10.4603 9.53976 10.8334 10 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M15.8333 10.8334C16.2936 10.8334 16.6667 10.4603 16.6667 10.0001C16.6667 9.53984 16.2936 9.16675 15.8333 9.16675C15.3731 9.16675 15 9.53984 15 10.0001C15 10.4603 15.3731 10.8334 15.8333 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button> : <button onClick={() => setShow(0)} className="focus:outline-none pl-7">
+              <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 20 20" fill="none">
+                <path d="M4.16667 10.8334C4.62691 10.8334 5 10.4603 5 10.0001C5 9.53984 4.62691 9.16675 4.16667 9.16675C3.70643 9.16675 3.33334 9.53984 3.33334 10.0001C3.33334 10.4603 3.70643 10.8334 4.16667 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10 10.8334C10.4602 10.8334 10.8333 10.4603 10.8333 10.0001C10.8333 9.53984 10.4602 9.16675 10 9.16675C9.53976 9.16675 9.16666 9.53984 9.16666 10.0001C9.16666 10.4603 9.53976 10.8334 10 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M15.8333 10.8334C16.2936 10.8334 16.6667 10.4603 16.6667 10.0001C16.6667 9.53984 16.2936 9.16675 15.8333 9.16675C15.3731 9.16675 15 9.53984 15 10.0001C15 10.4603 15.3731 10.8334 15.8333 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          }
+          {/* {
+            show === 0 &&
+            <div className="dropdown-content bg-white shadow w-24 absolute z-30 right-0 mr-6 " >
+              <div className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white" onClick={() => setShowModal(true)}>
+                <p >Ver Detalles</p>
+              </div>
+              <div className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white" onClick={() => setPopUpHandler(true)}>
+                <p>Editar</p>
+              </div>
+              <div onClick={deleteEvent} className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
+                <p>Eliminar</p>
+              </div>
+            </div>
+          } */}
+        </td >
+              <ExpandMore
+                  expand={expanded}
+                  onClick={handleExpandClick}
+                  aria-expanded={expanded}
+                  aria-label="show more"
+                  >
+                  <ExpandCircleDownIcon sx={{ color: "white" }} fontSize="medium"/>
+              </ExpandMore>
+      </tr>
+      {/* <Collapse in={expanded} timeout="auto" unmountOnExit> */}
+      {expanded &&
+        <tr  className="h-80 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
+        <td colSpan={7} className="cursor-pointer">
+            <div className="w-full h-80 bg-red-600">
+            <div className="relative p-6  flex items-center justify-center h-full w-full">
             {/* Card code block start */}
             <div className="bg-white dark:bg-gray-800 shadow rounded background-modal ">
               <div className="relative">
@@ -183,168 +279,11 @@ const Calendar = ({ props }) => {
               </div>
               <Comments props={props} />
             </div>
-            {/* Card code block end */}
-          </div>
-          {/*footer*/}
-
-        </div>
-
-      </div> : null}
-      {/* MODAL EDIT EVENT */}
-      {popUpHandler ? <div id="popup" className="z-50 fixed w-full flex justify-center inset-0">
-        <div onClick="popuphandler(false)" className="w-full h-full z-0 absolute inset-0 backdrop-blur-sm" />
-        <div className="mx-auto container">
-          <div className="flex items-center justify-center h-full w-full">
-            <div className="bg-white rounded-md shadow fixed overflow-y-auto h-3/4 w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5 ">
-              <div className="bg-gray-100 rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-between">
-                <p className="text-base font-semibold">Modificar Evento</p>
-                <button onClick={() => setPopUpHandler(!true)} className="focus:outline-none">
-                  <svg width={28} height={28} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 7L7 21" stroke="#A1A1AA" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M7 7L21 21" stroke="#A1A1AA" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-              </div>
-              <div className="px-4 md:px-10   md:pb-4 pb-7 ">
-
-                <form onSubmit={modifyEvent} className="mt-5">
-                  <div >
-                    <label class="block text-gray-700 text-sm font-bold " for="username">
-                      Nombre del Evento
-                    </label>
-                    <input defaultValue={props.name} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
-                  </div>
-
-
-                  <div className='flex justify-between items-center flex-wrap'>
-                    <div>
-                      <label class="block text-gray-700 text-sm font-bold " for="username">
-                        Fecha del Evento
-                      </label>
-                      <input defaultValue={new Date(props.date).toUTCString()} class="shadow appearance-none border rounded w-full  px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="date" />
-                    </div>
-                    <div>
-                      <label class="block text-gray-700 text-sm font-bold " for="username">
-                        Presentador
-                      </label>
-                      <input defaultValue={props.authors} class="shadow appearance-none border rounded w-full  px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
-                    </div>
-
-                  </div>
-                  {/* <div >
-                    <label class="block text-gray-700 text-sm font-bold " for="username">
-                      Presentador
-                    </label>
-                    <input defaultValue={props.authors} class="shadow appearance-none border rounded w-full  px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
-                  </div> */}
-                  <div >
-                    <label class="block text-gray-700 text-sm font-bold " for="username">
-                      Imagen del presentador (opcional)
-                    </label>
-                    <input defaultValue={""} class="shadow appearance-none border rounded w-full  px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Pega la url de la imagen" />
-                  </div>
-                  <div >
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                      Imagen del Evento
-                    </label>
-                    <input defaultValue={props.images} class="shadow appearance-none border rounded w-full  px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
-                  </div>
-                  <div className='flex flex-wrap items-center justify-between'>
-                    <label class="block text-gray-700 text-sm font-bold mb-2 " for="username">
-                      Precio del evento
-                    </label>
-                    <input defaultValue={Number(props.price)} type='number' class="px-2 shadow appearance-none border rounded mr-2 w-16 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" placeholder="precio" />
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                      Capacidad del evento
-                    </label>
-                    <input defaultValue={props.limit} class="mr-2 w-16 shadow appearance-none border rounded   px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type='number' placeholder="capacidad del evento" />
-                  </div>
-
-                  <div className="mt-3">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                      Descripción
-                    </label>
-                    <textarea defaultValue={props.description} className="py-3 pl-3 overflow-y-auto h-24 border rounded border-gray-200 w-full resize-none focus:outline-none" />
-                  </div>
-                  <div className="flex flex-wrap items-center justify-between mt-4">
-
-                    <button type='submit' className="px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Confirmar Edición</button>
-                    <button onClick={() => setPopUpHandler(!true)} className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white">
-                      Cancel
-                    </button>
-                  </div>
-                </form>
-
-              </div>
             </div>
-          </div>
-        </div>
-      </div> : ""}
-
-      {/* FIN MODAL EDIT EVENT*/}
-      <tr className=" h-20 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
-        <td className="pl-4 cursor-pointer">
-          <div className="flex items-center">
-            <div className="w-10 h-10">
-              <img className="w-full h-full" src={props.images} alt='Nombre del Evento' />
             </div>
-            <div className="pl-4">
-              <p className="font-medium">{props.name}</p>
-              {props?.authors.map((author, i) =>
-                <p key={i} className="text-xs leading-3 text-gray-600 pt-2">{author}</p>)}
-            </div>
-          </div>
-        </td>
-        <td className="pl-12">
-          <p className="font-medium">Límite {props.limit}</p>
-          <p className="text-xs leading-3 text-gray-600 mt-2">{props?.attendance.length} asistentes confirmados</p>
-        </td>
-        <td className="pl-20">
-          <p className="font-medium">${props.price}</p>
-          <p className="text-xs leading-3 text-gray-600 mt-2"></p>
-        </td>
-        <td className="pl-20" >
-          <p className="font-medium">{new Date(props.date).toLocaleDateString("es-ES", options)}</p>
-          <p className="text-xs leading-3 text-gray-600 mt-2">34 days</p>
-        </td>
-        <td className="pl-16">
-          <div className="flex items-center">
-            <img className="shadow-md w-8 h-8 rounded-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects(8).png" alt='Presentador' />
-          </div>
-        </td>
-        <td className="px-7 2xl:px-0" >
-          {
-            show === 0 ? <button onClick={() => setShow(null)} className="focus:outline-none pl-7">
-              <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 20 20" fill="none">
-                <path d="M4.16667 10.8334C4.62691 10.8334 5 10.4603 5 10.0001C5 9.53984 4.62691 9.16675 4.16667 9.16675C3.70643 9.16675 3.33334 9.53984 3.33334 10.0001C3.33334 10.4603 3.70643 10.8334 4.16667 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M10 10.8334C10.4602 10.8334 10.8333 10.4603 10.8333 10.0001C10.8333 9.53984 10.4602 9.16675 10 9.16675C9.53976 9.16675 9.16666 9.53984 9.16666 10.0001C9.16666 10.4603 9.53976 10.8334 10 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M15.8333 10.8334C16.2936 10.8334 16.6667 10.4603 16.6667 10.0001C16.6667 9.53984 16.2936 9.16675 15.8333 9.16675C15.3731 9.16675 15 9.53984 15 10.0001C15 10.4603 15.3731 10.8334 15.8333 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button> : <button onClick={() => setShow(0)} className="focus:outline-none pl-7">
-              <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 20 20" fill="none">
-                <path d="M4.16667 10.8334C4.62691 10.8334 5 10.4603 5 10.0001C5 9.53984 4.62691 9.16675 4.16667 9.16675C3.70643 9.16675 3.33334 9.53984 3.33334 10.0001C3.33334 10.4603 3.70643 10.8334 4.16667 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M10 10.8334C10.4602 10.8334 10.8333 10.4603 10.8333 10.0001C10.8333 9.53984 10.4602 9.16675 10 9.16675C9.53976 9.16675 9.16666 9.53984 9.16666 10.0001C9.16666 10.4603 9.53976 10.8334 10 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M15.8333 10.8334C16.2936 10.8334 16.6667 10.4603 16.6667 10.0001C16.6667 9.53984 16.2936 9.16675 15.8333 9.16675C15.3731 9.16675 15 9.53984 15 10.0001C15 10.4603 15.3731 10.8334 15.8333 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-          }
-          {
-            show === 0 &&
-            <div className="dropdown-content bg-white shadow w-24 absolute z-30 right-0 mr-6 " >
-              <div className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white" onClick={() => setShowModal(true)}>
-                <p >Ver Detalles</p>
-              </div>
-              <div className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white" onClick={() => setPopUpHandler(true)}>
-                <p>Editar</p>
-              </div>
-              <div onClick={deleteEvent} className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                <p>Eliminar</p>
-              </div>
-            </div>
-          }
         </td >
-      </tr>
-
+      </tr> }
+      {/* </Collapse> */}
     </>
 
 
