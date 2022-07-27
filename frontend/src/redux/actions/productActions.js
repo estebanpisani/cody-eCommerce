@@ -27,8 +27,14 @@ const productActions = {
         }
     },
     buyCart: (currentcart, total) => {
+        const token = localStorage.getItem('token');
         return async (dispatch, getState) => {
-            const res = await axios.post('http://localhost:4000/api/products/buy', { currentcart, total })
+            const res = await axios.post('http://localhost:4000/api/products/buy', { currentcart, total },
+                {
+                    headers: {
+                        Authorization: 'Bearer ' + token,
+                    }
+                })
             return res
         }
     },

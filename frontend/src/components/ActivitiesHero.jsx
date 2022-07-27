@@ -38,7 +38,7 @@ const ActivitiesHero = () => {
           items-center
           border border-gray-600
           hover:bg-gray-200
-        " to='/eventos'>
+        " to='/events'>
 
               <span> Nuestras Actividades </span>
               <img alt="arrow-right" className="ml-2" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/Banner10_leftToRightArrow.svg" />

@@ -71,11 +71,11 @@ export default function PayPal(props) {
           .then(response => {
             if (response.data.success) {
               toast.success(response.data.message)
+              // Reload
             } else {
               toast.error(response.data.message)
             }
           }
-
           )
 
       });
