@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ScrollToTop from 'react-scroll-to-top';
 import ArrowCircleUpTwoToneIcon from '@mui/icons-material/ArrowCircleUpTwoTone';
 import { useSelector } from 'react-redux';
+import UserProfile from '../src/components/UserProfile'
 
 function ScrollToTopOnNav() {
   const { pathname } = useLocation();
@@ -73,6 +74,7 @@ function App() {
           <Route path="/events" element={<Events />} />
           {!user && <Route path="/login" element={<LoginAndSignUp />} />}
           <Route path='/*' element={<Home />} />
+          <Route path="/user" element={<UserProfile />} />
         </Routes>
       </div>
       <Footer />

@@ -45,7 +45,6 @@ const userActions = {
             }
         }
     },
-
     signOutUser: (userOut) => {
         return async (dispatch, getState) => {
             localStorage.removeItem('token')
@@ -55,7 +54,6 @@ const userActions = {
             })
         }
     },
-
     verifyToken: (token) => {
         return async (dispatch, getState) => {
             await axios.get('http://localhost:4000/api/auth',

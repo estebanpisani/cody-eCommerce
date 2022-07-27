@@ -1,5 +1,6 @@
 const initialState = {
     user: null,
+    userById:[],
     message: {
         view: false,
         message: '',
@@ -14,6 +15,11 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 user: action.payload,   
             }
+            case 'GET_USER_BY_ID':
+                return {
+                    ...state,
+                    userById:action.payload,
+                }
         case 'MESSAGE':
             return {
                 ...state,
