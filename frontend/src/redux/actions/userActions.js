@@ -1,12 +1,12 @@
-import axios from "axios";   //importamos axios porque vamos a fechear
-
+import axios from "axios";
+import URL_API from "../../url";
 
 const userActions = {
 
-    signUpUsers: (userData) => { //funcion
-        return async (dispatch, getState) => { //propiedades de despacho y estado
+    signUpUsers: (userData) => { 
+        return async (dispatch, getState) => {
             try {
-                const res = await axios.post('http://localhost:4000/api/auth/signup', { userData })
+                const res = await axios.post(`${URL_API}/api/auth/signup`, { userData })
                 dispatch({
                     type: 'MESSAGE',
                     payload: {
@@ -23,7 +23,7 @@ const userActions = {
     },
     signInUser: (logedUser) => {
         return async (dispatch, getState) => {
-            const res = await axios.put('http://localhost:4000/api/auth/signin', { logedUser }) //aca tenia get y es .post
+            const res = await axios.put(`${URL_API}/api/auth/api/auth/signin`, { logedUser })
             if (res.data.success) {
                 localStorage.setItem('token', res.data.response.token)
                 dispatch({
@@ -56,7 +56,7 @@ const userActions = {
     },
     verifyToken: (token) => {
         return async (dispatch, getState) => {
-            await axios.get('http://localhost:4000/api/auth',
+            await axios.get(`${URL_API}/api/auth/api/auth`,
                 {
                     headers: {
                         Authorization: 'Bearer ' + token,
