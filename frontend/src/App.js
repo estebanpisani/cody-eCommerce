@@ -17,6 +17,7 @@ import ScrollToTop from 'react-scroll-to-top';
 import ArrowCircleUpTwoToneIcon from '@mui/icons-material/ArrowCircleUpTwoTone';
 import { useSelector } from 'react-redux';
 import UserProfile from '../src/components/UserProfile'
+import Patita from './components/ScrollPatita';
 
 function ScrollToTopOnNav() {
   const { pathname } = useLocation();
@@ -78,7 +79,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
-      <ScrollToTop style={{ backgroundColor: "transparent", borderRadius: "50%", boxShadow: "none" }} smooth component={<ArrowCircleUpTwoToneIcon sx={{ color: "#f8b384", backgroundColor: "#581c0c", borderRadius: "50%", fontSize: "10vh" }} />} />
+      <ScrollToTop style={{ backgroundColor: "transparent", borderRadius: "50%", boxShadow: "none" }} smooth component={<Patita  />} />
     </div>
   );
 }
