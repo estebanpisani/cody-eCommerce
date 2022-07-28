@@ -10,6 +10,9 @@ import { Collapse } from '@mui/material';
 import { Box } from "@mui/material";
 import { Link as LinkRouter } from 'react-router-dom'
 import '../styles/ModalEvent.css'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import Button from '@mui/material/Button';
 // import toast, { Toaster } from 'react-hot-toast';
 // import Cody from '../media/cody2.png'
 
@@ -95,7 +98,7 @@ const Calendar = ({ props }) => {
       
 
       {/* FIN MODAL EDIT EVENT*/}
-      <tr className="h-52 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
+      <tr className="h-52 text-sm leading-none text-black-800 bg-white hover:bg-black-100 border-b border-t border-black-100">
         <td className="pl-4 cursor-pointer">
           <div className="flex items-center">
             <div className="w-72 h-48">
@@ -104,21 +107,21 @@ const Calendar = ({ props }) => {
             <div className="pl-4">
               <p className="font-medium">{props.name}</p>
               {props?.authors.map((author, i) =>
-                <p key={i} className="text-xs leading-3 text-gray-600 pt-2">{author}</p>)}
+                <p key={i} className="text-xs leading-3 text-black-600 pt-2">{author}</p>)}
             </div>
           </div>
         </td>
         <td className="pl-12">
           <p className="font-medium">Límite {props.limit}</p>
-          <p className="text-xs leading-3 text-gray-600 mt-2">{props?.attendance.length} asistentes confirmados</p>
+          <p className="text-xs leading-3 text-black-600 mt-2">{props?.attendance.length} asistentes confirmados</p>
         </td>
         <td className="pl-20">
           <p className="font-medium">${props.price}</p>
-          <p className="text-xs leading-3 text-gray-600 mt-2"></p>
+          <p className="text-xs leading-3 text-black-600 mt-2"></p>
         </td>
         <td className="pl-20" >
           <p className="font-medium">{new Date(props.date).toLocaleDateString("es-ES", options)}</p>
-          <p className="text-xs leading-3 text-gray-600 mt-2">34 days</p>
+          <p className="text-xs leading-3 text-black-600 mt-2">34 days</p>
         </td>
         <td className="pl-16">
           <div className="flex items-center">
@@ -168,104 +171,73 @@ const Calendar = ({ props }) => {
       <tr>
         <td colSpan={7}>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <div className="h-80 text-sm leading-none text-gray-800 bg-white border-b border-t border-gray-100">
-            <div>
-                <div className="inset-0 m-auto w-24 h-24 bottom-0 -mb-12 xl:ml-10 rounded border-2 shadow border-white">
-                  <img
-                    className="w-full h-full overflow-hidden object-cover rounded"
-                    src="https://image.freepik.com/free-photo/indoor-picture-cheerful-handsome-young-man-having-folded-hands-looking-directly-smiling-sincerely-wearing-casual-clothes_176532-10257.jpg"
-                    alt="Imagen del Autor del Evento"
-                  />
-                </div>
-              </div>
-              <div className="px-5 xl:px-10 pb-10">
-                <div className="flex justify-center xl:justify-end w-full pt-16 xl:pt-5"></div>
-                <div className="pt-3 xl:pt-5 flex flex-col xl:flex-row items-start xl:items-center justify-between">
-                  <div className="xl:pr-16 w-full xl:w-2/3">
-                    <div className="text-center xl:text-left mb-3 xl:mb-0 flex flex-col xl:flex-row items-center justify-between xl:justify-start">
-                      <h2 className="mb-3 xl:mb-0 xl:mr-4 text-2xl text-gray-800 dark:text-gray-100 font-medium tracking-normal">
+            <div className="h-48 text-sm leading-none text-black-800 bg-white border-b border-t justify-center item-center border-black-100">
+              <div className="px-5 xl:px-10">
+                <div className="flex justify-center xl:justify-end w-full pt-1 xl:pt-5"></div>
+                <div className=" flex flex-col xl:flex-row items-start xl:items-center justify-between">
+                  <div className="xl:pr-16 w-full xl:w-2/3 justify-start">
+                    <div className="text-center xl:text-left mb-3 xl:mb-0 flex flex-col xl:flex-row items-center justify-start xl:justify-start">
+                    <div className="inset-0  w-24 h-24 xl:ml-10 rounded border-2 shadow border-white ">
+                      <img
+                        className="w-full h-full overflow-hidden object-cover rounded"
+                        src="https://image.freepik.com/free-photo/indoor-picture-cheerful-handsome-young-man-having-folded-hands-looking-directly-smiling-sincerely-wearing-casual-clothes_176532-10257.jpg"
+                        alt="Imagen del Autor del Evento"
+                      />
+                    </div>
+                      <h2 className="mb-3 xl:mb-0 xl:mr-4 text-2xl text-black-800 dark:text-black-100 font-medium tracking-normal">
                         {props.authors}
                       </h2>
-
-                      {user ? (
-                        <div>
-                          {props.likes?.includes(user._id) ? (
-                            <>
-                              <button
-                                className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
-                                onClick={likesOrDislikes}
-                              >
-                                DISLIKE
-                              </button>
-                            </>
-                          ) : (
-                            <>
-                              <button
-                                className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
-                                onClick={likesOrDislikes}
-                              >
-                                LIKE
-                              </button>
-                            </>
-                          )}
-                        </div>
-                      ) : (
-                        <>
-                          <button className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full">
-                            LIKE
-                          </button>
-                        </>
-                      )}
-
-                      {/* <button
-                          className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
-                          onClick={likesOrDislikes}
-                        >
-                          LIKE
-                        </button> */}
                     </div>
-                    {/* <p className="text-center xl:text-left mt-2 text-sm tracking-normal text-gray-600 dark:text-gray-400 leading-5">
-                      {props.description}
-                    </p> */}
+                    
                   </div>
                   <div className="xl:px-10 xl:border-l xl:border-r w-full py-5 flex items-start justify-center xl:w-1/3">
-                    <div className="mr-6 xl:mr-10">
-                      <h2 className="text-gray-600 dark:text-gray-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">
-                        {" "}
-                        {`${props.likes?.length}`}
-                      </h2>
-                      <p className="text-gray-800 dark:text-gray-100 text-sm xl:text-xl leading-5">
-                        Likes
-                      </p>
+                    <div className="mr-6 xl:mr-10 flex flex-col">
+                      <div className="flex flex-row justify-center items-center">
+                          <h2 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">
+                            {" "}
+                            {`${props.likes?.length}`}
+                          </h2>
+                          {user? 
+                          <IconButton className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full" onClick={likesOrDislikes} aria-label="add to favorites">
+                              {props.likes?.includes(user.user?.id) ?
+                                <FavoriteIcon sx={{color:'red'}} />
+                                : 
+                                <FavoriteBorderIcon/>
+                              }
+                          </IconButton>
+                            : <FavoriteBorderIcon/> }
+                      </div>
+                        <p className="text-black-800 dark:text-black-100 text-sm xl:text-xl leading-5">
+                          Likes
+                        </p>
                     </div>
+                      
                     <div className="mr-6 xl:mr-10">
-                      <h2 className="text-gray-600 dark:text-gray-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">
+                      <h2 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">
                         {props.limit}
                       </h2>
-                      <p className="text-gray-800 dark:text-gray-100 text-sm xl:text-xl leading-5">
+                      <p className="text-black-800 dark:text-black-100 text-sm xl:text-xl leading-5">
                         Capacidad
                       </p>
                     </div>
                     <div>
-                      <h2 className="text-gray-600 dark:text-gray-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">
+                      <h2 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">
                         {props?.limit - props?.attendance?.length}
                       </h2>
-                      <p className="text-gray-800 dark:text-gray-100 text-sm xl:text-xl leading-5">
+                      <p className="text-black-800 dark:text-black-100 text-sm xl:text-xl leading-5">
                         Vacantes
                       </p>
                     </div>
                   </div>
                   <div className="w-full xl:w-2/3 flex-col md:flex-row justify-center xl:justify-end flex md:pl-6">
-                    <div className="flex items-center justify-center xl:justify-start mt-1 md:mt-0 mb-5 md:mb-0">
+                    
                       {user ? 
-                      props?.attendance?.length ? <button onClick={bookingEvent} className="rounded-full bg-gray-200 text-gray-600 dark:text-gray-400 text-sm px-6 py-2 flex justify-center items-center">
+                      props?.attendance?.length ? <Button sx={{background:"#f8b384", color:"black", marginTop:3}} variant="contained" onClick={bookingEvent} className="rounded-full bg-black-200 text-black-600 dark:text-black-400 text-sm px-6 py-2 flex justify-center items-center">
                         Dar de baja
-                      </button> : <button onClick={bookingEvent} className="rounded-full bg-gray-200 text-gray-600 dark:text-gray-400 text-sm px-6 py-2 flex justify-center items-center">
+                      </Button> : <Button sx={{background:"#f8b384", color:"black", marginTop:3}} variant="contained" onClick={bookingEvent} className="rounded-full bg-black-200 text-black-600 dark:text-black-400 text-sm px-6 py-2 flex justify-center items-center">
                         Reservar lugar
-                      </button> : <p>Inicia sesión para reservar!</p>}
-
-                      {/* <div className="ml-5 rounded-full bg-green-200 text-green-500 text-sm px-6 py-2 flex justify-center items-center">Reservas</div> */}
-                    </div>
+                      </Button> : <p>Inicia sesión para reservar!</p>}
+                    
                     {!user ?
                     <LinkRouter  to={'/login'} className="focus:outline-none ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm">
                       Iniciar sesión
@@ -273,11 +245,18 @@ const Calendar = ({ props }) => {
                   </div>
                 </div>
               </div>
+                      <div className="flex justify-center items-center pt-3">
+                        <p className="justify-center items-center text-center xl:text-left mt-2 text-base tracking-normal text-black-600 dark:text-black-400 leading-5">
+                          {props.description}
+                        </p>
+                      </div>
             </div>
+            
             <Collapse in={expanded} timeout="auto" unmountOnExit>
             <Comments props={props} />
             </Collapse>
             </Collapse>
+            
         </td >
         
       </tr> 
