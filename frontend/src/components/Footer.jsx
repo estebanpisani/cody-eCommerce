@@ -2,13 +2,18 @@ import React from 'react'
 import '../styles/footer.css'
 import Logo from '../media/cody2.png'
 import { Link as LinkRouter } from 'react-router-dom'
+import heroapp from '../media/apphero.png'
 
 export const Footer = () => {
   return (
 
-    <footer className="w-full py-5 footer-container">
-      <div className="md:px-12 lg:px-28">
-        <div className="container m-auto text-gray-600">
+    <footer className="w-full pt-5 footer-container">
+      <div className="footer-box md:px-12">
+        <div className='container-heroapp'>
+          <h5 className='pedido-text'>¡Hace tu pedido desde la <span className='app-text'>APP!</span></h5>
+          <img className='heroapp' src={heroapp} alt="" />
+        </div>
+        <div className="container-foot pb-5 m-auto text-gray-600">
           <img src={Logo} alt="logo tailus" className="w-40 m-auto" />
           <ul className="py-4 flex flex-col gap-4 items-center justify-center sm:flex-row sm:gap-8">
             <li>
@@ -27,8 +32,8 @@ export const Footer = () => {
             <li>
               <LinkRouter to='/login' className="hover:text-cyan-500">
                 Registro
-                </LinkRouter>
-                </li>
+              </LinkRouter>
+            </li>
           </ul>
           <div className="w-max m-auto flex items-center justify-between space-x-4">
             <a href="tel:+243996660436" aria-label="call">
@@ -57,6 +62,7 @@ export const Footer = () => {
             <span className="text-sm tracking-wide">Copyright © Cody <span id="year"></span> | All right reserved</span>
           </div>
         </div>
+
       </div>
     </footer>
 
