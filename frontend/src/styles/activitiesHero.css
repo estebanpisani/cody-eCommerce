@@ -1,12 +1,53 @@
 .container-activities {
-  background-color: #F9B384;
+  background-image: url('../media/Homework_Mesa\ de\ trabajo\ 1.png');
+  background-color: #f9b58485;
   margin-top: 10px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .carrusel-home-bg{
 
-background: linear-gradient(to right, #F9B484, #318BAC);
+background: linear-gradient(to right, #f9b58485, #318bacc9);
 /* background: -webkit-radial-gradient(center, #F9B484, #318BAC);
 background: -moz-radial-gradient(center, #F9B484, #318BAC);
 background: radial-gradient(ellipse at center, #F9B484, #318BAC); */
+}
+
+.hero-act-title {
+  display: block;
+  text-transform: uppercase;
+  text-shadow: 0px 2px 5px #3b2400  ;
+  font-weight: bold;
+  color: #fff;
+  background-color: #f9b584bb !important;
+  font-size: 25px;
+  padding: 5px 10px;
+  box-shadow: 1px 1px 5px black;
+}
+
+
+.hero-act-box{
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.hero-btn-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  width: 100%;
+}
+
+.hero-btn-box > .button-hero{
+  border-radius: 50px;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  box-shadow: 1px 1px 5px black;
 }

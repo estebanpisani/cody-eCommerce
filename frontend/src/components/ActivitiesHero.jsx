@@ -10,8 +10,8 @@ const ActivitiesHero = () => {
     <div className='container-activities'>
       {/* <div className="flex justify-center items-center flex-col px-4 md:px-6 xl:px-20 py-9 md:py-12 xl:py-10 "> */}
       <section className='flex '>
-        <div className='flex flex-col w-1/2 justify-center'>
-          <h1 className="
+        <div className='hero-act-box flex flex-col w-1/2 justify-center'>
+          <h1 className="hero-act-title 
           leading-5 md:leading-6 xl:leading-9
           text-gray-800 text-xl
           md:text-2xl
@@ -20,14 +20,10 @@ const ActivitiesHero = () => {
           text-center
           text-white
         ">
-            Algunas de nuestras actividades
+            Espacio Co-Working & Eventos
           </h1>
-          <div className='flex items-center justify-center flex-row-reverse'>
-            <p className="text-white text-base text-center mt-4 mx-16">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quaerat quis distinctio. Repudiandae, aliquam ab sit in corrupti officia, exercitationem, doloribus ipsam dicta cupiditate quod suscipit a? Ducimus, porro fuga?
-            </p>
-          </div>
-          <section className="flex justify-center mt-5">
+          
+          <section className="hero-btn-box flex justify-center mt-5">
             <LinkRouter className="
           button-hero
           px-6
