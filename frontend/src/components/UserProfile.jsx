@@ -31,9 +31,9 @@ export default function UserProfile() {
     <>
       <div className="mofifyUser-container">
         <div className="flex items-center justify-center">
-          <div className="bg-white rounded-md shadow h-3/4 w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5 ">
-            <div className="bg-gray-100 rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-between">
-              <p className="text-base font-semibold">Modificar Usuario</p>
+          <div className="bg-white userProfile rounded-md shadow h-3/4 w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5 ">
+            <div style={{backgroundColor:'#533704'}} className="rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-between">
+              <p style={{color:'white'}} className="text-base font-semibold">Modificar Usuario</p>
             </div>
             <div className="px-4 md:px-10   md:pb-4 pb-7 ">
               <form onSubmit={modifyUser} className="mt-5">
