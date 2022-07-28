@@ -6,6 +6,7 @@ import { Input } from "@material-tailwind/react";
 // import { useEffect } from 'react';
 // import productActions from "../redux/actions/productActions";
 import BasicModal from './BasicModal';
+import NoResults from './NoResults';
 
 export default function Products(props) {
   const filterStore = props.filterStore
@@ -25,7 +26,7 @@ export default function Products(props) {
         <Input onKeyUp={(e) => { setInput(e.target.value) }} className='searchinput' placeholder='Buscar . . .'
         ></Input>
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          {FilteredStore.map((product) => (
+        {FilteredStore?.length > 0?   (FilteredStore.map((product) => (
             <div key={product._id} className="group relative">
               <div className="card-container w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                 <div className='product-img'>
@@ -48,7 +49,7 @@ export default function Products(props) {
                 </div>
               </div>
             </div>
-          ))}
+          ))) : (<NoResults/>)}
         </div>
       </div>
     </div>

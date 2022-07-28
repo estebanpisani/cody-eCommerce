@@ -1,4 +1,11 @@
-.container-modal {
+.collapse-buttom{
+    margin-left: 7rem
+}
+
+
+
+
+/* .container-modal {
     max-height: 90vh;
     margin-top: 7rem;
     overflow-y: auto;
@@ -18,4 +25,4 @@ margin: 0.5rem;
 
 .cont-buttons {
     flex-direction: column;
-}
+} */

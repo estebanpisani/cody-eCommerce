@@ -8,6 +8,8 @@ import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import { styled } from '@mui/material/styles';
 import { Collapse } from '@mui/material';
 import { Box } from "@mui/material";
+import { Link as LinkRouter } from 'react-router-dom'
+import '../styles/ModalEvent.css'
 // import toast, { Toaster } from 'react-hot-toast';
 // import Cody from '../media/cody2.png'
 
@@ -120,11 +122,11 @@ const Calendar = ({ props }) => {
         </td>
         <td className="pl-16">
           <div className="flex items-center">
-            <img className="shadow-md w-8 h-8 rounded-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects(8).png" alt='Presentador' />
+            <img className="shadow-md w-16 h-16 rounded-full" src="https://cdn.tuk.dev/assets/templates/olympus/projects(8).png" alt='Presentador' />
           </div>
         </td>
         <td className="px-7 2xl:px-0" >
-          {
+          { user?.user?.role === "admin" ?
             show === 0 ? <button onClick={() => setShow(null)} className="focus:outline-none pl-7">
               <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} viewBox="0 0 20 20" fill="none">
                 <path d="M4.16667 10.8334C4.62691 10.8334 5 10.4603 5 10.0001C5 9.53984 4.62691 9.16675 4.16667 9.16675C3.70643 9.16675 3.33334 9.53984 3.33334 10.0001C3.33334 10.4603 3.70643 10.8334 4.16667 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
@@ -138,13 +140,10 @@ const Calendar = ({ props }) => {
                 <path d="M15.8333 10.8334C16.2936 10.8334 16.6667 10.4603 16.6667 10.0001C16.6667 9.53984 16.2936 9.16675 15.8333 9.16675C15.3731 9.16675 15 9.53984 15 10.0001C15 10.4603 15.3731 10.8334 15.8333 10.8334Z" stroke="#A1A1AA" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
-          }
-          {/* {
+          : null }
+          {
             show === 0 &&
             <div className="dropdown-content bg-white shadow w-24 absolute z-30 right-0 mr-6 " >
-              <div className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white" onClick={() => setShowModal(true)}>
-                <p >Ver Detalles</p>
-              </div>
               <div className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white" onClick={() => setPopUpHandler(true)}>
                 <p>Editar</p>
               </div>
@@ -152,20 +151,22 @@ const Calendar = ({ props }) => {
                 <p>Eliminar</p>
               </div>
             </div>
-          } */}
+          }
         </td >
+      </tr>
+      <tr className='flex justify-end w-full collapse-buttom'>
               <ExpandMore
                   expand={expanded}
                   onClick={handleExpandClick}
                   aria-expanded={expanded}
                   aria-label="show more"
                   >
-                  <ExpandCircleDownIcon sx={{ color: "white" }} fontSize="medium"/>
+                  <ExpandCircleDownIcon fontSize="medium"/>
               </ExpandMore>
       </tr>
       
       <tr>
-        <td colSpan={7} className="">
+        <td colSpan={7}>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
             <div className="h-80 text-sm leading-none text-gray-800 bg-white border-b border-t border-gray-100">
             <div>
@@ -256,16 +257,19 @@ const Calendar = ({ props }) => {
                   </div>
                   <div className="w-full xl:w-2/3 flex-col md:flex-row justify-center xl:justify-end flex md:pl-6">
                     <div className="flex items-center justify-center xl:justify-start mt-1 md:mt-0 mb-5 md:mb-0">
-                      <button onClick={bookingEvent} className="rounded-full bg-gray-200 text-gray-600 dark:text-gray-400 text-sm px-6 py-2 flex justify-center items-center">
-                        RESERVAS
-                      </button>
+                      {user ? 
+                      props?.attendance?.length ? <button onClick={bookingEvent} className="rounded-full bg-gray-200 text-gray-600 dark:text-gray-400 text-sm px-6 py-2 flex justify-center items-center">
+                        Dar de baja
+                      </button> : <button onClick={bookingEvent} className="rounded-full bg-gray-200 text-gray-600 dark:text-gray-400 text-sm px-6 py-2 flex justify-center items-center">
+                        Reservar lugar
+                      </button> : <p>Inicia sesión para reservar!</p>}
 
                       {/* <div className="ml-5 rounded-full bg-green-200 text-green-500 text-sm px-6 py-2 flex justify-center items-center">Reservas</div> */}
                     </div>
-                    <button className="focus:outline-none ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm">
-                      SignIn
-                    </button>
-                    <button onClick={() => setShowModal(!true)} className="focus:outline-none ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm">Cerrar</button>
+                    {!user ?
+                    <LinkRouter  to={'/login'} className="focus:outline-none ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm">
+                      Iniciar sesión
+                    </LinkRouter> : null }
                   </div>
                 </div>
               </div>

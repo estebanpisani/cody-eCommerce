@@ -1,10 +1,13 @@
 import * as React from "react";
 import { useState } from "react";
 import commentsAction from "../redux/actions/commentsActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../styles/Comments.css";
 import Delete from '../media/delete.svg'
 import Edit from '../media/edit.svg'
+import Paper from "@mui/material/Paper"
+import Box from "@mui/material/Box";
+import { Typography } from "@mui/material";
 // import eventsActions from "../redux/actions/eventsActions";
 
 
@@ -40,6 +43,8 @@ function CommentsIn({ eventId, events, setChangeReload }) {
     setChangeReload()
   }
 
+  const user = useSelector(store => store.userReducer.user)
+
 
   // useEffect(() => {
   //   async function response() {
@@ -67,15 +72,16 @@ function CommentsIn({ eventId, events, setChangeReload }) {
                 <span className="text-sm">{item?.user?.firstName}</span>
               </div>
             </div>
+            {item.user?._id === user?.user.id ?
             <div
               className="div-text-comments my-2"
               contentEditable
               suppressContentEditableWarning={true}
               onInput={(event) => setModify(event.currentTarget.textContent)}>
               {item?.comment}
-            </div>
+            </div> : <div className="div-text-comments my-2"> {item?.comment} </div> }
+            {item.user?._id === user?.user.id ?
             <div className="div-comment-small  ">
-
               <div className="div-comments-buttons">
                 <div className="button-comments">
                   <button className="button mx-5">
@@ -87,17 +93,28 @@ function CommentsIn({ eventId, events, setChangeReload }) {
                 </div>
 
               </div>
-            </div>
+            </div> : null }
           </div>
         </div>
       ))
       }
+      {user ?
       <div className=" mr-10 ml-10 container-text-area">
         <textarea value={input} onInput={(event) => setInput(event.target.value)} className="text-area w-full text-xs md:text-lg h-24  border rounded-xl overflow-hidden resize-none focus:border-blue-500 ring-1 ring-transparent focus:ring-blue-500 focus:outline-none text-black p-2 transition ease-in-out duration-300" placeholder="Your comment here. . . ."></textarea>
         <div className="flex justify-center md:justify-end ">
           <button onClick={newComment} id={oneEvent?._id} className="font-itineraries flex justify-center focus:outline-none  ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm ">Comment</button>
         </div>
-      </div>
+      </div> : <Box>
+      <Paper sx={{
+        my: 2,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        bgcolor: '#2a9d9026',
+        height: 40}}>
+        <Typography sx={{ fontWeight: "bold", color:'black' }}>Porfavor, inicia sesión para dejar un comentario</Typography>
+      </Paper>
+    </Box>}
       {/* <div className="div-comments">
         <div className="div-new-comment">
           <textarea

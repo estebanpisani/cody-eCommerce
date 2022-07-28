@@ -1,4 +1,26 @@
+.no-results{
+    display: flex;
+    justify-content: center;
+    height: 27rem;
+    width: 40rem !important;
+    background-image: url(https://i.imgur.com/pWES2cW.png);
+    background-repeat: no-repeat;
+    background-size: 50rem 30rem;
+    object-fit: cover;
+    position: relative;
+    bottom: 5rem;
+    left: 15rem;
+}
 
+.no-results-text{
+    height: 1rem;
+    position: relative;
+    top: 16rem;
+
+    font-size: .9rem;
+    left: 5rem;
+    font-weight: bold;
+}
 .bg-cardcontainer{
     background-color: #f9f2ed;
     height: fit-content;
