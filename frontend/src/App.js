@@ -78,7 +78,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
-      <ScrollToTop style={{ backgroundColor: "transparent", borderRadius: "50%", boxShadow: "none" }} smooth component={<ArrowCircleUpTwoToneIcon sx={{ color: "#E04D01", backgroundColor: "#2a2550c2", borderRadius: "50%", fontSize: "10vh" }} />} />
+      <ScrollToTop style={{ backgroundColor: "transparent", borderRadius: "50%", boxShadow: "none" }} smooth component={<ArrowCircleUpTwoToneIcon sx={{ color: "#f8b384", backgroundColor: "#581c0c", borderRadius: "50%", fontSize: "10vh" }} />} />
     </div>
   );
 }

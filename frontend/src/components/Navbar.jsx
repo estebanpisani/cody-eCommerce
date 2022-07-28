@@ -31,9 +31,14 @@ const Navbar = () => {
       <dh-component>
         <nav className="w-full nav">
           <div className="container mx-auto px-6 flex items-center justify-between ">
+          <LinkRouter to='/home'>
             <div className="flex items-center  " aria-label="Home" role="img">
-              <img className="logo-navbar cursor-pointer w-8 sm:w-auto" src={Logo} alt="logo" />
+            
+              <img className="logo-navbar cursor-pointer w-8 sm:w-auto"  src={Logo} alt="logo" />
+           
             </div>
+            </LinkRouter>
+
 
 
             <div>
