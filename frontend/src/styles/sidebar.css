@@ -36,7 +36,15 @@ display:inline-block;
 
 /* cart */
 
-    
+.scrollProducts::-webkit-scrollbar-thumb{
+    background: #318aac;
+    border-radius: 20px;
+}
+.scrollProducts::-webkit-scrollbar{
+    background-color: #f9f2ed;
+    width: 13px;
+    border-radius: 50px !important;
+}    
     
 
 .cartbox{
