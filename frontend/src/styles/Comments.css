@@ -3,7 +3,6 @@
 }
 
 .div-comments {   
-    padding:1rem;
     /* font-weight: bold; */
     display:flex;
     flex-direction: column;
@@ -30,7 +29,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     flex-grow: 4;
-    align-items: center;
+    align-items: flex-start;
     margin: 0.5rem;
   }
 
@@ -56,6 +55,8 @@
   }
 
   .div-text-comments {
+    display: flex;
+    justify-content: flex-start;
     background-color: white;
     text-align: center;
     min-width: 12rem;
@@ -92,10 +93,18 @@
 
 .button {
   width: 5rem;
-  background-color: #212121;
+  border: 0.1rem solid black;
+  padding: 0.2rem;
   border-radius: 0.5rem;
-  color: white;
+  color: black;
+}
 
+.button p {
+  display: flex;
+  font-size:x-small;
+  padding-left: 0.3rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .div-new-comment {
@@ -132,13 +141,37 @@
 }
 
 .container-text-area {
-    width: 60vw;
-    margin-right: 5px;
-    margin-left: 5px
+    /* width: 80vw;
+    margin-right: 2rem;
+    margin-left: 2rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .div-text-comments {
     width: 40vw;
     word-wrap: break-word;
     height: auto;
+}
+
+.textarea-comments {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80vw;
+  margin: 1rem;
+}
+
+.div-cont-comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.button-newcomment {
+  display: flex;
+  justify-content: flex-end;
+  
+
 }

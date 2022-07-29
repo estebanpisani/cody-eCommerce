@@ -1,6 +1,109 @@
-.collapse-buttom{
-    margin-left: 11.4rem
+
+.container-tr {
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.expander-button{
+    width: 90vw;
+    display: flex!important;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-info-calendar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: 0.1rem solid #581c0c;
+    background-color: #f9f2ed;
+}
+
+.div-modal {
+    background-color: #f9f2ed;
+}
+
+.img-calendar {
+    width: 15rem;
+    max-height: 12rem ;
+}
+
+.info-calendar {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.container-comments {
+    width: 90vw;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    margin-bottom: 2rem;
+}
+
+.container-modal-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-modal{
+    width: 8rem;
+    height: 8rem;
+    padding: 0.5rem;
+}
+
+.modal-author{
+    justify-content: center;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.modal-info {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.likes-modal {
+    display: flex;
+    flex-direction: row;
+}
+
+.description-modal {
+    display: flex;
+    
+    border: 0.1rem solid black;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    padding: 0.5rem;
+}
+
+.button-reserva {
+    background-color: #318aac;
+  color: #f9f2ed;
+  border-radius: 20px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.button-reserva:hover{
+    background-color: #fd981f;
+    color: #fff;
+  
+  }
+
 
 
 

@@ -42,43 +42,43 @@ const LoginPrueba = () => {
         <div className={isSignUp ? "container-loginprueba right-panel-active" : ""}  >
           <div className="form-container sign-up-container">
             <form onSubmit={signUpSubmit} className='forms-register'>
-              <h1 className='font-bold m-0'>Create Account</h1>
+              <h1 className='font-bold m-0'>Crear una cuenta</h1>
               <div className="social-container">
                 <GoogleSignUp />
               </div>
-              <span>or use your email for registration</span>
+              <span>o registrate con tu correo electronico</span>
               <input type="text" name='firstName' placeholder="Nombre" />
               <input type="text" name='lastName' placeholder="Apellido" />
               <input type="email" name='email' placeholder="Email" />
-              <input type="password" name='password' placeholder="Password" />
+              <input type="password" name='password' placeholder="Contraseña" />
               <input type="file" name='image' placeholder="Foto de perfil" />
-              <button className='btn-form'>Sign Up</button>
+              <button className='btn-form'>Registrarse</button>
             </form>
           </div>
           <div className="form-container sign-in-container">
             <form onSubmit={loginSubmit} className='forms-register'>
-              <h1 className='font-bold m-0'>Sign in</h1>
+              <h1 className='font-bold m-0'>Ingresar</h1>
               <div className="social-container">
                 <GoogleSignIn />
               </div>
-              <span>or use your account</span>
+              <span>o utiliza tu cuenta</span>
               <input type="email" placeholder="Email" />
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Contraseña" />
               {/* <a href="#">Forgot your password?</a> */}
-              <button className='btn-form'>Sign In</button>
+              <button className='btn-form'>Ingresar</button>
             </form>
           </div>
           <div className="overlay-container">
             <div className="overlay">
               <div className="overlay-panel overlay-left">
-                <h1 className='font-bold m-0'>Welcome Back!</h1>
-                <p className='text-p'>To keep connected with us please login with your personal info</p>
-                <button onClick={() => setSignUp(false)} className="ghost btn-form" id="signIn"  >Sign In</button>
+                <h1 className='font-bold m-0'>Hola de nuevo!!!</h1>
+                <p className='text-p'>Para mantenerte en contacto con nosotros ingresa con tu informacion personal</p>
+                <button onClick={() => setSignUp(false)} className="ghost btn-form" id="signIn"  >Ingresar</button>
               </div>
               <div className="overlay-panel overlay-right">
-                <h1 className='font-bold m-0'>Hello, Friend!</h1>
-                <p className='text-p'>Enter your personal details and start journey with us</p>
-                <button onClick={() => setSignUp(true)} className="ghost btn-form" id="signUp" >Sign Up</button>
+                <h1 className='font-bold m-0'>Bienvenido! </h1>
+                <p className='text-p'>Ingresa tu informacion personal y disfruta de nuestros servicios</p>
+                <button onClick={() => setSignUp(true)} className="ghost btn-form" id="signUp" >Registrarse</button>
               </div>
             </div>
           </div>

@@ -17,5 +17,18 @@
     padding-bottom: 1rem;
 }
 
+.container-calendar {
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-master-events {
+    background-color: #f9f2ed;
+}
+
+.div-events-title {
+    background-color: #F9B384;
+}
 
 

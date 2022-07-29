@@ -36,7 +36,7 @@ export default function Comments({ props }) {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
-          sx={{ backgroundColor: '#FFA43A' }}
+          sx={{ backgroundColor: '#F9B384' }}
         >
           <Typography>Comments</Typography>
         </AccordionSummary>
