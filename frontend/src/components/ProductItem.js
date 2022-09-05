@@ -9,13 +9,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import productActions from '../redux/actions/productActions';
+import shoppingActions from "../redux/actions/shoppingActions";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ProductItem = ({ data, addToCart, functionReload, handleClose }) => {
+const ProductItem = ({ data, functionReload, handleClose }) => {
+
   let { _id, name, price, description, image, stock, variations } = data;
   const dispatch = useDispatch()
-
   const [opcion, setOpcion] = useState(10);
   const [inputname, setInputname] = useState(name)
   const [inputstock, setInputstock] = useState(stock)
@@ -73,11 +74,6 @@ const ProductItem = ({ data, addToCart, functionReload, handleClose }) => {
         <div className='MoreBuy'>
           <p>Stock:</p>
           <input type='textarea' defaultValue={stock} onChange={(event) => setInputstock(event.target.value)} className='MoreStock' />
-          {/* <div>
-          {variations.map((item, index) =>
-            <input key={index} type='textarea' defaultValue={item} />
-            )}
-          </div> */}
           <p>Precio: </p>
           <input type='textarea' defaultValue={price} onChange={(event) => setInputprice(event.target.value)} className='MorePrice'></input>
         </div>
@@ -114,15 +110,10 @@ const ProductItem = ({ data, addToCart, functionReload, handleClose }) => {
           </div>
         </div>
         : user?.user.role==='user' ?
-        <button className="addToCart-button boton3" onClick={() => addToCart(_id)}>Agregar</button>
+        <button className="addToCart-button boton3" onClick={()=>dispatch(shoppingActions.addToCart(data._id))}>Agregar</button>
         :
         <p className="text-sm fontfamily MoreName">Inicia sesión para agregar este producto a tu pedido</p>
       }
-      {/* {stock > 0 ?
-        
-        :
-        <button className="addToCart-button boton3" >Agregar</button>
-    }  */}
     </div>
   );
 

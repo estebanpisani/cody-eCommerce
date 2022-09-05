@@ -30,7 +30,7 @@ export default function PayPal(props) {
     intent: "capture", //Estableco el metodos este autoriza la operacion y captura los fondos
 
   };
-  let productsId = cart.map(items => items._id)
+  let productsId = cart?.map(items => items._id)
 
   const createOrder = (data, actions) => {
     //Creo la orden de con los datos, esta puede ser general o con detalle de items

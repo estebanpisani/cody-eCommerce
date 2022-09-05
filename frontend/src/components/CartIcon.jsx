@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, delFromCart } from "../redux/actions/shoppingActions";
+import shoppingActions from "../redux/actions/shoppingActions";
 import codybuy from '../media/cody4.png';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import productActions from "../redux/actions/productActions";
@@ -25,55 +25,36 @@ const style = {
 };
 
 export default function CartIcon() {
-  const state = useSelector(state => state)
   const dispatch = useDispatch();
-  const { cart } = state.shopping
-  const sendCart = []
+  const cart = useSelector(state => state.shoppingReducer.cart);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const arrayPrice = cart.map((item) => (item.price * item.quantity))
+  const arrayPrice = cart?.map((item) => (item.price * item.quantity))
 
   const initialValue = 0;
-  const sumWithInitial = arrayPrice.reduce(
+  const sumWithInitial = arrayPrice?.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
     initialValue
   );
 
-  const arrayQuantity = cart.map((item) => (item.quantity))
-  const sumQuantity = arrayQuantity.reduce(
+  const arrayQuantity = cart?.map((item) => (item.quantity))
+  const sumQuantity = arrayQuantity?.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
     initialValue
   );
 
-  async function buyCart() {
-    cart.forEach(element => {
-      let newObj = {
-        id: element._id,
-        units: element.quantity
-      }
-      sendCart.push(newObj)
-    })
-    const res = await dispatch(productActions.buyCart(sendCart))
-
-
-    if (res.data.success) {
-      toast.success(res.data.message)
-    } else {
-      toast.error(res.data.message)
-    }
-  }
   return (
     <div>
-      <Button className="btn-cart-icon" onClick={handleOpen}><ShoppingCartOutlinedIcon className="cart-icon" />
+      <Button className="btn-cart-icon" onClick={handleOpen}>
+        <ShoppingCartOutlinedIcon className="cart-icon" />
         {sumQuantity > 0 ?
           <p className="cart-quantity ">{sumQuantity}</p>
           :
           <p></p>
         }
-
       </Button>
       <Modal
         open={open}
@@ -83,14 +64,15 @@ export default function CartIcon() {
       >
         <Box className="ModalCart" sx={style}>
           <article className="box BoxCart">
-            <button className="btn-clear" onClick={() => dispatch(clearCart())}><RemoveShoppingCartIcon /> Limpiar Carrito</button>
-            {cart.length > 0 ?
+            <button className="btn-clear" onClick={() => dispatch(shoppingActions.clearCart())}>
+              <RemoveShoppingCartIcon /> Limpiar Carrito</button>
+            {cart?.length > 0 ?
               <div className="scrollProducts">
                 <div>
-                  {cart.map((item, index) => (
+                  {cart?.map((item, index) => (
                     <CartItem key={index} data={item}
-                      delOneFromCart={() => dispatch(delFromCart(item._id))}
-                      delAllFromCart={() => dispatch(delFromCart(item._id, true))} />
+                      delOneFromCart={() => dispatch(shoppingActions.delFromCart(item._id))}
+                      delAllFromCart={() => dispatch(shoppingActions.delFromCart(item._id, true))} />
                   ))}
                 </div>
               </div>
@@ -102,7 +84,6 @@ export default function CartIcon() {
             <div className="cont-buy">
               <div className="cont-btn-buy">
                 <p className="cart-total-txt fontfamily">Total: ${sumWithInitial}</p>
-                {/* <button className="addToCart-button boton4" onClick={buyCart}>Comprar</button> */}
                 <PayPal props={cart} total={sumWithInitial}></PayPal>
               </div>
               <img className="codybuy" src={codybuy}></img>
