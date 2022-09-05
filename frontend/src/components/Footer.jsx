@@ -4,7 +4,7 @@ import Logo from '../media/cody2.png'
 import { Link as LinkRouter } from 'react-router-dom'
 import heroapp from '../media/apphero.png'
 
-export const Footer = () => {
+const Footer = () => {
   return (
 
     <footer className="w-full pt-5 footer-container">
@@ -68,3 +68,5 @@ export const Footer = () => {
 
   )
 }
+
+export default Footer;
