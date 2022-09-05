@@ -3,7 +3,8 @@ const initialState = {
     aux: [],
     oneProduct: {},
     productsbycategory: [],
-    filter: []
+    filter: [],
+    category: null,
 }
 
 const productReducer = (state = initialState, action)=> {
@@ -36,9 +37,8 @@ const productReducer = (state = initialState, action)=> {
                 let productByCategory = state.products.filter(item => item.categories.includes(action.payload))
             return {
                 ...state,
-                // productsbycategory: productByCategory,
-                filter: productByCategory,
-                aux: action.payload
+                category: action.payload,
+                filter: productByCategory
             }
                 
             default:
