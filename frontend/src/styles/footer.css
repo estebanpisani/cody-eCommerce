@@ -1,72 +1,64 @@
 .footer-container {
-  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-end!important;
   background-color: #F9F2ED;
+  gap: 0px !important;
 }
 
-
-.footer-box{
-
-  height: 100%;
-  width: 100%!important;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-end!important;
-  gap: 0px!important;
-  
-}
-
-.container-heroapp{
-
-  width: 32%;
-  display: flex;
-  flex-direction: column;
+.container-heroapp {
   text-align: center;
-  align-items: center;
   z-index: 0;
-
+  /* border: 1px solid black; */
 }
 
-.container-foot{
-
-  width: 35%;
-  padding: 0px;
-  padding-bottom: 15px;
-  margin: 0px;
-
-
+.container-foot {
+  justify-self: center !important;
+  flex-grow: 1;
 }
 
-
-
-
-.heroapp-box{
-  flex-direction: column;
-  justify-content: flex-end;
-
+.heroapp {
+  width: 50%;
+  filter: drop-shadow(1px 1px 2px #581c0c)
 }
 
-.heroapp{
-  flex-direction: column;
-  justify-content: flex-end;
-  justify-self: end;
-  height: 250px;
-  filter:drop-shadow(1px 1px 2px #581c0c)
-}
-
-.pedido-text{
+.pedido-text {
   text-align: center;
   margin-left: 30px;
   border-bottom: 2px solid #f8b384;
   border-top: 2px solid #f8b384;
 }
 
-.app-text{
+.app-text {
   color: #f47d2d;
   font-size: 15px;
   font-weight: 800;
 }
+
+/* @media screen and (max-width: 600px) {
+  .container-heroapp {
+    height: 20px;
+  }
+
+  .heroapp {
+    height: 100%
+  }
+} */
+
+/* @media screen and (max-width: 768px) {
+  .container-heroapp {
+    height: 50%;
+  }
+
+  .heroapp {
+    height: 50%
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .container-heroapp {
+    height: 100%;
+  }
+
+  .heroapp {
+    height: 70%
+  }
+} */

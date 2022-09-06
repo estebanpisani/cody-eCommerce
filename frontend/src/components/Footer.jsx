@@ -6,15 +6,13 @@ import heroapp from '../media/apphero.png'
 
 const Footer = () => {
   return (
-
-    <footer className="w-full pt-5 footer-container">
-      <div className="footer-box md:px-12">
-        <div className='container-heroapp'>
-          <h5 className='pedido-text'>¡Hace tu pedido desde la <span className='app-text'>APP!</span></h5>
-          <img className='heroapp' src={heroapp} alt="" />
+    <footer className="w-full footer-container flex flex-col md:flex-row items-center md:items-end md:justify-center">
+        <div className='container-heroapp hidden max-h-full flex flex-row md:flex-col md:justify-end items-center justify-center md:w-2/6 '>
+          <h5 className='pedido-text'>¡Haz tu pedido desde la <span className='app-text'>APP!</span></h5>
+          <img className='heroapp hidden md:block  w-full' src={heroapp} alt="" />
         </div>
-        <div className="container-foot pb-5 m-auto text-gray-600">
-          <img src={Logo} alt="logo tailus" className="w-40 m-auto" />
+        <div className="container-foot flex flex-col items-center text-gray-600">
+          <img src={Logo} alt="logo tailus" className="w-40" />
           <ul className="py-4 flex flex-col gap-4 items-center justify-center sm:flex-row sm:gap-8">
             <li>
               <LinkRouter to='/home' className="hover:text-cyan-500">Home</LinkRouter>
@@ -35,7 +33,7 @@ const Footer = () => {
               </LinkRouter>
             </li>
           </ul>
-          <div className="w-max m-auto flex items-center justify-between space-x-4">
+          <div className="w-max flex items-center flex-wrap justify-between space-x-4">
             <a href="tel:+243996660436" aria-label="call">
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="w-5 m-auto" viewBox="0 0 16 16">
                 <path fillRule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"></path>
@@ -57,13 +55,10 @@ const Footer = () => {
               </svg>
             </a>
           </div>
-
           <div className="text-center">
             <span className="text-sm tracking-wide">Copyright © Cody <span id="year"></span> | All right reserved</span>
           </div>
         </div>
-
-      </div>
     </footer>
 
   )
