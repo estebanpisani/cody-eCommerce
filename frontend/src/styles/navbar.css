@@ -6,10 +6,6 @@
   position: absolute;
 }
 
-.button-login {
-  /* background-color: #318aac!important; */
-}
-
 .button-login:hover{
   color: #f9f2ed!important;
   background-color: #318aac!important;

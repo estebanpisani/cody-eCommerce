@@ -1,11 +1,9 @@
 .container-activities {
   background-image: url('../media/Homework_Mesa\ de\ trabajo\ 1.png');
   background-color: #f9b58485;
-  /* margin-top: 10px; */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 25rem;
 }
 
 .hero-act-title {

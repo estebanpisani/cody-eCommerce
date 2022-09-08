@@ -5,7 +5,7 @@ import '../styles/activitiesHero.css'
 
 const ActivitiesHero = () => {
   return (
-    <section id='hero-activities-section' className='container-activities flex flex-col w-full md:flex-row items-center justify-between'>
+    <section id='hero-activities-section' className='container-activities flex flex-col w-full md:flex-row items-center justify-between h-60 md:h-96'>
       <div className='hero-act-box flex flex-col w-full justify-around items-center h-full md:w-1/2 md:h-full'>
         <h1 className="hero-act-title 
           leading-5 md:leading-6 xl:leading-9
