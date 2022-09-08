@@ -11,7 +11,7 @@ const Hero = () => {
             <h1 className="text-box text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl text-center text-white font-bold leading-tight">Ven a compartir</h1>
             <img className='codyhero' src={codyven} alt="Cody Developer" />
             <LinkRouter 
-            className = "button-hero p-1 sm:py-3 sm:px-5 ring-offset-indigo-700 border rounded text-base lg:text-xl break-normal transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white "
+            className = "cta-store p-1 sm:py-3 sm:px-5 ring-offset-indigo-700 border rounded text-base lg:text-xl break-normal transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white "
             to='/store'
             >
               Visita nuestra tienda <span><ArrowRightAltIcon/></span>

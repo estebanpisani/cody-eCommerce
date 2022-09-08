@@ -55,8 +55,8 @@ const Footer = () => {
               </svg>
             </a>
           </div>
-          <div className="text-center">
-            <span className="text-sm tracking-wide">Copyright © Cody <span id="year"></span> | All right reserved</span>
+          <div className="text-center my-2">
+            <span className="text-sm tracking-wide">Copyright © CODY <span id="year"></span> | All rights reserved</span>
           </div>
         </div>
     </footer>

@@ -8,9 +8,7 @@
   background-image: url('/src/media/banner-hero3.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  height: 80vh;
-  /* object-fit: none; */
-  /* background-color: #F9B384; */
+  height: 25rem;
 }
 
 .text-container {
@@ -21,18 +19,7 @@
   align-items: center;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
-  /* margin-right: 5rem; */
-  /* padding-top: 50px; */
 }
-
-/* .div-intermedio {
-
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between !important;
-  align-items: center;
-} */
 
 .codyhero {
   height: 20rem;
@@ -59,10 +46,9 @@
 
 }
 
-.button-hero {
+.cta-store {
   background-color: #318aac;
   color: #f9f2ed;
-  /* border-radius: 10px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,9 +56,10 @@
   width: 50%;
   text-align: center;
   font-weight: bold;
+  box-shadow: 1px 1px 5px black;
 }
 
-.button-hero:hover {
+.cta-store:hover {
   background-color: #fd981f;
   color: #318aac;
   border: 1px white solid;
@@ -97,7 +84,7 @@
 }
 
 @media (min-width: 467px) {
-  .button-hero {
+  .cta-store {
     border-top-right-radius: 50px !important;
     border-bottom-right-radius: 50px !important;
     background-color: #318aac;
@@ -107,7 +94,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 70%;
+    width: 60%;
     text-align: center;
     font-weight: bold;
   }

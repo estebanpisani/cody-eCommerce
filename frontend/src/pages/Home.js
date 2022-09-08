@@ -1,7 +1,7 @@
 import React from 'react'
+import Hero from '../components/Hero'
 import AboutUs from '../components/AboutUs'
 import ActivitiesHero from '../components/ActivitiesHero'
-import Hero from '../components/Hero'
 
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
     <div  >
       <Hero />
       <AboutUs />
-      {/* <ActivitiesHero /> */}
+      <ActivitiesHero />
     </div>
   )
 }

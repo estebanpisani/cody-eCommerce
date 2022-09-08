@@ -1,53 +1,50 @@
 .container-activities {
   background-image: url('../media/Homework_Mesa\ de\ trabajo\ 1.png');
   background-color: #f9b58485;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-}
-
-.carrusel-home-bg{
-
-background: linear-gradient(to right, #f9b58485, #318bacc9);
-/* background: -webkit-radial-gradient(center, #F9B484, #318BAC);
-background: -moz-radial-gradient(center, #F9B484, #318BAC);
-background: radial-gradient(ellipse at center, #F9B484, #318BAC); */
+  height: 25rem;
 }
 
 .hero-act-title {
-  display: block;
   text-transform: uppercase;
-  text-shadow: 0px 2px 5px #3b2400  ;
+  text-shadow: 0px 2px 5px #3b2400;
   font-weight: bold;
   color: #fff;
   background-color: #f9b584bb !important;
   font-size: 25px;
   padding: 5px 10px;
   box-shadow: 1px 1px 5px black;
+  line-break: auto;
 }
 
-
-.hero-act-box{
-  height: 25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.hero-btn-box{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 5rem;
-  width: 100%;
-}
-
-.hero-btn-box > .button-hero{
+.cta-activities {
   border-radius: 50px;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
   box-shadow: 1px 1px 5px black;
+  background-color: #318aac;
+  color: #f9f2ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.cta-activities:hover {
+  background-color: #fd981f;
+  color: #318aac;
+  border: 1px white solid;
+}
+
+.carrusel-home-bg {
+
+  background: linear-gradient(to right, #f9b58485, #318bacc9);
+  /* background: -webkit-radial-gradient(center, #F9B484, #318BAC);
+background: -moz-radial-gradient(center, #F9B484, #318BAC);
+background: radial-gradient(ellipse at center, #F9B484, #318BAC); */
 }
