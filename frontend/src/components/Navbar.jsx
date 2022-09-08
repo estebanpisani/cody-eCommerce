@@ -97,9 +97,7 @@ const Navbar = () => {
                       </LinkRouter>
                     }
                   </div>
-
                 </ul>
-
               </div>
             </div>
           </div>

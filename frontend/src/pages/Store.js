@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import productActions from "../redux/actions/productActions";
 import Products from '../components/Products';
 import Sidebar from '../components/Sidebar';
+
 import '../styles/sidebar.css'
-import '../App.css';
 
 function Store() {
 
@@ -31,13 +31,10 @@ function Store() {
     const currentStore = useSelector(store => store.productReducer.filter);
 
     return (
-        <div className="flex flex-no-wrap">
+        <div className="flex flex-no-wrap items-start">
             <Sidebar reload={reloadChanger} />
-            <div className="container mx-auto py-10 md:w-4/5 w-11/12 px-6">
-                {/* Remove class [ border-dashed border-2 border-gray-300 ] to remove dotted border */}
-                <div className="w-full h-full rounded border-dashed border-2 border-gray-300">
-                    <Products filterStore={currentStore} category={category} functionReload={reloadChanger} />
-                </div>
+            <div className="container mx-auto w-11/12 md:w-4/5 px-6">
+                <Products filterStore={currentStore} category={category} functionReload={reloadChanger} />
             </div>
         </div>
     )
