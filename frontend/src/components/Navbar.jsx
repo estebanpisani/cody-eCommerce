@@ -1,7 +1,5 @@
 import React from 'react'
 import { useState } from "react";
-import Logo from '../media/logo.png'
-import '../styles/navbar.css'
 import { Link as LinkRouter } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import userActions from '../redux/actions/userActions';
@@ -9,6 +7,8 @@ import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem"
+import '../styles/navbar.css'
+import Logo from '../media/logo.png'
 
 
 const Navbar = () => {
@@ -27,25 +27,20 @@ const Navbar = () => {
   const user = useSelector(store => store.userReducer.user)
 
   return (
-    <div className='navbar py-12 bg-gray-100 overflow-y-hidden'>
+    <div className='navbar py-3 overflow-y-hidden'>
       <dh-component>
         <nav className="w-full nav">
-          <div className="container mx-auto px-6 flex items-center justify-between ">
-          <LinkRouter to='/home'>
-            <div className="flex items-center  " aria-label="Home" role="img">
-            
-              <img className="logo-navbar cursor-pointer w-8 sm:w-auto"  src={Logo} alt="logo" />
-           
-            </div>
+          <div className="container mx-auto p-6 flex items-center justify-between ">
+            <LinkRouter to='/home'>
+              <div className="flex items-center" aria-label="Home" role="img">
+                <img className="logo-navbar cursor-pointer w-8 sm:w-auto" src={Logo} alt="logo" />
+              </div>
             </LinkRouter>
-
-
-
-            <div>
+            <div id='burger-menu'>
               <button onClick={() => setShow(!show)} className="sm:block md:hidden lg:hidden text-gray-500 hover:text-gray-700 focus:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
                 <img className="h-8 w-8" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/center_aligned_with_image-svg4.svg" alt="show" />
               </button>
-              <div id="menu" className={`md:block lg:block ${show ? '' : 'hidden'}`}>
+              <div id="menu" className={`md:block ${show ? '' : 'hidden'}`}>
                 <button onClick={() => setShow(!show)} className="block md:hidden lg:hidden text-gray-500 hover:text-gray-700 focus:text-gray-700 fixed focus:outline-none focus:ring-2 focus:ring-gray-500 bg-white md:bg-transparent z-50 top-0 mt-3">
                   <img className="h-8 w-8" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/center_aligned_with_image-svg5.svg" alt="hide" />
                 </button>
@@ -86,10 +81,10 @@ const Navbar = () => {
                           onClick={handleCloseUserMenu}
                         >
                           <LinkRouter to='/profile'>
-                            <MenuItem className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:text-red-500 hover:bg-neutral-50 transition">Mi Perfil</MenuItem>
+                            <MenuItem className="button-login px-4 py-2 rounded-l-xl text-white m-0 hover:bg-neutral-50 transition">Mi Perfil</MenuItem>
                           </LinkRouter>
                           <LinkRouter to='/login' onClick={() => dispatch(userActions.signOutUser())} >
-                            <MenuItem className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:text-red-500 hover:bg-neutral-50 transition">Cerrar Sesion</MenuItem>
+                            <MenuItem className="button-login px-4 py-2 rounded-l-xl text-white m-0 hover:bg-neutral-50 transition">Cerrar Sesion</MenuItem>
                           </LinkRouter>
                         </Menu>
                       </div>

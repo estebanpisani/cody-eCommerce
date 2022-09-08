@@ -1,26 +1,22 @@
 @import url('http://fonts.cdnfonts.com/css/a-love-of-thunder');
 
 .logo-navbar {
-  height: 10rem;
-  width: 10rem;
+  max-height: 100%;
+  max-width: 10rem;
   position: absolute;
 }
 
-
-
 .button-login {
-  background-color: #318aac!important;
+  /* background-color: #318aac!important; */
 }
 
 .button-login:hover{
   color: #f9f2ed!important;
-  background-color: #FFA43A!important;
+  background-color: #318aac!important;
 }
 
 .navbar {
   background-color: #f9f2ed;
-
-
 }
 
 .border{
