@@ -19,7 +19,7 @@ const ActivitiesHero = () => {
           Espacio Co-Working & Eventos
         </h1>
 
-        <LinkRouter className="cta-activities h-11 flex items-center border border-gray-600" to='/events'>
+        <LinkRouter className="cta-activities h-11 flex items-center" to='/events'>
           <span className='text-sm md:text-md'> Nuestras Actividades </span>
           <img alt="arrow-right" className="ml-2" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/Banner10_leftToRightArrow.svg" />
         </LinkRouter>

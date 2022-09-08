@@ -4,11 +4,7 @@ import '../styles/products.css'
 import { Input } from "@material-tailwind/react";
 import Grid from '@mui/material/Grid';
 import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
-// import { useDispatch, useSelector } from 'react-redux'
-// import { useEffect } from 'react';
-// import productActions from "../redux/actions/productActions";
 import BasicModal from './BasicModal';
-import NoResults from './NoResults';
 
 export default function Products(props) {
   const filterStore = props.filterStore
@@ -31,7 +27,7 @@ export default function Products(props) {
         <Grid2 sx={{mt:'24px', justifyContent:{xs:'center', sm:'space-around'}}} container columns={{ xs: 1, md: 2, lg:3 }}>
           {(filteredStore.map((product) =>
             (
-            <Grid2 xs key={product._id} sx={{m:2, height:'22rem', maxHeight:'22rem', minWidth:'10rem', maxWidth: '12rem'}} className="card-container rounded-md overflow-hidden hover:opacity-75 ">
+            <Grid2 xs key={product._id} sx={{m:2, height:'22rem', maxHeight:'22rem', minWidth:'15rem', maxWidth: '15rem'}} className="card-container rounded-md overflow-hidden hover:opacity-75 ">
               <div className='product-img'>
                 <img
                   src={product.image}
@@ -41,7 +37,7 @@ export default function Products(props) {
               </div>
 
               <div className="product-info">
-                <h3 className="text-sm fontfamily">
+                <h3 className="text-sm md:text-base product-name">
                   {product.name}
                 </h3>
                 <p className="text-sm font-medium text-gray-900 price my-1">${product.price}</p>

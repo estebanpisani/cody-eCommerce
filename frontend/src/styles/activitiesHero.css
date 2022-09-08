@@ -31,12 +31,12 @@
   width: 40%;
   text-align: center;
   font-weight: bold;
+  border: 1px white solid;
 }
 
 .cta-activities:hover {
   background-color: #fd981f;
   color: #318aac;
-  border: 1px white solid;
 }
 
 .carrusel-home-bg {

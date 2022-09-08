@@ -1,18 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import eventsActions from "../redux/actions/eventsActions";
-import Comments from "./Comments";
-import IconButton from "@mui/material/IconButton";
+import { Link as LinkRouter } from "react-router-dom";
+
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
+import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import { Collapse } from "@mui/material";
 import { Box } from "@mui/material";
-import { Link as LinkRouter } from "react-router-dom";
-import "../styles/ModalEvent.css";
+import Comments from "./Comments";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Button from "@mui/material/Button";
+
+import eventsActions from "../redux/actions/eventsActions";
+import "../styles/ModalEvent.css";
 // import toast, { Toaster } from 'react-hot-toast';
 // import Cody from '../media/cody2.png'
 
@@ -87,153 +89,168 @@ const Calendar = ({ props }) => {
   // });
 
   return (
-    <>
-      {/* <div>
-        <button onClick={notify}>Make me a toast</button>
-        <Toaster />
-      </div> */}
-
-      {/* FIN MODAL EDIT EVENT*/}
-      <div className="container-info-calendar">
-        {/* <tr className="h-52 text-sm leading-none text-black-800 bg-white hover:bg-black-100 border-b border-t border-black-100">
-        <td className="pl-4 cursor-pointer"> */}
-        <div className="flex items-centre">
-          <div className="img-calendar">
-            <img
-              className="w-full h-full"
-              src={props.images}
-              alt="Nombre del Evento"
-            />
-          </div>
-          <div className="pl-4 info-calendar">
-            <p className="font-medium">{props.name}</p>
-            {props?.authors.map((author, i) => (
-              <p key={i} className="text-xs leading-3 text-black-600 pt-2">
-                {author}
-              </p>
-            ))}
-          </div>
+    <div className="container-info-calendar flex flex-col items-center justify-between
+      w-full p-2">
+      <div className="event-basic-info flex flex-col md:flex-row justify-around md:justify-between items-center md:items-center">
+        <img
+          src={props.images}
+          alt="Nombre del Evento"
+          className="w-4/5 sm:w-96 md:w-60"
+        />
+        <div className="calendar-item">
+          <h4 className="font-medium text-lg">{props.name}</h4>
+          {props?.authors.map((author, i) => (
+            <h6 key={i} className="font-medium text-xs text-black-600 pt-2">
+              {author}
+            </h6>
+          ))}
         </div>
-        {/* </td> */}
-        <div className="pl-12 info-calendar">
-          <p className="font-medium">Límite {props.limit}</p>
-          <p className="text-xs leading-3 text-black-600 mt-2">
+        <div className="calendar-item">
+          <p className="font-medium text-lg my-1">
+            {new Date(props.date).toLocaleDateString("es-ES", options)}
+          </p>
+          <h5 className="font-medium my-1">Capacidad: {props.limit} personas</h5>
+          <p className="text-xs leading-3 text-black-600 mb-2">
             {props?.attendance.length} asistentes confirmados
           </p>
         </div>
-        <div className="pl-20 info-calendar">
-          <p className="font-medium">${props.price}</p>
-          <p className="text-xs leading-3 text-black-600 mt-2">Precio</p>
-        </div>
-        <div className="pl-20 info-calendar">
-          <p className="font-medium">
-            {new Date(props.date).toLocaleDateString("es-ES", options)}
-          </p>
-          <p className="text-xs leading-3 text-black-600 mt-2">Fecha</p>
-        </div>
-        <div className="pl-16 info-calendar">
-          <div className="flex items-center">
-            <img
-              className="shadow-md w-16 h-16 rounded-full"
-              src="https://cdn.tuk.dev/assets/templates/olympus/projects(8).png"
-              alt="Presentador"
-            />
+        <div className="calendar-item">
+          <div className="container-modal-info">
+            <div className="flex flex-col items-center">
+              <h2 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">
+                {" "}
+                {`${props.likes?.length}`}
+              </h2>
+              {user ? (
+                <IconButton
+                  className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
+                  onClick={likesOrDislikes}
+                  aria-label="add to favorites"
+                >
+                  {props.likes?.includes(user.user?.id) ? (
+                    <FavoriteIcon sx={{ color: "red" }} />
+                  ) : (
+                    <FavoriteBorderIcon />
+                  )}
+                </IconButton>
+              ) : (
+                <FavoriteBorderIcon />
+              )}
+            </div>
+            {/* </div> */}
+            <div className="modal-info">
+              <h2 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl mb-2 text-center">
+                {props.comments.length > 0 ? props?.comments.length : 0}
+              </h2>
+              <p className="text-black-800 dark:text-black-100 text-sm xl:text-xl">
+                Comentarios
+              </p>
+            </div>
+            <div className="modal-info">
+              <h2 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl mb-2 text-center">
+                {props?.limit - props?.attendance?.length}
+              </h2>
+              <p className="text-black-800 dark:text-black-100 text-sm xl:text-xl">
+                Vacantes
+              </p>
+            </div>
           </div>
         </div>
-        <div className="px-7 2xl:px-0">
-          {user?.user?.role === "admin" ? (
-            show === 0 ? (
-              <button
-                onClick={() => setShow(null)}
-                className="focus:outline-none pl-7"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={20}
-                  height={20}
-                  viewBox="0 0 20 20"
-                  fill="none"
+        {user?.user &&
+          <div className="px-7 2xl:px-0">
+            {user?.user?.role === "admin" ? (
+              show === 0 ? (
+                <button
+                  onClick={() => setShow(null)}
+                  className="focus:outline-none pl-7"
                 >
-                  <path
-                    d="M4.16667 10.8334C4.62691 10.8334 5 10.4603 5 10.0001C5 9.53984 4.62691 9.16675 4.16667 9.16675C3.70643 9.16675 3.33334 9.53984 3.33334 10.0001C3.33334 10.4603 3.70643 10.8334 4.16667 10.8334Z"
-                    stroke="#A1A1AA"
-                    strokeWidth="1.25"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M10 10.8334C10.4602 10.8334 10.8333 10.4603 10.8333 10.0001C10.8333 9.53984 10.4602 9.16675 10 9.16675C9.53976 9.16675 9.16666 9.53984 9.16666 10.0001C9.16666 10.4603 9.53976 10.8334 10 10.8334Z"
-                    stroke="#A1A1AA"
-                    strokeWidth="1.25"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15.8333 10.8334C16.2936 10.8334 16.6667 10.4603 16.6667 10.0001C16.6667 9.53984 16.2936 9.16675 15.8333 9.16675C15.3731 9.16675 15 9.53984 15 10.0001C15 10.4603 15.3731 10.8334 15.8333 10.8334Z"
-                    stroke="#A1A1AA"
-                    strokeWidth="1.25"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            ) : (
-              <button
-                onClick={() => setShow(0)}
-                className="focus:outline-none pl-7"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={20}
-                  height={20}
-                  viewBox="0 0 20 20"
-                  fill="none"
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={20}
+                    height={20}
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M4.16667 10.8334C4.62691 10.8334 5 10.4603 5 10.0001C5 9.53984 4.62691 9.16675 4.16667 9.16675C3.70643 9.16675 3.33334 9.53984 3.33334 10.0001C3.33334 10.4603 3.70643 10.8334 4.16667 10.8334Z"
+                      stroke="#A1A1AA"
+                      strokeWidth="1.25"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M10 10.8334C10.4602 10.8334 10.8333 10.4603 10.8333 10.0001C10.8333 9.53984 10.4602 9.16675 10 9.16675C9.53976 9.16675 9.16666 9.53984 9.16666 10.0001C9.16666 10.4603 9.53976 10.8334 10 10.8334Z"
+                      stroke="#A1A1AA"
+                      strokeWidth="1.25"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M15.8333 10.8334C16.2936 10.8334 16.6667 10.4603 16.6667 10.0001C16.6667 9.53984 16.2936 9.16675 15.8333 9.16675C15.3731 9.16675 15 9.53984 15 10.0001C15 10.4603 15.3731 10.8334 15.8333 10.8334Z"
+                      stroke="#A1A1AA"
+                      strokeWidth="1.25"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              ) : (
+                <button
+                  onClick={() => setShow(0)}
+                  className="focus:outline-none pl-7"
                 >
-                  <path
-                    d="M4.16667 10.8334C4.62691 10.8334 5 10.4603 5 10.0001C5 9.53984 4.62691 9.16675 4.16667 9.16675C3.70643 9.16675 3.33334 9.53984 3.33334 10.0001C3.33334 10.4603 3.70643 10.8334 4.16667 10.8334Z"
-                    stroke="#A1A1AA"
-                    strokeWidth="1.25"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M10 10.8334C10.4602 10.8334 10.8333 10.4603 10.8333 10.0001C10.8333 9.53984 10.4602 9.16675 10 9.16675C9.53976 9.16675 9.16666 9.53984 9.16666 10.0001C9.16666 10.4603 9.53976 10.8334 10 10.8334Z"
-                    stroke="#A1A1AA"
-                    strokeWidth="1.25"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15.8333 10.8334C16.2936 10.8334 16.6667 10.4603 16.6667 10.0001C16.6667 9.53984 16.2936 9.16675 15.8333 9.16675C15.3731 9.16675 15 9.53984 15 10.0001C15 10.4603 15.3731 10.8334 15.8333 10.8334Z"
-                    stroke="#A1A1AA"
-                    strokeWidth="1.25"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            )
-          ) : null}
-          {show === 0 && (
-            <div className="dropdown-content bg-white shadow w-24 absolute z-30 right-0 mr-6 ">
-              <div
-                className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white"
-                onClick={() => setPopUpHandler(true)}
-              >
-                <p>Editar</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={20}
+                    height={20}
+                    viewBox="0 0 20 20"
+                    fill="none"
+                  >
+                    <path
+                      d="M4.16667 10.8334C4.62691 10.8334 5 10.4603 5 10.0001C5 9.53984 4.62691 9.16675 4.16667 9.16675C3.70643 9.16675 3.33334 9.53984 3.33334 10.0001C3.33334 10.4603 3.70643 10.8334 4.16667 10.8334Z"
+                      stroke="#A1A1AA"
+                      strokeWidth="1.25"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M10 10.8334C10.4602 10.8334 10.8333 10.4603 10.8333 10.0001C10.8333 9.53984 10.4602 9.16675 10 9.16675C9.53976 9.16675 9.16666 9.53984 9.16666 10.0001C9.16666 10.4603 9.53976 10.8334 10 10.8334Z"
+                      stroke="#A1A1AA"
+                      strokeWidth="1.25"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M15.8333 10.8334C16.2936 10.8334 16.6667 10.4603 16.6667 10.0001C16.6667 9.53984 16.2936 9.16675 15.8333 9.16675C15.3731 9.16675 15 9.53984 15 10.0001C15 10.4603 15.3731 10.8334 15.8333 10.8334Z"
+                      stroke="#A1A1AA"
+                      strokeWidth="1.25"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              )
+            ) : null}
+            {show === 0 && (
+              <div className="dropdown-content bg-white shadow w-24 absolute z-30 right-0 mr-6 ">
+                <div
+                  className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white"
+                  onClick={() => setPopUpHandler(true)}
+                >
+                  <p>Editar</p>
+                </div>
+                <div
+                  onClick={deleteEvent}
+                  className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white"
+                >
+                  <p>Eliminar</p>
+                </div>
               </div>
-              <div
-                onClick={deleteEvent}
-                className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white"
-              >
-                <p>Eliminar</p>
-              </div>
-            </div>
-          )}
-        </div>
-        {/* </tr> */}
-      </div>
+            )}
+          </div>
+        }
 
+      </div>
       <div className="container-tr">
         <ExpandMore
           expand={expanded}
@@ -252,69 +269,11 @@ const Calendar = ({ props }) => {
           <div className="px-5 xl:px-10 div-modal">
             <div className="flex justify-center xl:justify-end pt-1 xl:pt-5"></div>
             <div className=" flex flex-col xl:flex-row xl:items-center justify-between">
-              <div className="container-modal-info">
-                <div className="img-modal">
-                  <img
-                    className="w-full h-full overflow-hidden object-cover rounded"
-                    src="https://image.freepik.com/free-photo/indoor-picture-cheerful-handsome-young-man-having-folded-hands-looking-directly-smiling-sincerely-wearing-casual-clothes_176532-10257.jpg"
-                    alt="Imagen del Autor del Evento"
-                  />
-                </div>
-                <div className="modal-author">
-                  <h2 className="mb-3 xl:mb-0 xl:mr-4 text-2xl text-black-800 dark:text-black-100 font-medium tracking-normal">
-                    {props.authors}
-                  </h2>
-                </div>
+              <div className="description-modal">
+                <p className="text-center xl:text-left mt-2 text-base tracking-normal text-black-600 dark:text-black-400 leading-5">
+                  {props.description}
+                </p>
               </div>
-
-              <div className="xl:px-10 xl:border-l xl:border-r w-full py-5 flex items-start justify-center xl:w-1/3">
-                <div className="container-modal-info">
-                  <div className="modal-info">
-                    <div className="likes-modal">
-                      <h2 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">
-                        {" "}
-                        {`${props.likes?.length}`}
-                      </h2>
-                      {user ? (
-                        <IconButton
-                          className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
-                          onClick={likesOrDislikes}
-                          aria-label="add to favorites"
-                        >
-                          {props.likes?.includes(user.user?.id) ? (
-                            <FavoriteIcon sx={{ color: "red" }} />
-                          ) : (
-                            <FavoriteBorderIcon />
-                          )}
-                        </IconButton>
-                      ) : (
-                        <FavoriteBorderIcon />
-                      )}
-                    </div>
-
-                    <p className="text-black-800 dark:text-black-100 text-sm xl:text-xl leading-5">
-                      Likes
-                    </p>
-                  </div>
-                  <div className="modal-info">
-                    <h2 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">
-                      {props.limit}
-                    </h2>
-                    <p className="text-black-800 dark:text-black-100 text-sm xl:text-xl leading-5">
-                      Capacidad
-                    </p>
-                  </div>
-                  <div className="modal-info">
-                    <h2 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">
-                      {props?.limit - props?.attendance?.length}
-                    </h2>
-                    <p className="text-black-800 dark:text-black-100 text-sm xl:text-xl leading-5">
-                      Vacantes
-                    </p>
-                  </div>
-                </div>
-              </div>
-
               <div className="container-modal-info">
                 <div className="modal-info">
                   {user ? (
@@ -362,13 +321,6 @@ const Calendar = ({ props }) => {
               </div>
             </div>
           </div>
-
-          <div className="description-modal">
-            <p className="text-center xl:text-left mt-2 text-base tracking-normal text-black-600 dark:text-black-400 leading-5">
-              {props.description}
-            </p>
-          </div>
-
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <div className="container-comments">
               <Comments props={props} />
@@ -376,11 +328,7 @@ const Calendar = ({ props }) => {
           </Collapse>
         </div>
       </Collapse>
-
-      {/* </td >
-        
-      </tr>  */}
-    </>
+    </div>
   );
 };
 

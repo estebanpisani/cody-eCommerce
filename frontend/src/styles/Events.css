@@ -1,3 +1,10 @@
+.container-master-events {
+    background-color: #f9f2ed;
+    border: 1px solid blue;
+}
+.events-title {
+    background-color: #F9B384;
+}
 .container-events {
     display: flex;
     flex-direction: column;
@@ -7,28 +14,25 @@
     text-align: center;
 }
 
-.title-events{
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    font-weight: bold;
-    padding-bottom: 1rem;
-}
-
-.container-calendar {
-    width: 90vw;
-    display: flex;
-    flex-direction: column;
-}
-
-.container-master-events {
+.container-info-calendar {
+    border-bottom: 0.1rem solid #581c0c;
     background-color: #f9f2ed;
 }
-
-.div-events-title {
-    background-color: #F9B384;
+.event-basic-info{
+    border: 1px solid red;
+    width: 100%;
 }
+
+.calendar-item {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.5rem;
+    border: 1px solid black;
+}
+
+
 
 
