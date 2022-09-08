@@ -12,7 +12,7 @@ const Footer = () => {
           <img className='heroapp hidden md:block  w-full' src={heroapp} alt="" />
         </div>
         <div className="container-foot flex flex-col items-center text-gray-600">
-          <img src={Logo} alt="logo tailus" className="w-40" />
+          <img src={Logo} alt="logo tailus" className="w-40 cody-footer" />
           <ul className="py-4 flex flex-col gap-4 items-center justify-center sm:flex-row sm:gap-8">
             <li>
               <LinkRouter to='/home' className="hover:text-cyan-500">Home</LinkRouter>
