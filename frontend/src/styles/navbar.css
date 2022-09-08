@@ -15,10 +15,6 @@
   background-color: #f9f2ed;
 }
 
-.border{
-  border: none!important;
-}
-
 @media (max-width: 768px) {
   .logo-navbar {
     height: 7rem;

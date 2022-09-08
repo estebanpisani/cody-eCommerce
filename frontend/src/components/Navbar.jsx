@@ -30,10 +30,10 @@ const Navbar = () => {
     <div className='navbar py-3 overflow-y-hidden'>
       <dh-component>
         <nav className="w-full nav">
-          <div className="container mx-auto p-6 flex items-center justify-between ">
+          <div className="container mx-auto mb-3 md:mb-0 p-6 flex items-center justify-between ">
             <LinkRouter to='/home'>
               <div className="flex items-center" aria-label="Home" role="img">
-                <img className="logo-navbar cursor-pointer w-8 sm:w-auto" src={Logo} alt="logo" />
+                <img className="logo-navbar cursor-pointer w-32 sm:w-auto" src={Logo} alt="logo" />
               </div>
             </LinkRouter>
             <div id='burger-menu'>
@@ -57,7 +57,7 @@ const Navbar = () => {
                     <LinkRouter to='/events'>Eventos</LinkRouter>
                   </li>
 
-                  <div className="border w-fit rounded-xl m-5 shadow-sm ">
+                  <div className="border-none w-fit rounded-xl m-5 shadow-sm ">
 
                     {user ?
                       <div className='border-avatar'>

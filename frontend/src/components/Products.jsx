@@ -2,6 +2,8 @@
 import React from 'react'
 import '../styles/products.css'
 import { Input } from "@material-tailwind/react";
+import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 // import { useDispatch, useSelector } from 'react-redux'
 // import { useEffect } from 'react';
 // import productActions from "../redux/actions/productActions";
@@ -25,33 +27,44 @@ export default function Products(props) {
         }
         <Input onKeyUp={(e) => { setInput(e.target.value) }} className='my-3 search-input' placeholder='Prueba buscando Macciato'
         />
-        <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-        {filteredStore?.length > 0 ?   (filteredStore.map((product) => (
-          // Card
-              <div key={product._id} className=" group relative card-container w-full min-h-80  aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                <div className='product-img'>
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="object-center img"
-                  />
-                </div>
+        {filteredStore?.length > 0 ?
+        <Grid2 sx={{mt:'24px', justifyContent:{xs:'center', sm:'space-around'}}} container columns={{ xs: 1, md: 2, lg:3 }}>
+          {(filteredStore.map((product) =>
+            (
+            <Grid2 xs key={product._id} sx={{m:2, height:'22rem', maxHeight:'22rem', minWidth:'10rem', maxWidth: '12rem'}} className="card-container rounded-md overflow-hidden hover:opacity-75 ">
+              <div className='product-img'>
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="object-center img"
+                />
+              </div>
 
-                <div className="product-info">
-                  <h3 className="text-sm fontfamily my-1">
-                    {product.name}
-                  </h3>
-                  <p className="text-sm font-medium text-gray-900 price my-1">${product.price}</p>
-                  <div className='detail-modal'>
-                    <BasicModal data={product} functionReload={props.functionReload}>
-                    </BasicModal>
-                  </div>
+              <div className="product-info">
+                <h3 className="text-sm fontfamily">
+                  {product.name}
+                </h3>
+                <p className="text-sm font-medium text-gray-900 price my-1">${product.price}</p>
+                <div className='detail-modal'>
+                  <BasicModal data={product} functionReload={props.functionReload}>
+                  </BasicModal>
                 </div>
               </div>
-          ))) : (<NoResults/>)}
-        </div>
+            </Grid2>
+            )
+            ))}
+          </Grid2> : (
+            <div className="no-results-container">
+              <div className="no-results w-full md:w-2/3">
+                <p className="no-results-text lg:text-xl">
+                  Su búsqueda no está disponible en muestro menú :c
+                </p>
+              </div>
+            </div>
+          )}
       </div>
-      </div>
+
+    </div>
   )
 }
 

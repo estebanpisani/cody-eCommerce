@@ -1,58 +1,46 @@
-.no-results{
-    display: flex;
-    justify-content: center;
-    height: 27rem;
-    width: 40rem !important;
-    background-image: url(https://i.imgur.com/pWES2cW.png);
-    background-repeat: no-repeat;
-    background-size: 50rem 30rem;
-    object-fit: cover;
-    position: relative;
-    bottom: 5rem;
-    left: 15rem;
-}
-
-.no-results-text{
-    height: 1rem;
-    position: relative;
-    top: 16rem;
-
-    font-size: .9rem;
-    left: 5rem;
-    font-weight: bold;
-}
-.bg-cardcontainer{
+.bg-cardcontainer {
     background-color: #f9f2ed;
     height: fit-content;
+}
+
+.search-input {
+    border: 2px solid #581c0c !important;
+    background-color: #f8b384 !important;
+    padding-left: 20px !important;
+    border-radius: 5px;
+    height: 3rem !important;
 }
 
 .card-container {
     background-image: url(https://i.imgur.com/nrahNBR.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
+    object-fit: contain;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    height: 60vh;
-    width: 100%;
     box-shadow: 1px 1px 4px #581c0c;
-
+    /* max-height: 20rem !important; */
+    /* max-width: 11rem !important; */
+    /* min-width: 8rem !important; */
 }
 
-.product-img{
+.product-img {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 65%;
-    filter:drop-shadow(5px 5px 3px black)
+    filter: drop-shadow(5px 5px 3px black)
 }
-.img{
+
+.img {
     height: 180px;
 }
 
-.product-info{
+.product-info {
     min-height: 35%;
     display: flex;
     flex-direction: column;
@@ -60,7 +48,7 @@
     align-items: center;
 }
 
-.flex-conteiner-info{
+.flex-conteiner-info {
     height: 100%;
 
     display: flex;
@@ -68,8 +56,9 @@
     justify-content: space-evenly;
 }
 
-.price{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif!important;;
+.price {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+    ;
     font-weight: bold;
     color: #581c0c;
     background-color: #f8b384;
@@ -79,53 +68,45 @@
     border: 0.1rem solid #f9f2ed;
 }
 
-.store-title{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif!important;;
+.store-title {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+    ;
     font-weight: bold;
     color: #581c0c;
     text-align: center;
 }
 
-.fontfamily{
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif!important;
+.fontfamily {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     font-weight: 700;
-    font-size: 1.1rem;
     border-radius: 5px;
     color: #ea8e51;
     text-shadow: 1px 1px 2px #581c0c;
     background-color: #f9f2ed;
     text-align: center;
-    padding: 0.4rem;
+    padding: 5px 5px;
 }
 
-.search-input {
-    border: 2px solid #581c0c!important;
-    background-color: #f8b384 !important;
-    padding-left: 20px !important;
-    border-radius: 5px;
-    height: 3rem !important;
-}
+
 
 
 /* mejorar shadow */
 /* 
     /*  */
-    .detail-modal{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        
-    }
+.detail-modal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
-.viewmore-button{
+}
+
+.viewmore-button {
     background-color: #318aac;
 }
 
-.viewmore-button:hover{
-    color: #318aac!important;
+.viewmore-button:hover {
+    color: #318aac !important;
 }
-
-
 
 .all-info {
     display: flex;
@@ -143,13 +124,42 @@
     justify-content: center;
 }
 
+.no-results-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: 20rem;
+}
 
+.no-results {
+    height: 70%;
+    width: 50%;
+    background-image: url(./../media/no-results.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px 0px;
+}
+
+.no-results-text {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1rem;
+    word-wrap: normal;
+    max-width: 30%;
+    max-height: 80%;
+}
 
 /*  */
 
-.MoreBorder{
+.MoreBorder {
     background-color: #f9f2ed;
-    
+
     border-style: solid;
     display: flex;
     flex-direction: column;
@@ -157,11 +167,11 @@
     align-items: center;
     width: 100%;
     min-height: 60vh;
-    border-radius:10px;
+    border-radius: 10px;
     box-shadow: 2px 2px 5px #581c0c;
 }
 
-.imgs-box{
+.imgs-box {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -171,7 +181,7 @@
 
 }
 
-.MoreProduct{
+.MoreProduct {
     display: flex;
     flex-direction: column;
 
@@ -183,21 +193,21 @@
     margin-bottom: 1rem;
 }
 
-.BoxModal{
+.BoxModal {
     border-radius: 10px;
 }
 
-.MoreCody{
+.MoreCody {
 
     /* filter:drop-shadow(2px 2px 2px #581c0c); */
-height: 95px;
-align-self: flex-start;
-justify-self: flex-end;
+    height: 95px;
+    align-self: flex-start;
+    justify-self: flex-end;
 }
 
 
 
-.codymore{
+.codymore {
     height: 120px;
     transition: transform .7s ease-in-out;
     /* background-color: #f8b384; */
@@ -208,22 +218,25 @@ justify-self: flex-end;
 }
 
 
-.codymore:hover{transform: rotate(360deg);}
+.codymore:hover {
+    transform: rotate(360deg);
+}
 
-.image-modal{
+.image-modal {
 
-    justify-self: flex-start!important;
+    justify-self: flex-start !important;
     height: 160px;
     transition: transform .2s;
 
 }
-.image-modal:hover{
+
+.image-modal:hover {
     transform: scale(1.6);
 }
 
 
 
-.MoreData{
+.MoreData {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -232,20 +245,21 @@ justify-self: flex-end;
     width: 50%;
 
 }
-.MoreName{
+
+.MoreName {
     font-size: 1.5rem;
 }
 
 
 
 
-.MoreInfo{
+.MoreInfo {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     font-size: 0.7rem;
 }
 
-.MoreBuy{
+.MoreBuy {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -255,8 +269,8 @@ justify-self: flex-end;
 
 
 
-.MorePrice{
-    width: 30%!important;
+.MorePrice {
+    width: 30% !important;
     text-align: center;
     border-top: 2px solid #f8b384;
     border-bottom: 2px solid #f8b384;
@@ -269,8 +283,8 @@ justify-self: flex-end;
     font-weight: bold;
 }
 
-.MoreStock{
-    width: 30%!important;
+.MoreStock {
+    width: 30% !important;
     text-align: center;
     border-top: 2px solid #f8b384;
     border-bottom: 2px solid #f8b384;
@@ -283,33 +297,34 @@ justify-self: flex-end;
     font-weight: bold;
 }
 
-.MoreSelect{
+.MoreSelect {
     background-color: white;
-    border: 1px thin #f8b384!important;
+    border: 1px thin #f8b384 !important;
 
 
 }
 
 
- .boton3 {
+.boton3 {
     color: #318aac !important;
     font-size: 20px;
     font-weight: 500;
     padding: 2px 6px;
-    background: rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
     border: 2px solid;
     border-color: #318aac;
     transition: all 1s ease;
     position: relative;
-  }
-  .boton3:hover {
+}
+
+.boton3:hover {
     background: #318aac;
     color: #fff !important;
-  } 
+}
 
-  .boton4 {
-    min-width: 40%!important;
-    background-color: #f9f2ed!important;
+.boton4 {
+    min-width: 40% !important;
+    background-color: #f9f2ed !important;
     font-size: 20px;
     font-weight: 500;
     padding: 2px 12px;
@@ -321,14 +336,15 @@ justify-self: flex-end;
     transition: all 1s ease;
     position: relative;
     box-shadow: 1px 1px 5px black;
-  }
-  .boton4:hover {
-    background-color: #318aac!important;
-    color: #fff !important;
-  } 
+}
 
-  .boton5 {
-    background-color: #f9f2ed!important;
+.boton4:hover {
+    background-color: #318aac !important;
+    color: #fff !important;
+}
+
+.boton5 {
+    background-color: #f9f2ed !important;
     font-size: 20px;
     font-weight: 500;
     padding: 2px 6px;
@@ -337,16 +353,16 @@ justify-self: flex-end;
     border-color: #318aac;
     transition: all 1s ease;
     position: relative;
-  }
+}
 
-  .boton5 {
-    background-color: #318aac!important;
+.boton5 {
+    background-color: #318aac !important;
     color: #fff !important;
-  }
+}
 
 
-  /* /rol admin/ */
-.panel-admin{
+/* /rol admin/ */
+.panel-admin {
     color: #f9f2ed;
     padding: 2px 4px;
     width: 15rem;
@@ -354,98 +370,120 @@ justify-self: flex-end;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  border:#318aac 1px solid;
-  border-radius: 5px;
+    border: #318aac 1px solid;
+    border-radius: 5px;
 }
-.modal-admin{
-    display:flex ;
+
+.modal-admin {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.admin-title{
+
+.admin-title {
     background-color: #318aac;
     color: #f9f2ed;
     width: 100%;
     text-align: center;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif!important;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
     font-weight: bold;
     text-shadow: 1px 1px 4px #1c0702;
 }
-.admin-text{
+
+.admin-text {
     padding: 1rem;
     font-weight: bold;
     color: #581c0c;
 
 }
-.admin-container{
-height: 10rem;
-border-radius: 5px;
-display: flex;
-flex-direction: column;
-justify-content: center !important;
-align-items: center;
-border:#318aac 2px solid;
+
+.admin-container {
+    height: 10rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: center;
+    border: #318aac 2px solid;
 
 
-margin: .5rem;
+    margin: .5rem;
 
-/* /modify/ */
+    /* /modify/ */
 
 
 }
 
-.material-symbols-outlined { 
-    border-radius: 10px ;
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+.material-symbols-outlined {
+    border-radius: 10px;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
 }
+
 /* /delete/ */
-.delete{
+.delete {
 
-        color: #318aac !important;
-        font-size: 20px;
-        font-weight: 500;
-        padding: 2px 6px;
-        background: rgba(0,0,0,0);
-        border: 2px solid;
-        border-color: #318aac;
-        /* transition: all 1s ease; */
-        position: relative;
+    color: #318aac !important;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 2px 6px;
+    background: rgba(0, 0, 0, 0);
+    border: 2px solid;
+    border-color: #318aac;
+    /* transition: all 1s ease; */
+    position: relative;
 
 }
+
 .button-admin:hover {
 
-   color:#318aac;
-   background-color: #f9f2ed;
-  } 
-.material-symbols-outlined { 
+    color: #318aac;
+    background-color: #f9f2ed;
+}
+
+.material-symbols-outlined {
 
     border-radius: 10px !important;
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
 }
 
 
-.button-admin{
+.button-admin {
     color: #f9f2ed;
     margin: .5rem;
     background-color: #318aac;
-    border:#318aac 2px solid;
+    border: #318aac 2px solid;
     border-radius: 10px;
     font-weight: bold;
-    transition: all 1s ease; 
+    transition: all 1s ease;
     padding: 0px 5px;
     font-weight: 500;
-
-    transition: all 1s ease; 
+    transition: all 1s ease;
     position: relative;
+}
 
+@media (max-width:400px) {
+    .no-results-text {
+        font-size: 0.7rem;
+    }
+}
 
+@media (min-width:500px) {
+    .no-results-text {
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width:640px) {
+    .no-results-text {
+        font-size: 1rem;
+    }
 }
