@@ -18,8 +18,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import Comments from "./Comments";
-import CommentsIn from '../components/CommentsIn';
+import Comments from './Comments';
 
 import eventsActions from "../redux/actions/eventsActions";
 import "../styles/ModalEvent.css";
@@ -320,8 +319,7 @@ const Calendar = ({ props }) => {
               <AccordionDetails
                 sx={{ backgroundColor: '#F9F2ED' }}
               >
-                {/* <CommentsIn events={props} eventId={props?._id} comments={props?.comments} setChangeReload={reloadChanger} /> */}
-                <CommentsIn event={props} setChangeReload={reloadChanger} />
+                <Comments event={props} setChangeReload={reloadChanger} />
               </AccordionDetails>
             </Accordion>
           </Collapse>
