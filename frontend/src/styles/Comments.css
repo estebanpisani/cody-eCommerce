@@ -28,21 +28,26 @@
   border: 0.15rem solid black;
 }
 
-.div-text-comments {
-  display: flex;
-  justify-content: flex-start;
-  text-align: center;
-  min-width: 12rem;
-  max-height: 5rem;
+.comment-content {
+  padding: 5px;
+}
+
+.comment-text {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+  word-wrap: break-word;
+  max-width: 50%;
 }
 
 .button {
   width: 5rem;
-  border: 2px solid black;
+  border: 1px solid black;
   padding: 8px;
   border-radius: 0.5rem;
   color: black;
 }
+
 .button p {
   display: flex;
   font-size: x-small;
@@ -50,6 +55,16 @@
   align-items: center;
   justify-content: center;
 }
+
+.container-text-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 0.5rem;
+  margin-top: 2rem;
+}
+
 .button-comments {
   font-weight: bold;
 }
@@ -57,19 +72,16 @@
 .button-comments a {
   color: white;
   text-transform: uppercase;
-
 }
 
 
 .div-new-comment {
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-
   padding: 1rem;
   font-weight: bold;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
 }
 
 #nuevoComentario:hover {
@@ -92,36 +104,4 @@
   width: 100%;
   height: auto;
   word-wrap: break-word;
-}
-
-.container-text-area {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.comment-content {
-  padding: 5px;
-}
-
-.comment-text{
-  border-radius: 10px;
-  padding: 10px;
-  background-color: white;
-  word-wrap: break-word;
-  max-width: 50%;
-}
-
-.textarea-comments {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem;
-}
-
-
-
-.button-newcomment {
-  display: flex;
-  justify-content: flex-end;
 }

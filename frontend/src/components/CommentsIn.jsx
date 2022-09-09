@@ -88,13 +88,9 @@ function CommentsIn({ event, setChangeReload }) {
       }
       {user ?
         <div className="container-text-area">
-          <div className="textarea-comments">
-            <textarea value={input} onInput={(event) => setInput(event.target.value)} className="text-area text-xs md:text-lg h-24  border rounded-xl overflow-hidden resize-none focus:border-blue-500 ring-1 ring-transparent focus:ring-blue-500 focus:outline-none text-black p-2 transition ease-in-out duration-300 textarea-comments" placeholder="Your comment here. . . ."></textarea>
-          </div>
+            <textarea value={input} onInput={(event) => setInput(event.target.value)} className="w-full text-area text-xs md:text-lg h-24  border rounded-xl overflow-hidden resize-none focus:border-blue-500 ring-1 ring-transparent focus:ring-blue-500 focus:outline-none text-black p-2 transition ease-in-out duration-300" placeholder="Your comment here. . . ."></textarea>
+            <button onClick={newComment} id={oneEvent?._id} className="mt-3 w-24 flex justify-center focus:outline-none bg-sky-600 dark:bg-sky-600 transition duration-150 ease-in-out hover:bg-sky-600 rounded text-white px-3 py-2 text-sm ">COMENTAR</button>
 
-          <div className="button-newcomment">
-            <button onClick={newComment} id={oneEvent?._id} className="flex justify-center focus:outline-none  ml-0 md:ml-5 bg-sky-600 dark:bg-sky-600 transition duration-150 ease-in-out hover:bg-sky-600 rounded text-white px-3 md:px-6 py-2 text-sm ">COMENTAR</button>
-          </div>
         </div> :
 
         <Box>
