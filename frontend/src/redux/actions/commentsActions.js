@@ -3,7 +3,6 @@ import URL_API from "../../url";
 
 const commentsActions = {
   addComment: (comment) => {
-    console.log(comment)
     const token = localStorage.getItem("token");
     return async (dispatch, getState) => {
       if (comment.comment !== "") {
