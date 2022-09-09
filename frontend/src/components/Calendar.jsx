@@ -91,8 +91,8 @@ const Calendar = ({ props }) => {
 
   return (
     <div className="container-info-calendar flex flex-col items-center justify-between
-      w-full p-2 rounded mt-1 mb-3">
-      <div className="event-basic-info flex flex-col md:flex-row justify-around md:justify-between items-center md:items-center">
+      w-full rounded mt-1 mb-3">
+      <div className="event-basic-info flex flex-col md:flex-row justify-around md:justify-between items-center md:items-center w-full p-2">
         <img
           src={props.images}
           alt="Nombre del Evento"
@@ -261,9 +261,8 @@ const Calendar = ({ props }) => {
         <ExpandCircleDownIcon fontSize="medium" />
       </ExpandMore>
 
-
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <div className="text-sm leading-none text-black-800  justify-center item-center">
+      <Collapse in={expanded} timeout="auto" unmountOnExit sx={{width:'100%'}}>
+        <div className="text-sm leading-none text-black-800 justify-center item-center w-full">
           <div className="flex flex-col items-center justify-between">
             <div className="description-modal">
               <p className="text-center text-base text-justify text-black-600 dark:text-black-400">
@@ -299,11 +298,9 @@ const Calendar = ({ props }) => {
               )}
             </div>
           </div>
-          {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <div className="container-comments">
+          <Collapse in={expanded} timeout="auto" unmountOnExit sx={{w:'100%'}}>
               <Comments props={props} />
-            </div>
-          </Collapse> */}
+          </Collapse>
         </div>
       </Collapse>
     </div>
