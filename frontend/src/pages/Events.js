@@ -28,7 +28,7 @@ function Events() {
                 <div className="events-title w-full rounded-tl-lg rounded-tr-lg border sm:flex items-center justify-between p-2">
                     <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Nuestros Eventos</h2>
                 </div>
-                <div className="bg-white w-full rounded-bl-lg rounded-br-lg shadow overflow-y-auto flex flex-col">
+                <div className="bg-white w-full rounded-bl-lg rounded-br-lg shadow overflow-y-auto flex flex-col p-3">
                     {allEvents?.map((item, i) => <Calendar key={i} props={item} setChangeReload={reloadChanger} />)}
                 </div>
             </ div >

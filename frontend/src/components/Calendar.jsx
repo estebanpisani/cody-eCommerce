@@ -11,6 +11,7 @@ import { Box } from "@mui/material";
 import Comments from "./Comments";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import CommentIcon from '@mui/icons-material/Comment';
 import Button from "@mui/material/Button";
 
 import eventsActions from "../redux/actions/eventsActions";
@@ -90,7 +91,7 @@ const Calendar = ({ props }) => {
 
   return (
     <div className="container-info-calendar flex flex-col items-center justify-between
-      w-full p-2">
+      w-full p-2 rounded mt-1 mb-3">
       <div className="event-basic-info flex flex-col md:flex-row justify-around md:justify-between items-center md:items-center">
         <img
           src={props.images}
@@ -114,51 +115,49 @@ const Calendar = ({ props }) => {
             {props?.attendance.length} asistentes confirmados
           </p>
         </div>
-        <div className="calendar-item">
-          <div className="container-modal-info">
-            <div className="flex flex-col items-center">
-              <h2 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl leading-6 mb-2 text-center">
-                {" "}
-                {`${props.likes?.length}`}
-              </h2>
-              {user ? (
-                <IconButton
-                  className="text-sm bg-indigo-700 dark:bg-indigo-600 text-white px-5 py-1 font-normal rounded-full"
-                  onClick={likesOrDislikes}
-                  aria-label="add to favorites"
-                >
-                  {props.likes?.includes(user.user?.id) ? (
-                    <FavoriteIcon sx={{ color: "red" }} />
-                  ) : (
-                    <FavoriteBorderIcon />
-                  )}
-                </IconButton>
-              ) : (
-                <FavoriteBorderIcon />
-              )}
-            </div>
-            {/* </div> */}
-            <div className="modal-info">
-              <h2 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl mb-2 text-center">
-                {props.comments.length > 0 ? props?.comments.length : 0}
-              </h2>
-              <p className="text-black-800 dark:text-black-100 text-sm xl:text-xl">
-                Comentarios
-              </p>
-            </div>
-            <div className="modal-info">
-              <h2 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl mb-2 text-center">
-                {props?.limit - props?.attendance?.length}
-              </h2>
-              <p className="text-black-800 dark:text-black-100 text-sm xl:text-xl">
-                Vacantes
-              </p>
+
+        <div className="container-modal-info">
+          <div className="modal-info">
+            <h5 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl text-center">
+              {`${props.likes?.length}`}
+            </h5>
+            {user ? (
+              <IconButton
+                className="text-sm text-white font-normal"
+                sx={{ p: 0 }}
+                onClick={likesOrDislikes}
+                aria-label="add to favorites"
+              >
+                {props.likes?.includes(user.user?.id) ? (
+                  <FavoriteIcon sx={{ color: "red" }} />
+                ) : (
+                  <FavoriteBorderIcon />
+                )}
+              </IconButton>
+            ) : (
+              <FavoriteBorderIcon />
+            )}
+          </div>
+          <div className="modal-info">
+            <h5 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl text-center">
+              {props.comments.length > 0 ? props?.comments.length : 0}
+            </h5>
+            <div className="text-black-800 text-sm px-5 font-normal rounded-full">
+              <CommentIcon />
             </div>
           </div>
+          <div className="modal-info">
+            <h5 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl text-center">
+              {props?.limit - props?.attendance?.length}
+            </h5>
+            <p className="text-black-800 text-lg font-normal">
+              Vacantes
+            </p>
+          </div>
         </div>
-        {user?.user &&
+        {user?.user?.role === "admin" ?
           <div className="px-7 2xl:px-0">
-            {user?.user?.role === "admin" ? (
+            {
               show === 0 ? (
                 <button
                   onClick={() => setShow(null)}
@@ -230,7 +229,7 @@ const Calendar = ({ props }) => {
                   </svg>
                 </button>
               )
-            ) : null}
+            }
             {show === 0 && (
               <div className="dropdown-content bg-white shadow w-24 absolute z-30 right-0 mr-6 ">
                 <div
@@ -248,84 +247,63 @@ const Calendar = ({ props }) => {
               </div>
             )}
           </div>
+          : null
         }
+      </div>
 
-      </div>
-      <div className="container-tr">
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <div className="expander-button">
-            <ExpandCircleDownIcon fontSize="medium" />
-          </div>
-        </ExpandMore>
-      </div>
+      <ExpandMore
+        expand={expanded}
+        onClick={handleExpandClick}
+        aria-expanded={expanded}
+        aria-label="show more"
+        sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+      >
+        <ExpandCircleDownIcon fontSize="medium" />
+      </ExpandMore>
+
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <div className="text-sm leading-none text-black-800 bg-white border-b border-t justify-center item-center border-black-100 div-modal">
-          <div className="px-5 xl:px-10 div-modal">
-            <div className="flex justify-center xl:justify-end pt-1 xl:pt-5"></div>
-            <div className=" flex flex-col xl:flex-row xl:items-center justify-between">
-              <div className="description-modal">
-                <p className="text-center xl:text-left mt-2 text-base tracking-normal text-black-600 dark:text-black-400 leading-5">
-                  {props.description}
-                </p>
-              </div>
-              <div className="container-modal-info">
-                <div className="modal-info">
-                  {user ? (
-                    props?.attendance?.length ? (
-                      <Button
-                        // sx={{
-                        //   background: "#f8b384",
-                        //   color: "black",
-                        //   marginTop: 3,
-                        // }}
-                        variant="contained"
-                        onClick={bookingEvent}
-                        className="button-reserva"
-                      >
-                        Dar de baja
-                      </Button>
-                    ) : (
-                      <Button
-                        // sx={{
-                        //   background: "#f8b384",
-                        //   color: "black",
-                        //   marginTop: 3,
-                        // }}
-                        variant="contained"
-                        onClick={bookingEvent}
-                        className="button-reserva"
-                      >
-                        Reservar lugar
-                      </Button>
-                    )
-                  ) : (
-                    <p>Inicia sesión para reservar!</p>
-                  )}
-                </div>
-                <div className="modal-info">
-                  {!user ? (
-                    <LinkRouter
-                      to={"/login"}
-                      className="focus:outline-none ml-0 md:ml-5 bg-indigo-700 dark:bg-indigo-600 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 md:px-6 py-2 text-sm"
-                    >
-                      Iniciar sesión
-                    </LinkRouter>
-                  ) : null}
-                </div>
-              </div>
+        <div className="text-sm leading-none text-black-800  justify-center item-center">
+          <div className="flex flex-col items-center justify-between">
+            <div className="description-modal">
+              <p className="text-center text-base text-justify text-black-600 dark:text-black-400">
+                {props.description}
+              </p>
+            </div>
+            <div className="modal-info">
+              {user ? (
+                props?.attendance?.length ? (
+                  <Button
+                    variant="contained"
+                    onClick={bookingEvent}
+                    className="button-reserva"
+                  >
+                    Dar de baja
+                  </Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    onClick={bookingEvent}
+                    className="button-reserva"
+                  >
+                    Reservar lugar
+                  </Button>
+                )
+              ) : (
+                <LinkRouter
+                  to={"/login"}
+                  className="focus:outline-none button-reserva transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 py-2 text-sm text-center"
+                >
+                  Inicia sesión para reservar!
+                </LinkRouter>
+              )}
             </div>
           </div>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
+          {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
             <div className="container-comments">
               <Comments props={props} />
             </div>
-          </Collapse>
+          </Collapse> */}
         </div>
       </Collapse>
     </div>

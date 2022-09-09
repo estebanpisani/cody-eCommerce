@@ -15,11 +15,10 @@
 }
 
 .container-info-calendar {
-    border-bottom: 0.1rem solid #581c0c;
+    /* border: 1px solid #581c0c; */
     background-color: #f9f2ed;
 }
 .event-basic-info{
-    border: 1px solid red;
     width: 100%;
 }
 
@@ -30,7 +29,6 @@
     align-items: center;
     justify-content: flex-start;
     padding: 0.5rem;
-    border: 1px solid black;
 }
 
 
