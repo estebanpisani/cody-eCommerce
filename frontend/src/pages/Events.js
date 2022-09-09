@@ -20,6 +20,7 @@ function Events() {
     }
 
     const allEvents = useSelector(store => store.eventsReducer.events)
+    allEvents && console.log(allEvents)
 
     return (
         <>

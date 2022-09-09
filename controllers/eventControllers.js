@@ -5,7 +5,7 @@ const eventControllers = {
         let events;
         let error = null;
         try {
-            events = await Event.find();
+            events = await Event.find().populate("comments.user", { firstName: 1, image: 1 });
         } catch (err) {
             error = err;
         }

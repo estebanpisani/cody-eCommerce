@@ -30,7 +30,6 @@ export default function Comments({ props }) {
 
 
   return (
-    <div className='background-accordion-comments'>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -38,19 +37,13 @@ export default function Comments({ props }) {
           id="panel1a-header"
           sx={{ backgroundColor: '#F9B384' }}
         >
-          <Typography>Comments</Typography>
+          <Typography>Comentarios</Typography>
         </AccordionSummary>
         <AccordionDetails
           sx={{ backgroundColor: '#F9F2ED' }}
         >
-
-
           <CommentsIn eventId={props?._id} comments={props?.comments} events={event} setChangeReload={reloadChanger} />
-
-
         </AccordionDetails>
       </Accordion>
-
-    </div>
   );
 }

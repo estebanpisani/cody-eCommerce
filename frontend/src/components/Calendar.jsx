@@ -8,11 +8,18 @@ import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import { Collapse } from "@mui/material";
 import { Box } from "@mui/material";
-import Comments from "./Comments";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from '@mui/icons-material/Comment';
 import Button from "@mui/material/Button";
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+import Comments from "./Comments";
+import CommentsIn from '../components/CommentsIn';
 
 import eventsActions from "../redux/actions/eventsActions";
 import "../styles/ModalEvent.css";
@@ -43,7 +50,9 @@ const Calendar = ({ props }) => {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  function reloadChanger() {
+    setReload(!reload);
+  }
   async function likesOrDislikes() {
     await dispatch(eventsActions.likeDislike(props._id));
     setReload(!reload);
@@ -261,7 +270,7 @@ const Calendar = ({ props }) => {
         <ExpandCircleDownIcon fontSize="medium" />
       </ExpandMore>
 
-      <Collapse in={expanded} timeout="auto" unmountOnExit sx={{width:'100%'}}>
+      <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ width: '100%' }}>
         <div className="text-sm leading-none text-black-800 justify-center item-center w-full">
           <div className="flex flex-col items-center justify-between">
             <div className="description-modal">
@@ -298,8 +307,23 @@ const Calendar = ({ props }) => {
               )}
             </div>
           </div>
-          <Collapse in={expanded} timeout="auto" unmountOnExit sx={{w:'100%'}}>
-              <Comments props={props} />
+          <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ w: '100%' }}>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                sx={{ backgroundColor: '#F9B384' }}
+              >
+                <Typography>Comentarios</Typography>
+              </AccordionSummary>
+              <AccordionDetails
+                sx={{ backgroundColor: '#F9F2ED' }}
+              >
+                {/* <CommentsIn events={props} eventId={props?._id} comments={props?.comments} setChangeReload={reloadChanger} /> */}
+                <CommentsIn event={props} setChangeReload={reloadChanger} />
+              </AccordionDetails>
+            </Accordion>
           </Collapse>
         </div>
       </Collapse>

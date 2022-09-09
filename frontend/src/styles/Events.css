@@ -1,6 +1,5 @@
 .container-master-events {
     background-color: #f9f2ed;
-    border: 1px solid blue;
 }
 .events-title {
     background-color: #F9B384;
@@ -15,7 +14,6 @@
 }
 
 .container-info-calendar {
-    /* border: 1px solid #581c0c; */
     background-color: #f9f2ed;
 }
 .event-basic-info{
