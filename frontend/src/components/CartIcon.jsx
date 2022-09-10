@@ -1,17 +1,20 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import CartItem from "./CartItem";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import { useDispatch, useSelector } from "react-redux";
 import shoppingActions from "../redux/actions/shoppingActions";
-import codybuy from '../media/cody4.png';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
-import productActions from "../redux/actions/productActions";
-import PayPal from "./Paypal";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import CartItem from "./CartItem";
+import PayPal from "./Paypal";
+
+import codybuy from '../media/cody4.png';
+import productActions from "../redux/actions/productActions";
 
 const style = {
   position: 'absolute',
@@ -83,7 +86,7 @@ export default function CartIcon() {
             }
             <div className="cont-buy">
               <div className="cont-btn-buy">
-                <p className="cart-total-txt fontfamily">Total: ${sumWithInitial}</p>
+                <p className="cart-total-txt font-products">Total: ${sumWithInitial}</p>
                 <PayPal props={cart} total={sumWithInitial}></PayPal>
               </div>
               <img className="codybuy" src={codybuy}></img>

@@ -75,7 +75,7 @@ export default function AdminProduct({ functionReload }) {
       >
         <Box sx={style} className='modal-admin'>
           <h1>¡Nuevo Producto!</h1>
-          <img className='codymore' src={codymore}></img>
+          <img className='cody-more' src={codymore}></img>
           <Box
             component="form"
             sx={{

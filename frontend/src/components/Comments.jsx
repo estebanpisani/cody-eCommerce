@@ -10,8 +10,6 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 
 function Comments({ event, setChangeReload }) {
-
-  let oneEvent = event?.data?.response?.event
   let userComment = event?.comments;
 
   const [input, setInput] = useState("");

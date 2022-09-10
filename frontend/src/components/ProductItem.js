@@ -53,34 +53,34 @@ const ProductItem = ({ data, functionReload, handleClose }) => {
   }
 
   return (
-    <div className='MoreBorder' style={{ padding: "1rem" }}>
+    <div className='more-border' style={{ padding: "1rem" }}>
       <div className='imgs-box'>
-        <img className='codymore' alt='Cody developer' src={codymore}></img>
-        <div className='MoreProduct'>
+        <img className='cody-more' alt='Cody developer' src={codymore}></img>
+        <div className='more-product'>
           <img
             className='image-modal MoreImg'
             src={image}
             alt="product"
           />
           {user?.user.role === 'admin' ?
-            <input type='textarea' defaultValue={name} value={inputname} onChange={(event) => setInputname(event.target.value)} className='MoreName text-sm fontfamily' />
+            <input type='textarea' defaultValue={name} value={inputname} onChange={(event) => setInputname(event.target.value)} className='more-name text-sm font-products' />
             :
-            <h4 className="text-sm fontfamily MoreName">{name}</h4>
+            <h4 className="text-sm font-products more-name">{name}</h4>
           }
         </div>
       </div>
 
       {user?.user.role === 'admin' ?
-        <div className='MoreBuy'>
+        <div className='more-buy'>
           <p>Stock:</p>
-          <input type='textarea' defaultValue={stock} onChange={(event) => setInputstock(event.target.value)} className='MoreStock' />
+          <input type='textarea' defaultValue={stock} onChange={(event) => setInputstock(event.target.value)} className='more-stock' />
           <p>Precio: </p>
-          <input type='textarea' defaultValue={price} onChange={(event) => setInputprice(event.target.value)} className='MorePrice'></input>
+          <input type='textarea' defaultValue={price} onChange={(event) => setInputprice(event.target.value)} className='more-price'></input>
         </div>
         :
-        <div className='MoreBuy'>
-          <h5 className='MoreStock'>Disponible: {stock}</h5>
-          <FormControl color='warning' className='MoreSelect' sx={{ m: 1, minWidth: 120 }} size="small">
+        <div className='more-buy'>
+          <h5 className='more-stock'>Disponible: {stock}</h5>
+          <FormControl color='warning' className='more-select' sx={{ m: 1, minWidth: 120 }} size="small">
             <InputLabel color='warning' id="demo-select-small">Variedades:</InputLabel>
             <Select
               color='warning'
@@ -96,7 +96,7 @@ const ProductItem = ({ data, functionReload, handleClose }) => {
               <MenuItem color='warning' value={30}>{variations[2]}</MenuItem>
             </Select>
           </FormControl>
-          <h5 className='MorePrice'>${price}.00</h5>
+          <h5 className='more-price'>${price}.00</h5>
         </div>
       }
 
@@ -112,7 +112,7 @@ const ProductItem = ({ data, functionReload, handleClose }) => {
         : user?.user.role==='user' ?
         <button className="addToCart-button boton3" onClick={()=>dispatch(shoppingActions.addToCart(data._id))}>Agregar</button>
         :
-        <p className="text-sm fontfamily MoreName">Inicia sesión para agregar este producto a tu pedido</p>
+        <p className="text-sm font-products more-name">Inicia sesión para agregar este producto a tu pedido</p>
       }
     </div>
   );

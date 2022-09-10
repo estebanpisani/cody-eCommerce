@@ -33,7 +33,7 @@ export default function BasicModal({ data, functionReload }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box className='BoxModal' sx={style}>
+        <Box className='box-modal' sx={style}>
           <div className='add-cart'>
             <ProductItem key={data._id} data={data} functionReload={ReloadChange} handleClose={handleClose}/>
           </div>
