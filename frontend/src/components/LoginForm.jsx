@@ -38,9 +38,8 @@ const LoginForm = () => {
 
   return (
     <div className='body-login'>
-
-      <div className="container-loginprueba" id="container" >
-        <div className={isSignUp ? "container-loginprueba right-panel-active" : ""}  >
+      <div className="container-login" id="container" >
+        <div className={isSignUp ? "container-login right-panel-active" : ""}  >
           <div className="form-container sign-up-container">
             <form onSubmit={signUpSubmit} className='forms-register'>
               <h1 className='font-bold m-0'>Crear una cuenta</h1>
