@@ -1,12 +1,13 @@
 import React from 'react'
-import '../styles/loginprueba.css';
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import userActions from '../redux/actions/userActions';
 import GoogleSignUp from './GoogleSignUp';
 import GoogleSignIn from './GoogleSignIn';
 
-const LoginPrueba = () => {
+import '../styles/LoginForm.css';
+
+const LoginForm = () => {
   const dispatch = useDispatch()
   const [isSignUp, setSignUp] = useState(true);
 
@@ -88,4 +89,4 @@ const LoginPrueba = () => {
   )
 }
 
-export default LoginPrueba
+export default LoginForm

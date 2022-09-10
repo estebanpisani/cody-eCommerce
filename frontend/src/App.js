@@ -9,7 +9,7 @@ import Events from '../src/pages/Events';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import UserProfile from '../src/components/UserProfile'
-import LoginAndSignUp from './components/LoginAndSignUp';
+import LoginForm from './components/LoginForm';
 import Patita from './components/ScrollPatita';
 
 import userActions from '../src/redux/actions/userActions';
@@ -78,7 +78,7 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path="/store" element={<Store />} />
           <Route path="/events" element={<Events />} />
-          {!user && <Route path="/login" element={<LoginAndSignUp />} />}
+          {!user && <Route path="/login" element={<LoginForm />} />}
           <Route path="/profile" element={<UserProfile />} />
           <Route path='/*' element={<Home />} />
         </Routes>
