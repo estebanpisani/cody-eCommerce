@@ -6,9 +6,16 @@
   position: absolute;
 }
 
+.button-login{
+  color: #f9f2ed;
+  background-color: #318aac;
+  box-shadow: 1px 1px 5px black;
+  border: 1px white solid;
+}
+
 .button-login:hover{
-  color: #f9f2ed!important;
-  background-color: #318aac!important;
+  background-color: #fd981f;
+  color: #318aac;
 }
 
 .navbar {

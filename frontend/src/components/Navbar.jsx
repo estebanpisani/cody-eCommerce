@@ -93,7 +93,7 @@ const Navbar = () => {
                       // </LinkRouter>
                       :
                       <LinkRouter to='/login'>
-                        <button className="button-login px-4 py-2 rounded-l-xl text-white m-0 bg-red-500 hover:text-red-500 hover:bg-neutral-50 transition">Iniciar Sesion</button>
+                        <button className="button-login px-4 py-2 rounded-xl m-0">Iniciar Sesion</button>
                       </LinkRouter>
                     }
                   </div>
