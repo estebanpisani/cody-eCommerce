@@ -25,17 +25,6 @@ import "../styles/ModalEvent.css";
 // import toast, { Toaster } from 'react-hot-toast';
 // import Cody from '../media/cody2.png'
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
 const Calendar = ({ props }) => {
   const [show, setShow] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -258,17 +247,7 @@ const Calendar = ({ props }) => {
           : null
         }
       </div>
-
-      <ExpandMore
-        expand={expanded}
-        onClick={handleExpandClick}
-        aria-expanded={expanded}
-        aria-label="show more"
-        sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}
-      >
-        <ExpandCircleDownIcon fontSize="medium" />
-      </ExpandMore>
-
+      <ExpandCircleDownIcon sx={{ width: '100%', display: 'flex', justifyContent: 'center' }} onClick={handleExpandClick} className={expanded ? 'rotate btn-expand down' : 'rotate btn-expand'} fontSize="medium" />
       <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ width: '100%' }}>
         <div className="text-sm leading-none text-black-800 justify-center item-center w-full">
           <div className="flex flex-col items-center justify-between">
