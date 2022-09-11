@@ -36,10 +36,6 @@
     box-shadow: 1px 1px 4px #581c0c;
     height: 100%;
     width: 100%;
-    /* height:24rem; */
-    /* max-height:24rem; */
-    /* min-width:15rem; */
-    /* max-width: 15rem; */
 }
 
 .product-img {
@@ -123,9 +119,14 @@
 
 .box-modal {
     border-radius: 10px;
-}
-
-.add-cart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f8b384;
+    border: 1px solid #581c0c;
+    box-shadow: 24;
+    padding: 0.7rem;
     display: flex;
     justify-content: center;
 }
@@ -171,13 +172,14 @@
     border-style: solid;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
-    min-height: 60vh;
+    height: 100%;
+    overflow-y: auto;
     border-radius: 10px;
     box-shadow: 2px 2px 5px #581c0c;
-    border: 1px solid red;
+    padding: 7px;
 }
 
 .imgs-box {
@@ -193,15 +195,21 @@
 .more-product {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     text-align: center;
-    width: 50%;
-    height: 100%;
-    margin-bottom: 1rem;
+    /* width: 50%; */
+    height: 40%;
+    padding: 10px;
 }
 
-
+.image-modal {
+    height: 200px;
+    transition: transform .2s;
+}
+.image-modal:hover {
+    transform: scale(1.6);
+}
 
 .more-cody {
     /* filter:drop-shadow(2px 2px 2px #581c0c); */
@@ -224,47 +232,21 @@
     transform: rotate(360deg);
 }
 
-.image-modal {
-    justify-self: flex-start !important;
-    height: 180px;
-    transition: transform .2s;
-}
-
-.image-modal:hover {
-    transform: scale(1.6);
-}
-
-.more-data {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    text-align: center;
-    width: 50%;
-}
-
 .more-info {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     font-size: 0.7rem;
 }
 
-.more-buy {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-}
-
 .more-data {
-    width: 30% !important;
+    /* width: 30% !important; */
     text-align: center;
     border-top: 2px solid #f8b384;
     border-bottom: 2px solid #f8b384;
     background-color: white;
     color: #581c0c;
     font-weight: bold;
+    padding: 5px;
 }
 
 .more-select {
