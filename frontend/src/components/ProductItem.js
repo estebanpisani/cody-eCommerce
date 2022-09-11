@@ -3,7 +3,6 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import codymore from '../media/cody2.png';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -54,22 +53,18 @@ const ProductItem = ({ data, functionReload, handleClose }) => {
 
   return (
     <div className='more-border' style={{ padding: "1rem" }}>
-      <div className='imgs-box'>
-        <img className='cody-more' alt='Cody developer' src={codymore}></img>
-        <div className='more-product'>
-          <img
-            className='image-modal MoreImg'
-            src={image}
-            alt="product"
-          />
-          {user?.user.role === 'admin' ?
-            <input type='textarea' defaultValue={name} value={inputname} onChange={(event) => setInputname(event.target.value)} className='more-name text-sm font-products' />
-            :
-            <h4 className="text-sm font-products more-name">{name}</h4>
-          }
-        </div>
+      <div className='more-product'>
+        <img
+          className='image-modal'
+          src={image}
+          alt="product"
+        />
+        {user?.user.role === 'admin' ?
+          <input type='textarea' defaultValue={name} value={inputname} onChange={(event) => setInputname(event.target.value)} className='more-name text-sm font-products' />
+          :
+          <h4 className="text-lg font-products">{name}</h4>
+        }
       </div>
-
       {user?.user.role === 'admin' ?
         <div className='more-buy'>
           <p>Stock:</p>
@@ -79,7 +74,7 @@ const ProductItem = ({ data, functionReload, handleClose }) => {
         </div>
         :
         <div className='more-buy'>
-          <h5 className='more-stock'>Disponible: {stock}</h5>
+          <p className='more-data'>Disponible: {stock}</p>
           <FormControl color='warning' className='more-select' sx={{ m: 1, minWidth: 120 }} size="small">
             <InputLabel color='warning' id="demo-select-small">Variedades:</InputLabel>
             <Select
@@ -96,7 +91,7 @@ const ProductItem = ({ data, functionReload, handleClose }) => {
               <MenuItem color='warning' value={30}>{variations[2]}</MenuItem>
             </Select>
           </FormControl>
-          <h5 className='more-price'>${price}.00</h5>
+          <h5 className='more-data'>${price}.00</h5>
         </div>
       }
 
@@ -109,10 +104,10 @@ const ProductItem = ({ data, functionReload, handleClose }) => {
             <button className=" button-admin" onClick={deleteProduct}>Eliminarlo<DeleteIcon /></button>
           </div>
         </div>
-        : user?.user.role==='user' ?
-        <button className="addToCart-button boton3" onClick={()=>dispatch(shoppingActions.addToCart(data._id))}>Agregar</button>
-        :
-        <p className="text-sm font-products more-name">Inicia sesión para agregar este producto a tu pedido</p>
+        : user?.user.role === 'user' ?
+          <button className="addToCart-button boton3" onClick={() => dispatch(shoppingActions.addToCart(data._id))}>Agregar</button>
+          :
+          <p className="text-base font-products">Inicia sesión para agregar este producto a tu pedido</p>
       }
     </div>
   );

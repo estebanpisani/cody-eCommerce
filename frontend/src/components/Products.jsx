@@ -4,7 +4,7 @@ import '../styles/products.css'
 import { Input } from "@material-tailwind/react";
 import Grid from '@mui/material/Grid';
 import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
-import BasicModal from './BasicModal';
+import ProductCard from './ProductCard';
 
 export default function Products(props) {
   const filterStore = props.filterStore
@@ -27,25 +27,9 @@ export default function Products(props) {
         <Grid2 sx={{mt:'24px', justifyContent:{xs:'center', sm:'space-around'}}} container columns={{ xs: 1, md: 2, lg:3 }}>
           {(filteredStore.map((product) =>
             (
-            <Grid2 xs key={product._id} sx={{m:2, height:'22rem', maxHeight:'22rem', minWidth:'15rem', maxWidth: '15rem'}} className="card-container rounded-md overflow-hidden hover:opacity-75 ">
-              <div className='product-img'>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="object-center img"
-                />
-              </div>
-
-              <div className="product-info">
-                <h3 className="text-sm md:text-base product-name">
-                  {product.name}
-                </h3>
-                <p className="text-sm font-medium text-gray-900 price my-1">${product.price}</p>
-                <div className='detail-modal'>
-                  <BasicModal data={product} functionReload={props.functionReload}>
-                  </BasicModal>
-                </div>
-              </div>
+            <Grid2 xs key={product._id} sx={{m:2, height:'24rem', maxHeight:'24rem', minWidth:'15rem', maxWidth: '13rem'}} className='card-container rounded-md overflow-hidden hover:opacity-75'>
+                  <ProductCard data={product} functionReload={props.functionReload}>
+                  </ProductCard>
             </Grid2>
             )
             ))}

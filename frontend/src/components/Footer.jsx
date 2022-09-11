@@ -1,6 +1,6 @@
 import React from 'react'
 import '../styles/footer.css'
-import Logo from '../media/cody2.png'
+import logo from '../media/cody2.png'
 import { Link as LinkRouter } from 'react-router-dom'
 import heroapp from '../media/apphero.png'
 
@@ -12,7 +12,8 @@ const Footer = () => {
           <img className='heroapp hidden md:block  w-full' src={heroapp} alt="" />
         </div>
         <div className="container-foot flex flex-col items-center text-gray-600">
-          <img src={Logo} alt="logo tailus" className="w-40 cody-footer" />
+          <img className='cody-more' alt='Cody developer' src={logo}></img>
+          {/* <img src={logo} alt="logo tailus" className="w-40 cody-footer" /> */}
           <ul className="py-4 flex flex-col gap-4 items-center justify-center sm:flex-row sm:gap-8">
             <li>
               <LinkRouter to='/home' className="hover:text-cyan-500">Home</LinkRouter>
