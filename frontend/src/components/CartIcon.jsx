@@ -24,7 +24,7 @@ const style = {
   width: 400,
   bgcolor: 'background.paper',
   boxShadow: 24,
-  p: 4,
+  p: 2,
 };
 
 export default function CartIcon() {
@@ -65,33 +65,29 @@ export default function CartIcon() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box className="ModalCart" sx={style}>
-          <article className="box BoxCart">
-            <button className="btn-clear" onClick={() => dispatch(shoppingActions.clearCart())}>
-              <RemoveShoppingCartIcon /> Limpiar Carrito</button>
-            {cart?.length > 0 ?
-              <div className="scrollProducts">
-                <div>
-                  {cart?.map((item, index) => (
-                    <CartItem key={index} data={item}
-                      delOneFromCart={() => dispatch(shoppingActions.delFromCart(item._id))}
-                      delAllFromCart={() => dispatch(shoppingActions.delFromCart(item._id, true))} />
-                  ))}
-                </div>
+        <Box className="modal-cart">
+          {cart?.length > 0 ?
+            <article className="box-cart">
+              <div className="cart-items scroll-products w-full">
+                {cart?.map((item, index) => (
+                  <CartItem key={index} data={item}
+                    delOneFromCart={() => dispatch(shoppingActions.delFromCart(item._id))}
+                    delAllFromCart={() => dispatch(shoppingActions.delFromCart(item._id, true))} />
+                ))}
               </div>
-              :
-              <div>
-                <p>No hay productos agregados</p>
-              </div>
-            }
-            <div className="cont-buy">
-              <div className="cont-btn-buy">
+              <button className="btn-clear" onClick={() => dispatch(shoppingActions.clearCart())}>
+                <RemoveShoppingCartIcon /> Limpiar Carrito
+              </button>
+              <div className="flex flex-col items-center">
                 <p className="cart-total-txt font-products">Total: ${sumWithInitial}</p>
                 <PayPal props={cart} total={sumWithInitial}></PayPal>
               </div>
-              <img className="codybuy" src={codybuy}></img>
+            </article>
+            :
+            <div>
+              <p>No hay productos agregados</p>
             </div>
-          </article>
+          }
         </Box>
       </Modal>
 

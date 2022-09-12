@@ -53,9 +53,9 @@ const ProductItem = ({ data, functionReload, handleClose }) => {
   };
 
   return (
-    <div className='box-modal w-4/5 sm:w-3/5 md:w-2/5 h-4/6 sm:h-5/6'>
+    <div className="box-modal w-4/5 sm:w-96">
       <div className='more-border'>
-        <img className='image-modal' src={image} alt="product" />
+        <img className='image-modal w-24 sm:w-32' src={image} alt="product" />
         {user?.user.role === 'admin' ?
           <input type='textarea' defaultValue={name} value={inputname} onChange={(event) => setInputname(event.target.value)} className='more-name text-sm font-products' />
           :
@@ -118,3 +118,4 @@ const ProductItem = ({ data, functionReload, handleClose }) => {
 };
 
 export default ProductItem;
+

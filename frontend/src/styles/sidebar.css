@@ -35,18 +35,6 @@
 
 /* cart */
 
-.scrollProducts::-webkit-scrollbar-thumb {
-    background: #318aac;
-    border-radius: 20px;
-}
-
-.scrollProducts::-webkit-scrollbar {
-    background-color: #f9f2ed;
-    width: 13px;
-    border-radius: 50px !important;
-}
-
-
 .cartbox {
     display: flex;
     flex-direction: row;
@@ -91,13 +79,20 @@
 }
 
 /* cart modal */
-.ModalCart {
+.modal-cart {
     background-color: #f9f2ed !important;
     border: #581c0c 1px thin !important;
     border-radius: 15px !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0.7rem;
+    width: 400px;
+    box-shadow: 24px;
 }
 
-.BoxCart {
+.box-cart {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -105,41 +100,53 @@
     align-items: center;
     background-color: #f8b384;
     box-shadow: 2px 2px 5px #581c0c;
+    padding: 0.5rem;
 }
 
-.scrollProducts {
+.cart-items{
     height: 50vh;
-    width: 100%;
-    overflow-y: scroll;
     background-color: #f9f2ed;
-
+    border-radius: 10px;
+    margin: 0.5rem 0;
+}
+.scroll-products {
+    overflow-y: scroll;
+}
+.scroll-products::-webkit-scrollbar-thumb {
+    background: #318aac;
+    border-radius: 20px;
 }
 
-.cartproductitem {
+.scroll-products::-webkit-scrollbar {
+    background-color: #f9f2ed;
+    width: 13px;
+    border-radius: 50px !important;
+}
+
+.cart-product-item {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-
 }
 
-.imgnamecont {
+.img-name-cont {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 1rem;
 }
 
-.cartproductimg {
-    height: 100px;
+.cart-product-img {
+    height: 150px;
     transition: transform .2s;
 }
 
-.cartproductimg:hover {
-    transform: scale(1.4);
+.cart-product-img:hover {
+    transform: scale(1.5);
 }
 
-.boxBotones {
+.box-botones {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -224,7 +231,6 @@
 }
 
 .cont-buy {
-
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -233,10 +239,6 @@
     height: 100%;
     margin-top: 10px;
 }
-
-/* .cont-btn-buy{
-
-} */
 
 .codybuy {
     height: 80px;

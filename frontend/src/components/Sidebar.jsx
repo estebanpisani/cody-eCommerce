@@ -102,7 +102,7 @@ function Sidebar({ functionReload }) {
                             <span className="text-sm  ml-2"><AdminProduct functionReload={functionReload} /></span>
 
                             :
-                            <span className="text-sm  ml-2"><CartIcon></CartIcon></span>
+                            <span className="text-sm  ml-2"><CartIcon /></span>
                         }
                     </div>
                 </li>
