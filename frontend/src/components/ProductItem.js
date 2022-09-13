@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ProductItem = ({ data, functionReload, handleClose }) => {
 
-  let { _id, name, price, description, image, stock, variations } = data;
+  let { _id, name, price, image, stock} = data;
   const dispatch = useDispatch();
   const [opcion, setOpcion] = useState(10);
   const [inputname, setInputname] = useState(name);
