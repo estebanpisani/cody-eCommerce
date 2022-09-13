@@ -9,7 +9,7 @@ import '../styles/LoginForm.css';
 
 const LoginForm = () => {
   const dispatch = useDispatch()
-  const [isSignUp, setSignUp] = useState(false);
+  const [isSignUp, setSignUp] = useState(true);
 
   const signUpSubmit = async (event) => {
     event.preventDefault()
@@ -42,21 +42,30 @@ const LoginForm = () => {
       <div className="flex sm:hidden container-small-login">
         <div className="form-small-container p-5">
           {isSignUp ?
-            <form onSubmit={signUpSubmit} className='forms-small-register'>
-              <h1 className='font-bold m-0'>Crear una cuenta</h1>
-              <div className="social-container">
-                <GoogleSignUp />
-              </div>
-              <span>o registrate con tu correo electronico</span>
-              <input type="text" name='firstName' placeholder="Nombre" />
-              <input type="text" name='lastName' placeholder="Apellido" />
-              <input type="email" name='email' placeholder="Email" />
-              <input type="password" name='password' placeholder="Contraseña" />
-              <input type="file" name='image' placeholder="Foto de perfil" />
-              <button className='btn-form'>Registrarse</button>
-            </form>
+            <>
+              <h5 className='font-bold m-0'>Crear una cuenta</h5>
+              <form onSubmit={signUpSubmit} className='forms-small-register'>
+                <label className='my-1' for="first-name-input">Nombre:</label>
+                <input className='my-1 rounded p-2' type="text" id='first-name-input' name='first-name-input"' placeholder="Nombre" />
+                <label className='my-1' for="last-name-input">Apellido:</label>
+                <input className='my-1 rounded p-2' type="text" id='last-name-input' name='last-name-input' placeholder="Apellido" />
+                <label className='my-1' for="email-input">Email:</label>
+                <input className='my-1 rounded p-2' type="email" id='email-input' name='email-input' placeholder="Email" />
+                <label className='my-1' for="password-input">Contraseña:</label>
+                <input className='my-1 rounded p-2' type="password" id='password-input' name='password-input' placeholder="Contraseña" />
+                <label className='my-1' for="profile-photo">Foto de perfil:</label>
+                {/* <input className='my-1' type="file" name='profile-photo' id="profile-photo" placeholder="Foto de perfil" /> */}
+                <input className='my-1 rounded p-2' type="text" id='profile-photo' name='profile-photo' placeholder="Foto URL" />
+                <button className='btn-form my-3'>Registrarse</button>
+              </form>
+              <p className='text-center my-3'>o utiliza tu cuenta de Google</p>
+              <GoogleSignUp />
+              <p className='text-center my-3'>¿Ya tienes cuenta?</p>
+              <button className='btn-form my-3' onClick={() => setSignUp(!isSignUp)}>Ingresar</button>
+            </>
             :
             <>
+              <h5 className='font-bold m-0'>Ingresar</h5>
               <form onSubmit={loginSubmit} className='forms-small-register'>
                 <label className='my-1' for="email-input">Email:</label>
                 <input className='my-1 rounded p-2' type="email" id='email-input' name='email-input' placeholder="Email" />
@@ -64,7 +73,7 @@ const LoginForm = () => {
                 <input className='my-1 rounded p-2' type="password" id='password-input' name='password-input' placeholder="Contraseña" />
                 <button className='btn-form my-3'>Ingresar</button>
               </form>
-              <p className='text-center my-3'>o utiliza tu cuenta</p>
+              <p className='text-center my-3'>o utiliza tu cuenta de Google</p>
               <GoogleSignIn />
               <p className='text-center my-3'>¿No tienes cuenta?</p>
               <button className='btn-form my-3' onClick={() => setSignUp(!isSignUp)}>Registrarse</button>
