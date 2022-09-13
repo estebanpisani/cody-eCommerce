@@ -96,15 +96,12 @@ function Sidebar({ functionReload }) {
                         <span id="Cody" value="Cody" onClick={selectCategory} className="text-sm  ml-2">Menu Completo</span>
                     </div>
                 </li>
-                <li className="cartbox CartIcon flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
-                    <div className="cartbox CartIcon flex items-center">
+                <li className="cart-box flex flex-col justify-end w-full text-gray-600 hover:text-gray-300 px-8 py-2">
                         {user?.user.role === 'admin' ?
                             <span className="text-sm  ml-2"><AdminProduct functionReload={functionReload} /></span>
-
                             :
-                            <span className="text-sm  ml-2"><CartIcon /></span>
+                            <CartIcon />
                         }
-                    </div>
                 </li>
             </ul>
         </div>

@@ -54,7 +54,7 @@ export default function CartIcon() {
       <Button className="btn-cart-icon" onClick={handleOpen}>
         <ShoppingCartOutlinedIcon className="cart-icon" />
         {sumQuantity > 0 ?
-          <p className="cart-quantity ">{sumQuantity}</p>
+          <p className="cart-quantity text-sm">{sumQuantity}</p>
           :
           <p></p>
         }
@@ -84,7 +84,7 @@ export default function CartIcon() {
               </div>
             </article>
             :
-            <div>
+            <div className='box-cart font-bold p-5 '>
               <p>No hay productos agregados</p>
             </div>
           }
