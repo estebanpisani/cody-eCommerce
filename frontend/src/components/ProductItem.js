@@ -88,10 +88,8 @@ const ProductItem = ({ data, functionReload, handleClose }) => {
                     onChange={handleChange}
                   >
                     {data.variations.map((item, i) => (
-                      <MenuItem color='warning' id={i} value={(i+1)*10}>{item}</MenuItem>
+                      <MenuItem color='warning' key={i} value={(i+1)*10}>{item}</MenuItem>
                     ))}
-                    {/* <MenuItem color='warning' value={20}>{variations[1]}</MenuItem> */}
-                    {/* <MenuItem color='warning' value={30}>{variations[2]}</MenuItem> */}
                   </Select>
                 </FormControl>
               }
