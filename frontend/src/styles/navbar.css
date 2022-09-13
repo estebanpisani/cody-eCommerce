@@ -6,16 +6,24 @@
   position: absolute;
 }
 
-.button-login{
-  color: #f9f2ed;
-  background-color: #318aac;
-  box-shadow: 1px 1px 5px black;
+.button-login {
+  /* color: #f9f2ed !important; */
+  /* background-color: #318aac !important; */
+  /* box-shadow: 1px 1px 5px black; */
   border: 1px white solid;
 }
 
-.button-login:hover{
-  background-color: #fd981f;
-  color: #318aac;
+.button-login:hover {
+  background-color: #fd981f !important;
+  color: #318aac !important;
+}
+
+.MuiMenu-list {
+  background-color: #318aac;
+  color: #f9f2ed;
+  box-shadow: 1px 1px 5px black;
+  border: 1px white solid;
+  border-radius: 10px;
 }
 
 .navbar {

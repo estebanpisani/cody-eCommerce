@@ -19,6 +19,7 @@
   align-items: center;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
+  box-shadow: 2px 3px 8px #581c0ce6;
 }
 
 .codyhero {
@@ -29,7 +30,7 @@
 .text-box {
   color: #faf5f1;
   text-transform: uppercase;
-  text-shadow: 2px 3px 2px #318aac;
+  text-shadow: 2px 3px 2px #581c0ce6;
   font-weight: bold;
   text-align: center;
   border-radius: 20px;

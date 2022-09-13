@@ -65,7 +65,7 @@ const Navbar = () => {
                           <Avatar alt="imageUser" style={{ border: 'none', height: '60px', width: "100%", backgroundColor: 'white', borderRadius: '4rem', mx: 5 }} src={user?.user.image} />
                         </IconButton>
                         <Menu
-                          sx={{ mt: "60px", display: 'flex', flexDirection: 'column', justifyContent: 'center', flexWrap: 'wrap' }}
+                          sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', flexWrap: 'wrap'}}
                           id="menu-appbar"
                           anchorEl={anchorElUser}
                           anchorOrigin={{
@@ -80,12 +80,17 @@ const Navbar = () => {
                           open={Boolean(anchorElUser)}
                           onClick={handleCloseUserMenu}
                         >
-                          <LinkRouter to='/profile'>
-                            <MenuItem className="button-login px-4 py-2 rounded-l-xl text-white m-0 hover:bg-neutral-50 transition">Mi Perfil</MenuItem>
-                          </LinkRouter>
-                          <LinkRouter to='/login' onClick={() => dispatch(userActions.signOutUser())} >
-                            <MenuItem className="button-login px-4 py-2 rounded-l-xl text-white m-0 hover:bg-neutral-50 transition">Cerrar Sesion</MenuItem>
-                          </LinkRouter>
+
+                          <MenuItem className="button-login px-4 py-2 text-white my-1 transition text-center">
+                            <LinkRouter className="w-full" to='/profile' >
+                              Mi Perfil
+                            </LinkRouter>
+                          </MenuItem>
+                          <MenuItem className="button-login px-4 py-2 text-white my-1 transition text-center" >
+                            <LinkRouter className="w-full" to='/login' onClick={() => dispatch(userActions.signOutUser())} >
+                              Cerrar Sesion
+                            </LinkRouter>
+                          </MenuItem>
                         </Menu>
                       </div>
                       //   <LinkRouter to='/login' onClick={()=>dispatch(userActions.signOutUser())} >
