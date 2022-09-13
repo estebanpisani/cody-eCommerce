@@ -18,7 +18,6 @@ const CartItem = ({ data, delOneFromCart, delAllFromCart }) => {
       </div>
       <div className="box-botones">
         <button className='btn-del' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} onClick={() => delOneFromCart(id)}><DeleteIcon fontSize="small" /> Borrar</button>
-
         <button className='btn-del' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} onClick={() => delAllFromCart(id, true)}><ClearIcon fontSize="small" />Borrar Todos</button>
       </div>
     </div>

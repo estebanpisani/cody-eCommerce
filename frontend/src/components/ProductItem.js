@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -21,9 +20,9 @@ const ProductItem = ({ data, functionReload, handleClose }) => {
   const [inputname, setInputname] = useState(name);
   const [inputstock, setInputstock] = useState(stock);
   const [inputprice, setInputprice] = useState(price);
-
+  
   const user = useSelector(store => store.userReducer.user);
-
+  
   const handleChange = (event) => {
     setOpcion(event.target.value);
   };
@@ -76,22 +75,26 @@ const ProductItem = ({ data, functionReload, handleClose }) => {
                 <p>Disponible:</p>
                 <p>{stock} unidades</p>
               </div>
-              <FormControl color='warning' className='more-select' sx={{ m: 2, minWidth: 120 }} size="small">
-                <InputLabel color='warning' id="demo-select-small">Variedades:</InputLabel>
-                <Select
-                  color='warning'
-                  labelId="demo-select-small"
-                  id="demo-select-small"
-                  value={opcion}
-                  defaultValue={10}
-                  label="Opcion"
-                  onChange={handleChange}
-                >
-                  <MenuItem color='warning' value={10}>{variations[0]}</MenuItem>
-                  <MenuItem color='warning' value={20}>{variations[1]}</MenuItem>
-                  <MenuItem color='warning' value={30}>{variations[2]}</MenuItem>
-                </Select>
-              </FormControl>
+              {data.variations.length>0 &&
+                <FormControl color='warning' className='more-select' sx={{ m: 2, minWidth: 120 }} size="small">
+                  <InputLabel color='warning' id="demo-select-small">Variedades:</InputLabel>
+                  <Select
+                    color='warning'
+                    labelId="demo-select-small"
+                    id="demo-select-small"
+                    value={opcion}
+                    defaultValue={10}
+                    label="Opción"
+                    onChange={handleChange}
+                  >
+                    {data.variations.map((item, i) => (
+                      <MenuItem color='warning' id={i} value={(i+1)*10}>{item}</MenuItem>
+                    ))}
+                    {/* <MenuItem color='warning' value={20}>{variations[1]}</MenuItem> */}
+                    {/* <MenuItem color='warning' value={30}>{variations[2]}</MenuItem> */}
+                  </Select>
+                </FormControl>
+              }
               <p className='more-data my-2'>${price}.00</p>
             </>
           }

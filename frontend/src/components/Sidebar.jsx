@@ -19,8 +19,11 @@ function Sidebar({ functionReload }) {
     }, [reload])
 
     const selectCategory = async (event) => {
-        setCategory(event.target.id)
-        setReload(!reload)
+        
+        if (event.target === event.currentTarget && event.target.id !== category) {
+            setCategory(event.target.id)
+            setReload(!reload)
+        }
     }
 
     return (
@@ -29,7 +32,7 @@ function Sidebar({ functionReload }) {
                 <img alt='cody' src={cody3} width={100} height={30} />
             </div>
             <ul>
-                <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center py-3 px-8">
+                <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center py-3 px-8" id="Recomendado" onClick={selectCategory}>
                     <div className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-grid" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" />
@@ -38,10 +41,10 @@ function Sidebar({ functionReload }) {
                             <rect x={4} y={14} width={6} height={6} rx={1} />
                             <rect x={14} y={14} width={6} height={6} rx={1} />
                         </svg>
-                        <span id="Recomendado" value="recomendado" onClick={selectCategory} className="text-sm  ml-2">Recomendados</span>
+                        <span className="text-sm ml-2">Recomendado</span>
                     </div>
                 </li>
-                <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
+                <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3" id="Desayuno" value="Desayuno" onClick={selectCategory}>
                     <div className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-code" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" />
@@ -49,10 +52,10 @@ function Sidebar({ functionReload }) {
                             <polyline points="17 8 21 12 17 16" />
                             <line x1={14} y1={4} x2={10} y2={20} />
                         </svg>
-                        <span id="Desayuno" value="Desayuno" onClick={selectCategory} className="text-sm  ml-2">Desayuno/Merienda</span>
+                        <span className="text-sm  ml-2">Desayuno/Merienda</span>
                     </div>
                 </li>
-                <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
+                <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3" id="Almuerzo" value="Almuerzo" onClick={selectCategory}>
                     <div className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-code" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" />
@@ -60,10 +63,10 @@ function Sidebar({ functionReload }) {
                             <polyline points="17 8 21 12 17 16" />
                             <line x1={14} y1={4} x2={10} y2={20} />
                         </svg>
-                        <span id="Almuerzo" value="Almuerzo" onClick={selectCategory} className="text-sm  ml-2">Almuerzo</span>
+                        <span className="text-sm  ml-2">Almuerzo</span>
                     </div>
                 </li>
-                <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
+                <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3" id="Postre" value="Postre" onClick={selectCategory}>
                     <div className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-code" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" />
@@ -71,10 +74,10 @@ function Sidebar({ functionReload }) {
                             <polyline points="17 8 21 12 17 16" />
                             <line x1={14} y1={4} x2={10} y2={20} />
                         </svg>
-                        <span id="Postre" value="Postre" onClick={selectCategory} className="text-sm  ml-2">Postres</span>
+                        <span className="text-sm  ml-2">Postres</span>
                     </div>
                 </li>
-                <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center  px-8 py-3">
+                <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center  px-8 py-3" id="Producto" value="Producto" onClick={selectCategory} >
                     <div className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-code" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" />
@@ -82,10 +85,10 @@ function Sidebar({ functionReload }) {
                             <polyline points="17 8 21 12 17 16" />
                             <line x1={14} y1={4} x2={10} y2={20} />
                         </svg>
-                        <span id="Producto" value="Producto" onClick={selectCategory} className="text-sm  ml-2">Productos</span>
+                        <span className="text-sm  ml-2">Productos</span>
                     </div>
                 </li>
-                <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3">
+                <li className="list-hover flex w-full justify-between text-gray-600 hover:text-gray-300 cursor-pointer items-center px-8 py-3" id="Cody" value="Cody" onClick={selectCategory} >
                     <div className="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-stack" width={18} height={18} viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" />
@@ -93,15 +96,15 @@ function Sidebar({ functionReload }) {
                             <polyline points="4 12 12 16 20 12" />
                             <polyline points="4 16 12 20 20 16" />
                         </svg>
-                        <span id="Cody" value="Cody" onClick={selectCategory} className="text-sm  ml-2">Menu Completo</span>
+                        <span className="text-sm ml-2">Menu Completo</span>
                     </div>
                 </li>
                 <li className="cart-box flex flex-col justify-end w-full text-gray-600 hover:text-gray-300 px-8 py-2">
-                        {user?.user.role === 'admin' ?
-                            <span className="text-sm  ml-2"><AdminProduct functionReload={functionReload} /></span>
-                            :
-                            <CartIcon />
-                        }
+                    {user?.user.role === 'admin' ?
+                        <span className="text-sm  ml-2"><AdminProduct functionReload={functionReload} /></span>
+                        :
+                        <CartIcon />
+                    }
                 </li>
             </ul>
         </div>

@@ -11,7 +11,7 @@ const Footer = () => {
           <h5 className='pedido-text'>¡Haz tu pedido desde la <span className='app-text'>APP!</span></h5>
           <img className='heroapp hidden md:block  w-full' src={heroapp} alt="" />
         </div>
-        <div className="container-foot flex flex-col items-center text-gray-600">
+        <div className="container-foot flex flex-col items-center text-gray-600 mt-5">
           <img className='cody-more' alt='Cody developer' src={logo}></img>
           {/* <img src={logo} alt="logo tailus" className="w-40 cody-footer" /> */}
           <ul className="py-4 flex flex-col gap-4 items-center justify-center sm:flex-row sm:gap-8">
