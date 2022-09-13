@@ -7,25 +7,11 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import shoppingActions from "../redux/actions/shoppingActions";
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import CartItem from "./CartItem";
 import PayPal from "./Paypal";
-
-import codybuy from '../media/cody4.png';
-import productActions from "../redux/actions/productActions";
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  boxShadow: 24,
-  p: 2,
-};
 
 export default function CartIcon() {
   const dispatch = useDispatch();

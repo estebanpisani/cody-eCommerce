@@ -10,7 +10,7 @@ const CartItem = ({ data, delOneFromCart, delAllFromCart }) => {
         <h3 className="text-lg font-products">
           {name}
         </h3>
-        <img className="cart-product-img" src={image}></img>
+        <img className="cart-product-img" alt={name} src={image} />
       </div>
       <div className='cart-cont-info'>
         <p className='more-data w-2/5 my-1'>${price}.00 x{quantity}u</p>
