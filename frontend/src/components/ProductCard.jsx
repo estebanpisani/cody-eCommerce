@@ -22,7 +22,7 @@ export default function ProductCard({ data, functionReload }) {
         />
       </div>
       <div className="product-info">
-        <h3 className="text-sm md:text-base product-name">
+        <h3 className="text-sm md:text-lg product-name">
           {data.name}
         </h3>
         <p className="text-sm font-medium text-gray-900 price my-1">${data.price}</p>
