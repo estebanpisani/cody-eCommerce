@@ -1,8 +1,23 @@
-.mofifyUser-container {
-   margin:2rem;
+.profile-section {
+   min-height: 80vh;
 }
 
-.userProfile{
+.profile-container{
    background-image: url(https://i.im.ge/2022/07/29/Fm5SOf.jpg);
+   background-repeat: no-repeat;
+   background-size: cover;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: center;
+}
 
+.user-profile-form{
+   background-color: #F9B384;
+   box-shadow: 2px 3px 8px #581c0ce6;
+}
+
+.user-label{
+   font-family: 'Montserrat', sans-serif;
+   font-weight: 700;
 }
