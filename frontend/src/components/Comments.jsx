@@ -38,8 +38,7 @@ function Comments({ event, setChangeReload }) {
       comment: modify,
     };
 
-    console.log(data);
-    await dispatch(commentsAction.modifiComment(id, data));
+    await dispatch(commentsAction.modifyComment(id, data));
     setChangeReload()
   }
 

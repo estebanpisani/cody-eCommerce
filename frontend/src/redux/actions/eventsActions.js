@@ -6,8 +6,8 @@ const eventsActions = {
     getEvents: () => {
         return async (dispatch, getState) => {
             try {
-                const res = await axios.get(`${URL_API}/api/events`)
-                dispatch({ type: 'GET_EVENTS', payload: res.data.response.events })
+                const res = await axios.get(`${URL_API}/api/events`);
+                dispatch({type: 'GET_EVENTS', payload: res.data.response.events});
             } catch (error) {
                 console.log(error)
             }
@@ -29,7 +29,6 @@ const eventsActions = {
             } catch (error) {
                 console.log(error)
             }
-
         }
     },
     addEvent: (name, description, authors, categories, images, price, limit, date, tags, attendance, likes, comments) => {

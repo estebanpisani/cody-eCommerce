@@ -38,7 +38,7 @@ const commentsActions = {
       }
     };
   },
-  modifiComment: (id, data) => {
+  modifyComment: (id, data) => {
     const token = localStorage.getItem("token");
     return async (dispatch, getState) => {
       const res = await axios.put(

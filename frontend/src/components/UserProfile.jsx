@@ -20,7 +20,6 @@ export default function UserProfile() {
   }
   const modifyUser = async (e) => {
     e.preventDefault();
-    console.log(e);
     const newUser = {
       firstName: e.target[0].value,
       lastName: e.target[1].value,
