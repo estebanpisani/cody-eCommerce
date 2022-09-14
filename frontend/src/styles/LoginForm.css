@@ -137,7 +137,7 @@ span {
 .btn-form {
   border-radius: 20px;
   border: 1px solid #318aac;
-  background-color: #318aac;
+  background-color: #318aac !important;
   color: #FFFFFF;
   font-size: 12px;
   font-weight: bold;

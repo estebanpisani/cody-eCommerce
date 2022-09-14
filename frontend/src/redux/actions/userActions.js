@@ -3,15 +3,14 @@ import URL_API from "../../url";
 
 const userActions = {
 
-    signUpUsers: (userData) => { 
+    signUpUsers: (userData) => {
         return async (dispatch, getState) => {
             try {
                 const res = await axios.post(`${URL_API}/api/auth/signup`, { userData })
                 dispatch({
                     type: 'MESSAGE',
                     payload: {
-                        view: true,
-                        message: res.data.message, // SNACKBAR
+                        message: res.data.message,
                         success: res.data.success
                     }
                 })
@@ -25,11 +24,10 @@ const userActions = {
         return async (dispatch, getState) => {
             const res = await axios.put(`${URL_API}/api/auth/signin`, { logedUser })
             if (res.data.success) {
-                localStorage.setItem('token', res.data.response.token)
+                localStorage.setItem('token', res.data.response.token);
                 dispatch({
                     type: 'USER',
                     payload: res.data.response,
-                    view: true,
                     message: res.data.message,
                     success: res.data.success
                 })
@@ -37,7 +35,6 @@ const userActions = {
                 dispatch({
                     type: 'MESSAGE',
                     payload: {
-                        view: true,
                         message: res.data.message,
                         success: res.data.success
                     }
@@ -54,6 +51,28 @@ const userActions = {
             })
         }
     },
+    modifyUser: (id, newUser) => {
+        const token = localStorage.getItem('token');
+        return async (dispatch, getState) => {
+            const res = await axios.put(`${URL_API}/api/auth/profile/${id}`,
+                { ...newUser },
+                {
+                    headers: {
+                        Authorization: 'Bearer ' + token,
+                    }
+                }
+            );
+            return async (dispatch, getState) => {
+                dispatch({
+                    type: 'USER',
+                    payload: res.data.response,
+                    message: res.data.message,
+                    success: res.data.success
+                }
+                )
+            }
+        }
+    },
     verifyToken: (token) => {
         return async (dispatch, getState) => {
             await axios.get(`${URL_API}/api/auth/`,
@@ -68,7 +87,6 @@ const userActions = {
                         dispatch({
                             type: 'MESSAGE',
                             payload: {
-                                view: true,
                                 message: user.data.message,
                                 success: user.data.success
                             }
@@ -80,7 +98,6 @@ const userActions = {
                         dispatch({
                             type: 'MESSAGE',
                             payload: {
-                                view: true,
                                 message: "Sesión expirada.",
                                 success: false
                             }

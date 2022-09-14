@@ -1,34 +1,36 @@
 import React from 'react'
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import userActions from "../redux/actions/userActions";
-import '../styles/UserProfile.css';
-import '../styles/LoginForm.css';
+import userActions from '../redux/actions/userActions';
+
 import Avatar from 'react-avatar';
 
-export default function UserProfile() {
+import '../styles/UserProfile.css';
+import '../styles/LoginForm.css';
 
+export default function UserProfile() {
+  const dispatch = useDispatch();
   const [reload, setReload] = useState(false);
   const [edit, setEdit] = useState(false);
-  const dispatch = useDispatch();
-
   const user = useSelector((store) => store.userReducer.user);
 
-  const handleEdit = () => {
+  const handleEdit = (e) => {
+    e.preventDefault()
     setEdit(!edit);
   }
   const modifyUser = async (e) => {
-    e.preventDefault()
-    const modifiedUser = {
+    e.preventDefault();
+    console.log(e);
+    const newUser = {
       firstName: e.target[0].value,
-      //   lastName: e.target[1].value,
-      email: e.target[1].value,
-      //   password: e.target[3].value,
-      //   from: e.target[4].value,
-      role: e.target[2].value,
+      lastName: e.target[1].value,
+      email: e.target[2].value,
       image: e.target[3].value,
     }
-    // await dispatch(userActions.modifyUser(user?.user?.id, modifiedUser));
+    if(user.user.role === 'admin'){
+      newUser.role=e.target[4].value;
+    }
+    await dispatch(userActions.modifyUser(user?.user?.id, newUser));
     setEdit(false);
     setReload(!reload);
   }
@@ -51,35 +53,38 @@ export default function UserProfile() {
           <div className='flex justify-center items-center my-4'>
             <Avatar size="150" round="20px" src={user?.user?.image} />
           </div>
-          <form className='user-profile-form w-3/6 flex flex-col items-center p-5 rounded'>
-            <label className='my-1 user-label' for="first-name-input">Nombre:</label>
+
+          <form onSubmit={modifyUser} className='user-profile-form w-3/6 flex flex-col items-center p-5 rounded'>
+
+            <label className='mt-2 user-label' for="first-name-input">Nombre:</label>
             {edit ?
               <input className='my-1 rounded p-2' type="text" id='first-name-input' name='first-name-input' placeholder="Nombre" defaultValue={user?.user?.firstName} />
               :
-              <p className='my-1 rounded p-2 font-semibold'>{user?.user?.firstName}</p>
+              <p className='mb-1 rounded font-semibold'>{user?.user?.firstName}</p>
             }
-            <label className='my-1 user-label' for="last-name-input">Apellido:</label>
+
+            <label className='mt-2 user-label' for="last-name-input">Apellido:</label>
             {edit ?
               <input className='my-1 rounded p-2' type="text" id='last-name-input' name=' last-name-input' placeholder="Apellido" defaultValue={user?.user?.lastName} />
               :
-              <p className='my-1 rounded p-2 font-semibold'>{user?.user?.lastName}</p>
+              <p className='mb-1 rounded font-semibold'>{user?.user?.lastName}</p>
             }
-            <label className='my-1 user-label' for="email-input">Email:</label>
+
+            <label className='mt-2 user-label' for="email-input">Email:</label>
             {edit ?
               <input className='my-1 rounded p-2' type="email" id='email-input' name='email-input' placeholder="Email" defaultValue={user?.user?.email} />
               :
-              <p className='my-1 rounded p-2 font-semibold'>{user?.user?.email}</p>
+              <p className='mb-1 rounded font-semibold'>{user?.user?.email}</p>
             }
+
             {edit &&
               <>
-                <label className='my-1 user-label' for="password-input">Contraseña:</label>
-                <input className='my-1 rounded p-2' type="password" id='password-input' name='password-input' placeholder="Contraseña" defaultValue={user?.user?.password} />
                 <label className='my-1 user-label' for="profile-photo">Foto de perfil:</label>
                 {/* <input className='my-1' type="file" name='profile-photo' id="profile-photo" placeholder="Foto de perfil" /> */}
-                <input defaultValue={user?.user?.role} className='my-1 rounded p-2' type="text" id='profile-photo' name='profile-photo' placeholder="Foto URL" />
+                <input defaultValue={user?.user?.image} className='my-1 rounded p-2' type="text" id='profile-photo' name='profile-photo' placeholder="Foto URL" />
               </>
             }
-            {edit && user.user.role === 'admin'  ?
+            {edit && user.user.role === 'admin' ?
               <>
                 <label className="my-1 user-label">
                   Rol de Usuario
@@ -89,8 +94,8 @@ export default function UserProfile() {
               :
               null
             }
-            {edit ? 
-              <button className='btn-form my-3' onClick={modifyUser} type='submit'>Guardar</button>
+            {edit ?
+              <button className='btn-form my-3' type='submit'>Guardar</button>
               :
               <button className='btn-form my-3' onClick={handleEdit}>Editar</button>
             }

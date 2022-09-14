@@ -8,7 +8,7 @@ import GoogleSignIn from './GoogleSignIn';
 import '../styles/LoginForm.css';
 
 const LoginForm = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [isSignUp, setSignUp] = useState(true);
 
   const signUpSubmit = async (event) => {

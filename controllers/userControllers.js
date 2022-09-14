@@ -176,9 +176,10 @@ const userControllers = {
       id: req.user.id,
       email: req.user.email,
       firstName: req.user.firstName,
+      lastName: req.user.lastName,
       image: req.user.image,
       role: req.user.role,
-      from: "token"
+      from: req.user.from
     }
     if (!req.err) {
       res.json({
