@@ -40,7 +40,7 @@
 }
 
 .form-container {
-  background-color: #f9f2ed;
+  background-color: #f7d9c3;
   position: absolute;
   top: 0;
   left: 0;
@@ -135,7 +135,7 @@ span {
 }
 
 .btn-form {
-  border-radius: 20px;
+  border-radius: 15px;
   border: 1px solid #318aac;
   background-color: #318aac !important;
   color: #FFFFFF;
@@ -145,6 +145,11 @@ span {
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
+}
+.btn-form:hover {
+  background-color: #fd981f !important;
+  color: #318aac;
+  border: 1px white solid;
 }
 
 .btn-form:active {

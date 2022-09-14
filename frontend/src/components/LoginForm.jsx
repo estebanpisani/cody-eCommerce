@@ -13,16 +13,19 @@ const LoginForm = () => {
 
   const signUpSubmit = async (event) => {
     event.preventDefault()
-    const userData = {
-      firstName: event.target[0].value,
-      lastName: event.target[1].value,
-      email: event.target[2].value,
-      password: event.target[3].value,
-      image: event.target[4].value,
-      method: "signUpForm"
+    if (event.target[3].value === event.target[4].value) {
+      const userData = {
+        firstName: event.target[0].value,
+        lastName: event.target[1].value,
+        email: event.target[2].value,
+        password: event.target[3].value,
+        image: null,
+        method: "signUpForm"
+      }
+      await dispatch(userActions.signUpUsers(userData));
+    } else{
+      console.log("Contraseñas no coinciden");
     }
-    await dispatch(userActions.signUpUsers(userData));
-
   }
 
   const loginSubmit = async (event) => {
@@ -53,9 +56,8 @@ const LoginForm = () => {
                   <input className='my-1 rounded p-2' type="email" id='email-input' name='email-input' placeholder="Email" />
                   <label className='my-1' for="password-input">Contraseña:</label>
                   <input className='my-1 rounded p-2' type="password" id='password-input' name='password-input' placeholder="Contraseña" />
-                  <label className='my-1' for="profile-photo">Foto de perfil:</label>
-                  {/* <input className='my-1' type="file" name='profile-photo' id="profile-photo" placeholder="Foto de perfil" /> */}
-                  <input className='my-1 rounded p-2' type="text" id='profile-photo' name='profile-photo' placeholder="Foto URL" />
+                  <label className='my-1' for="password2-input">Repetir contraseña:</label>
+                  <input className='my-1 rounded p-2' type="password" id='password2-input' name='password2-input' placeholder="Contraseña" />
                   <button className='btn-form my-3'>Registrarse</button>
                   <p className='text-center my-3'>o utiliza tu cuenta de Google</p>
                   <GoogleSignUp />
@@ -98,9 +100,8 @@ const LoginForm = () => {
                 <input className='my-1 rounded p-2' type="email" id='email-input' name='email-input' placeholder="Email" />
                 <label className='my-1' for="password-input">Contraseña:</label>
                 <input className='my-1 rounded p-2' type="password" id='password-input' name='password-input' placeholder="Contraseña" />
-                <label className='my-1' for="profile-photo">Foto de perfil:</label>
-                {/* <input className='my-1' type="file" name='profile-photo' id="profile-photo" placeholder="Foto de perfil" /> */}
-                <input className='my-1 rounded p-2' type="text" id='profile-photo' name='profile-photo' placeholder="Foto URL" />
+                <label className='my-1' for="password2-input">Repetir contraseña:</label>
+                <input className='my-1 rounded p-2' type="password" id='password2-input' name='password2-input' placeholder="Contraseña" />
                 <button className='btn-form my-3'>Registrarse</button>
               </form>
               <p className='text-center my-3'>o utiliza tu cuenta de Google</p>
