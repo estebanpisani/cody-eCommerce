@@ -103,7 +103,6 @@ const Calendar = ({ props }) => {
               {author}
             </h6>
           ))}
-        </div>
         <div className="container-modal-info">
           <div className="modal-info">
             <h5 className="font-semibold text-xl xl:text-2xl text-center">
@@ -142,6 +141,7 @@ const Calendar = ({ props }) => {
               <GroupIcon/>
             </div>
           </div>
+        </div>
         </div>
         {user?.user?.role === "admin" ?
           <div className="px-2 2xl:px-0">
