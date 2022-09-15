@@ -11,6 +11,7 @@ import { Box } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from '@mui/icons-material/Comment';
+import GroupIcon from '@mui/icons-material/Group';
 import Button from "@mui/material/Button";
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -103,19 +104,9 @@ const Calendar = ({ props }) => {
             </h6>
           ))}
         </div>
-        <div className="calendar-item">
-          <p className="font-medium text-lg my-1">
-            {new Date(props.date).toLocaleDateString("es-ES", options)}
-          </p>
-          <h5 className="font-medium my-1">Capacidad: {props.limit} personas</h5>
-          <p className="text-xs leading-3 text-black-600 mb-2">
-            {props?.attendance.length} asistentes confirmados
-          </p>
-        </div>
-
         <div className="container-modal-info">
           <div className="modal-info">
-            <h5 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl text-center">
+            <h5 className="font-semibold text-xl xl:text-2xl text-center">
               {`${props.likes?.length}`}
             </h5>
             {user ? (
@@ -136,24 +127,24 @@ const Calendar = ({ props }) => {
             )}
           </div>
           <div className="modal-info">
-            <h5 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl text-center">
+            <h5 className="font-semibold text-xl xl:text-2xl text-center">
               {props.comments.length > 0 ? props?.comments.length : 0}
             </h5>
-            <div className="text-black-800 text-sm px-5 font-normal rounded-full">
+            <div className="text-sm font-normal text-center rounded-full py-1">
               <CommentIcon />
             </div>
           </div>
           <div className="modal-info">
-            <h5 className="text-black-600 dark:text-black-400 font-bold text-xl xl:text-2xl text-center">
-              {props?.limit - props?.attendance?.length}
+            <h5 className="font-semibold text-xl xl:text-2xl text-center">
+              {props.attendance.length > 0 ? `${props?.attendance.length}/${props.limit}` : `0/${props.limit}`}
             </h5>
-            <p className="text-black-800 text-lg font-normal">
-              Vacantes
-            </p>
+            <div className="text-sm text-center font-normal rounded-full">
+              <GroupIcon/>
+            </div>
           </div>
         </div>
         {user?.user?.role === "admin" ?
-          <div className="px-7 2xl:px-0">
+          <div className="px-2 2xl:px-0">
             {
               show === 0 ? (
                 <button
@@ -247,12 +238,12 @@ const Calendar = ({ props }) => {
           : null
         }
       </div>
-      <ExpandCircleDownIcon sx={{ width: '100%', display: 'flex', justifyContent: 'center', mb:2 }} onClick={handleExpandClick} className={expanded ? 'rotate btn-expand down' : 'rotate btn-expand'} fontSize="medium" />
+      <ExpandCircleDownIcon sx={{ width: '100%', display: 'flex', justifyContent: 'center', mb: 2 }} onClick={handleExpandClick} className={expanded ? 'rotate btn-expand down' : 'rotate btn-expand'} fontSize="medium" />
       <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ width: '100%' }}>
-        <div className="text-sm leading-none text-black-800 justify-center item-center w-full">
+        <div className="text-sm leading-none justify-center item-center w-full">
           <div className="flex flex-col items-center justify-between">
             <div className="description-modal">
-              <p className="text-center text-base text-justify text-black-600 dark:text-black-400">
+              <p className="text-center text-base text-justify text-black-600" >
                 {props.description}
               </p>
             </div>
@@ -278,7 +269,7 @@ const Calendar = ({ props }) => {
               ) : (
                 <LinkRouter
                   to={"/login"}
-                  className="focus:outline-none button-reserva transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-3 py-2 text-sm text-center"
+                  className="focus:outline-none button-reserva transition duration-150 ease-in-out rounded px-3 py-2 text-sm text-center"
                 >
                   Inicia sesión para reservar!
                 </LinkRouter>
