@@ -57,7 +57,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width:100%;
+    width: 100%;
 }
 
 .flex-conteiner-info {
@@ -99,9 +99,6 @@
     width: 90%;
 }
 
-/* mejorar shadow */
-/* 
-    /*  */
 .detail-modal {
     display: flex;
     flex-direction: row;
@@ -126,7 +123,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #f8b384;
+    background-color: #f9f2ed;
     border: 1px solid #581c0c;
     box-shadow: 24px;
     padding: 0.7rem;
@@ -173,14 +170,14 @@
 }
 
 .more-border {
-    background-color: #f9f2ed;
+    background-color:  #f8b384;
     border-style: solid;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     border-radius: 10px;
     box-shadow: 2px 2px 5px #581c0c;
     padding: 7px;
@@ -201,14 +198,11 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* width: 50%; */
     height: 40%;
     padding: 10px;
 }
 
 .image-modal {
-    /* width: 150px; */
-    /* height: 180px; */
     object-fit: contain;
     transition: transform .2s;
 }
@@ -218,7 +212,6 @@
 }
 
 .more-cody {
-    /* filter:drop-shadow(2px 2px 2px #581c0c); */
     height: 95px;
     align-self: flex-start;
     justify-self: flex-end;
@@ -227,7 +220,6 @@
 .cody-more {
     height: 120px;
     transition: transform .7s ease-in-out;
-    /* background-color: #f8b384; */
     background: linear-gradient(100deg, #581c0c, #f8b384);
     border: #581c0c 1px solid;
     border-radius: 100px;
@@ -238,6 +230,12 @@
     transform: rotate(360deg);
 }
 
+.cody-modal {
+    height: 120px;
+    transition: transform .7s ease-in-out;
+    box-shadow: 1px 1px 10px #f8b384;
+}
+
 .more-info {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
@@ -245,11 +243,10 @@
 }
 
 .more-data {
-    /* width: 30% !important; */
     text-align: center;
     border-top: 2px solid #f8b384;
     border-bottom: 2px solid #f8b384;
-    background-color: white;
+    /* background-color: white; */
     color: #581c0c;
     font-weight: bold;
     padding: 3px;
@@ -315,24 +312,16 @@
     color: #fff !important;
 }
 
-/* /rol admin/ */
+/* rol admin */
 .panel-admin {
     color: #f9f2ed;
-    padding: 2px 4px;
-    width: 15rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     border: #318aac 1px solid;
     border-radius: 5px;
-}
-
-.modal-admin {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .admin-title {
@@ -352,15 +341,13 @@
 }
 
 .admin-container {
-    height: 10rem;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: center !important;
+    justify-content: space-between !important;
     align-items: center;
     border: #318aac 2px solid;
-    margin: .5rem;
-    /* /modify/ */
+    width: 100%;
 }
 
 .material-symbols-outlined {
@@ -385,11 +372,6 @@
     position: relative;
 }
 
-.button-admin:hover {
-    color: #318aac;
-    background-color: #f9f2ed;
-}
-
 .material-symbols-outlined {
     border-radius: 10px !important;
     font-variation-settings:
@@ -403,19 +385,40 @@
     color: #f9f2ed;
     margin: .5rem;
     background-color: #318aac;
-    border: #318aac 2px solid;
-    border-radius: 10px;
+    border: #fff 1px solid;
+    border-radius: 5px;
     font-weight: bold;
     transition: all 1s ease;
-    padding: 0px 5px;
+    padding: 5px 5px;
     font-weight: 500;
     transition: all 1s ease;
     position: relative;
 }
 
+.button-admin:hover {
+    background-color: #fd981f;
+    color: #318aac;
+    border: 1px white solid;
+}
+
+.modal-admin {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 400px;
+    background-color: #F9B384;
+    box-shadow: 2px 3px 8px #581c0ce6;
+    max-height: 600px;
+}
+
 @media (max-width:400px) {
     .no-results-text {
         font-size: 0.7rem;
+    }
+
+    .modal-admin {
+        max-width: 90%;
     }
 }
 

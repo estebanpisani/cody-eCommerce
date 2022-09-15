@@ -55,21 +55,21 @@ export default function UserProfile() {
 
           <form onSubmit={modifyUser} className='user-profile-form w-3/6 flex flex-col items-center p-5 rounded'>
 
-            <label className='mt-2 text-lg  user-label' for="first-name-input">Nombre:</label>
+            <label className='mt-2 text-lg user-label' for="first-name-input">Nombre:</label>
             {edit ?
               <input className='my-1 rounded p-2' type="text" id='first-name-input' name='first-name-input' placeholder="Nombre" defaultValue={user?.user?.firstName} />
               :
               <p className='mb-1 text-lg rounded font-semibold'>{user?.user?.firstName}</p>
             }
 
-            <label className='mt-2 text-lg  user-label' for="last-name-input">Apellido:</label>
+            <label className='mt-2 text-lg user-label' for="last-name-input">Apellido:</label>
             {edit ?
               <input className='my-1 rounded p-2' type="text" id='last-name-input' name=' last-name-input' placeholder="Apellido" defaultValue={user?.user?.lastName} />
               :
-              <p className='mb-1 text-lg  rounded font-semibold'>{user?.user?.lastName}</p>
+              <p className='mb-1 text-lg rounded font-semibold'>{user?.user?.lastName}</p>
             }
 
-            <label className='mt-2 text-lg  user-label' for="email-input">Email:</label>
+            <label className='mt-2 text-lg user-label' for="email-input">Email:</label>
             {edit ?
               <input className='my-1 rounded p-2' type="email" id='email-input' name='email-input' placeholder="Email" defaultValue={user?.user?.email} />
               :
@@ -78,17 +78,17 @@ export default function UserProfile() {
 
             {edit &&
               <>
-                <label className='my-1 text-lg  user-label' for="profile-photo">Foto de perfil:</label>
+                <label className='my-1 text-lg user-label' for="profile-photo">Foto de perfil:</label>
                 {/* <input className='my-1' type="file" name='profile-photo' id="profile-photo" placeholder="Foto de perfil" /> */}
                 <input defaultValue={user?.user?.image} className='my-1 rounded p-2' type="text" id='profile-photo' name='profile-photo' placeholder="Foto URL" />
               </>
             }
             {edit && user.user.role === 'admin' ?
               <>
-                <label className="my-1 text-lg  user-label">
+                <label className="my-1 text-lg user-label" for="role-user">
                   Rol de Usuario
                 </label>
-                <input defaultValue={user?.user?.role} className="my-1 rounded p-2" id="username" type="text" />
+                <input defaultValue={user?.user?.role} className="my-1 rounded p-2" id="role-user" name='role-user' type="text" />
               </>
               :
               null

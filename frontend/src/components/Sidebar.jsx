@@ -99,9 +99,9 @@ function Sidebar({ functionReload }) {
                         <span className="text-sm ml-2">Menu Completo</span>
                     </div>
                 </li>
-                <li className="cart-box flex flex-col justify-end w-full text-gray-600 hover:text-gray-300 px-8 py-2">
+                <li className="cart-box flex flex-col justify-end w-full hover:text-gray-300">
                     {user?.user.role === 'admin' ?
-                        <span className="text-sm  ml-2"><AdminProduct functionReload={functionReload} /></span>
+                        <AdminProduct functionReload={functionReload} />
                         :
                         <CartIcon />
                     }

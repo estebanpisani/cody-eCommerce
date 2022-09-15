@@ -124,7 +124,7 @@
 }
 
 .scroll-products::-webkit-scrollbar {
-    background-color: #f9f2ed;
+    background-color: transparent;
     width: 13px;
     border-radius: 50px !important;
 }
